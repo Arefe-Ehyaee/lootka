@@ -37,7 +37,7 @@ interface Hostel {
   sub_category: string;
 }
 
-const BASE_URL = "http://82.115.25.241:2000";
+const BASE_URL = "http://91.212.174.72:2000";
 
 export const UseHostelData = (id: string | undefined) => {
   const [hostel, setHostel] = useState<Hostel | null>(null);

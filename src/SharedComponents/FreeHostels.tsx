@@ -8,7 +8,7 @@ import ReactMarkdown from 'react-markdown';
 import starGreen from "../assets/icons/StarGreen.svg";
 import heart from "../assets/icons/heart-rounded.svg";
 
-const BASE_URL = "http://82.115.25.241:4000";
+const BASE_URL = "http://91.212.174.72:4000";
 
 interface Hostel {
   id: string;

@@ -5,7 +5,7 @@ import { StarIcon } from '@heroicons/react/24/solid';
 import { StarIcon as StarIconOutline } from '@heroicons/react/24/outline';
 import NoImg from '../assets/images/no-image-icon-23485.png';
 // const BASE_URL = process.env.FRONT_API_URL;
-const BASE_URL = "http://91.216.104.26:5000";
+const BASE_URL = "http://91.212.174.72:5000";
 interface Restaurant {
   ImgName: string;
   Instagram: string;

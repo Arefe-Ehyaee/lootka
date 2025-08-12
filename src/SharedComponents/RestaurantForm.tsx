@@ -29,7 +29,7 @@ interface FormData {
 }
 
 // API base URL - put in a constant for easy management
-const API_BASE_URL = "http://82.115.25.241:2000";
+const API_BASE_URL = "http://91.212.174.72:2000";
 
 export default function RestaurantForm() {
   // Initial state for form data

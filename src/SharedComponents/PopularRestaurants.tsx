@@ -6,7 +6,7 @@ import { StarIcon as SolidStarIcon } from '@heroicons/react/24/solid';
 import { StarIcon as OutlineStarIcon } from '@heroicons/react/24/outline';
 import left from "../assets/icons/Icon.svg"
 // const BASE_URL = process.env.FRONT_API_URL;
-const BASE_URL = "http://91.216.104.26:5000";
+const BASE_URL = "http://91.212.174.72:5000";
 
 interface Restaurant {
   id: string;

@@ -8,7 +8,7 @@ import ReactMarkdown from 'react-markdown';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import starGreen from "../assets/icons/StarGreen.svg";
-const BASE_URL = "http://82.115.25.241:2000";
+const BASE_URL = "http://91.212.174.72:2000";
 
 interface Restaurant {
     id: string;

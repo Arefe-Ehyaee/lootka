@@ -37,7 +37,7 @@ interface Restaurant {
   sub_category: string;
 }
 
-const BASE_URL = "http://82.115.25.241:2000";
+const BASE_URL = "http://91.212.174.72:2000";
 
 export const usePlaceData = (id: string | undefined) => {
   const [restaurant, setRestaurant] = useState<Restaurant | null>(null);

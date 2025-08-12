@@ -12,7 +12,7 @@ import heart from '../assets/icons/heart-rounded.svg';
 import { ClockIcon, MapPinIcon } from '@heroicons/react/24/outline';
 import ReactMarkdown from 'react-markdown';
 
-const BASE_URL = "http://82.115.25.241:2000";
+const BASE_URL = "http://91.212.174.72:2000";
 
 interface Cafe {
   palce_id: string;

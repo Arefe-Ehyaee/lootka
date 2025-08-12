@@ -37,7 +37,7 @@ interface FormData {
 }
 
 // API base URL - put in a constant for easy management
-const API_BASE_URL = "http://82.115.25.241:4000";
+const API_BASE_URL = "http://91.212.174.72:4000";
 
 export default function HostelForm() {
   // Initial state for form data

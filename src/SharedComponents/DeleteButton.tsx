@@ -22,12 +22,12 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ restaurantId, hostelId,attr
 
       let url = '';
       if (restaurantId) {
-        url = `http://82.115.25.241:2000/rm_place/${restaurantId}`;
+        url = `http://91.212.174.72:2000/rm_place/${restaurantId}`;
       } else if (hostelId) {
-        url = `http://82.115.25.241:2000/rm_hostel/${hostelId}`;
+        url = `http://91.212.174.72:2000/rm_hostel/${hostelId}`;
       }
      else if (attractionId) {
-      url = `http://82.115.25.241:2000/rm_attraction/${attractionId}`;
+      url = `http://91.212.174.72:2000/rm_attraction/${attractionId}`;
     }
     else {
       throw new Error('No valid ID provided for deletion.');
