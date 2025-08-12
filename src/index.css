@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "myIranSans-regular";
+  src: url("./assets/fonts/woff2/IRANSansWeb.woff2") format("truetype");
+}
+
+@font-face {
+  font-family: "myIranSans-light";
+  src: url("./assets/fonts/woff2/IRANSansWeb_Light.woff2") format("truetype");
+}
+
+@font-face {
+  font-family: "myIranSans-medium";
+  src: url("./assets/fonts/woff2/IRANSansWeb_Medium.woff2") format("truetype");
+}
+
+@font-face {
+  font-family: "myIranSans-Bold";
+  src: url("./assets/fonts/woff2/IRANSansWeb_Bold.woff2") format("truetype");
+}
+
+@font-face {
+  font-family: "myIranSans-UltraLight";
+  src: url("./assets/fonts/woff2/IRANSansWeb_UltraLight.woff2") format("truetype");
+}
+
+@font-face {
+  font-family: "myIranSansFaNum-regular";
+  src: url("./assets/fonts/fNum/Woff2/IRANSansWeb(FaNum).woff2")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "myIranSansFaNum-medium";
+  src: url("./assets/fonts/fNum/Woff2/IRANSansWeb(FaNum)_Medium.woff2")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "myIranSansFaNum-Bold";
+  src: url("./assets/fonts/fNum/Woff2/IRANSansWeb(FaNum)_Bold.woff2")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "myIranSansFaNum-Light";
+  src: url("./assets/fonts/fNum/Woff2/IRANSansWeb(FaNum)_Light.woff2")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "myIranSansFaNum-UltraLight";
+  src: url("./assets/fonts/fNum/Woff2/IRANSansWeb(FaNum)_UltraLight.woff2")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+body {
+  margin: 0;
+  font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* RTL Support */
+.rtl {
+  direction: rtl;
+}
+
+/* Fix Tailwind RTL issues */
+.space-x-8 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+.space-x-6 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+} 
+
+
+.lootka-logo {
+  background-image: url("./assets/images/logo-removebg-preview.png");
+
+}

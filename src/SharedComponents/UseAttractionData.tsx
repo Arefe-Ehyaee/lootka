@@ -1,0 +1,78 @@
+import { useState, useEffect } from 'react';
+
+interface OpeningHours {
+  monday?: string | null;
+  tuesday?: string | null;
+  wednesday?: string | null;
+  thursday?: string | null;
+  friday?: string | null;
+  saturday?: string | null;
+  sunday?: string | null;
+  all_day: string | null;
+}
+
+interface Attraction {
+  id?: string;
+  name: string;
+  OurDescription: string;
+  UsersDescription?: string;
+  rating?: number;
+  reviews?: number;
+  address?: string;
+  opening_hours: OpeningHours;
+  phone?: string;
+  website?: string;
+  instagram?: string;
+  image_names?: string[];
+  Menu?: any[];
+  food_types?: string[];
+  sub_category?: string[];
+  mealTime?: string[];
+  Cuisine?: string;
+  price_range?: string;
+  latitude?: number;
+  longitude?: number;
+  map_url: string;
+  review_summary: string;
+  description: string;
+}
+
+const BASE_URL = "http://82.115.25.241:2000";
+
+export const useAttractionData    = (id: string | undefined) => {
+  const [attraction, setAttraction] = useState<Attraction | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchRestaurantDetails = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(`${BASE_URL}/places/${id}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch attraction details');
+        }
+
+        const data = await response.json();
+        setAttraction(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An error occurred while fetching restaurant details');
+        console.error('Error fetching restaurant details:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) {
+      fetchRestaurantDetails();
+    }
+  }, [id]);
+
+  return { attraction, loading, error };
+};
