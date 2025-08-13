@@ -37,7 +37,7 @@ const Hero: React.FC<HeroProps> = ({ onAdventureClick }) => {
                 <input
                   type="text"
                   placeholder="جستجوی جاذبه‌های دیدنی، رستوران و اقامتگاه"
-                  className="w-full h-12 font-myIranSansRegular text-[#222222] text-[14px] pr-[100px] pl-1 text-right border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-300"
+                  className="w-[600px] h-12 font-myIranSansRegular text-[#222222] text-[14px] pr-[100px] pl-1 text-right border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-300"
                 />
               </div>
             </div>
