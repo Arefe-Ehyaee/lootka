@@ -9,8 +9,9 @@ import Specials from '../SharedComponents/Specials';
 import Resort from '../SharedComponents/Resort';
 import PopularHostels from '../SharedComponents/PopularHostels';
 import Features from '../SharedComponents/Features';
-import FreeHostels from '../SharedComponents/FreeHostels';
 import PopularCafes from '../SharedComponents/PopularCafes';
+import ExperienceSection from '../SharedComponents/ExperienceSection';
+import HeroNavigation from '../SharedComponents/HeroNavigatoin';
 
 const MainPage: React.FC = () => {
   const assistantRef = useRef<HTMLDivElement>(null);
@@ -25,19 +26,35 @@ const MainPage: React.FC = () => {
   return (
     <div className="min-h-screen min-w-screen">
       <Navbar />
-      <Hero onAdventureClick={scrollToAssistant} />
+      <div className="relative">
+        <Hero onAdventureClick={scrollToAssistant} />
+
+        {/* ExperienceSection positioned to overlap Hero and Features */}
+        <div className="relative -mt-14 z-10">
+          <HeroNavigation />
+        </div>
+      </div>
+
       {/* <SearchBar /> */}
       <div className="max-w-8xl mx-auto py-3">
         {/* <div ref={assistantRef}>
           <AIAssistant />
         </div> */}
-        <Features></Features>
-        <PopularEat></PopularEat>
-                <PopularCafes></PopularCafes>
+
+        {/* Features section with padding to account for overlapping ExperienceSection */}
+        <div className="pt-32">
+          <PopularDestinations />
+
+        </div>
+
+
+        <ExperienceSection />
+        <PopularEat />
+        {/* <PopularCafes /> */}
+
+        <PopularHostels />
 
         {/* <PopularDestinationsNew /> */}
-                <PopularDestinations />
-        <PopularHostels></PopularHostels>
         {/* <FreeHostels></FreeHostels> */}
         {/* <Suggestions />
         <Specials></Specials> */}

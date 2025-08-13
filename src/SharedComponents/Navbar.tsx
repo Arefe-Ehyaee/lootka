@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import  UserIcon  from '../assets/icons/user-circle.svg';
+import UserIcon from '../assets/icons/user-circle.svg';
 import search from "../assets/icons/search-md.svg";
-import logo from '../assets/images/logo-removebg-preview.png';
-import plus from "../assets/icons/plus.svg";
-import Modal from './ModalWrapper';
-import SignUp from './SignUp';
+import logo from '../assets/images/lootka_logo.png';
+import plus from "../assets/icons/Add Square.svg";
+import login from "../assets/icons/login.svg";
 import ModalTemplate from './ModalWrapper';
+import SignUp from './SignUp';
 import Login from './Login';
 
 const cities: string[] = ['رشت', 'بندرانزلی', 'ماسوله', 'لاهیجان'];
@@ -14,13 +14,11 @@ const cities: string[] = ['رشت', 'بندرانزلی', 'ماسوله', 'لا�
 const Navbar = () => {
   const [cityIndex, setCityIndex] = useState<number>(0);
   const [searchInput, setSearchInput] = useState<string>('');
-  const [selectedCity, setSelectedCity] = useState<string>(cities[0]);
-  const [showCityDropdown, setShowCityDropdown] = useState<boolean>(false);
   const [searchFocused, setSearchFocused] = useState<boolean>(false);
-  const [showSignup, setShowSignup] = useState(false);
   const [modalType, setModalType] = useState<'signup' | 'login' | null>(null);
 
   const navigate = useNavigate();
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCityIndex((prevIndex) => (prevIndex + 1) % cities.length);
@@ -28,120 +26,64 @@ const Navbar = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleCitySelect = (city: string) => {
-    setSelectedCity(city);
-    setShowCityDropdown(false);
-  };
-
   return (
-    <nav className="bg-white shadow-md font-myIranSansRegular">
-      <div className="max-w-7xl mx-auto px-2 tablet:px-6 desktop:px-4">
-        <div className="flex justify-between h-16 items-center">
-          <div className="">
+    <nav className="absolute top-0 left-0 w-full z-20 font-myIranSansRegular h-[90px] desktop:px-[80px] px-[24px] desktop:py-[22px] py-[16px]">
+      <div className="mx-auto">
+        <div className="flex justify-between items-center text-white relative">
+
+          {/* Logo - left */}
+          <div>
             <Link to="/">
-              <img src={logo} alt="Logo" className="desktop:w-[180px] desktop:h-[110px] w-[150px] h-[90px]" />
+              <div className="flex flex-row gap-[6px] items-center">
+                <img src={logo} alt="Logo" className="w-[57px] h-[40px]" />
+                <h2 className="text-[#4C3516] font-myIranSansBold text-[24px]">لوتکا</h2>
+              </div>
             </Link>
           </div>
 
-          {/* Search Bar */}
-          <div className="hidden md:flex items-center flex-grow justify-center mx-6">
-            <div className="relative w-full flex items-center">
-              {/* City Selector Section */}
-              <div className="relative">
-                <div
-                  className="flex items-center justify-center px-4 h-10 bg-white text-gray-700 border border-l-0 border-gray-300 rounded-r-full focus:outline-none"
-                >
-                  <span className="mr-1">شهر</span>
-                </div>
-              </div>
-
-              {/* Vertical Divider */}
-              <div className="h-10 w-px bg-gray-300"></div>
-
-              {/* Search Input Section with Label on Border */}
-              <div className="relative flex-1">
-                <div className="relative">
-                  <input
-                    type="text"
-                    id="searchInput"
-                    className="w-full h-10 pl-10 pr-2 text-right border border-gray-300 rounded-l-full focus:outline-none focus:ring-1 focus:ring-green-200"
-                    value={searchInput}
-                    onChange={(e) => setSearchInput(e.target.value)}
-                    onFocus={() => setSearchFocused(true)}
-                    onBlur={() => setSearchFocused(searchInput.length > 0)}
-                  />
-                  <label
-                    htmlFor="searchInput"
-                    className={`absolute text-gray-500 transition-all desktop:text-sm tablet:text-xs duration-200 pointer-events-none bg-white
-                      ${(searchFocused || searchInput.length > 0)
-                        ? 'text-xs top-0 -mt-2 right-3 z-10'
-                        : 'text-base top-3 right-2'}`}
-                  >
-                    خوردنی‌ها، گشتنی‌ها و دیدنی‌ها، موندنی‌ها و ...           </label>
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <img src={search} alt="" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Icons */}
-          <div className="flex items-center desktop:gap-3 gap-4 text-sm">
-            <button className="text-gray-600 hover:text-gray-900 flex flex-row items-center  desktop:text-base tablet:text-base text-sm" onClick={() => navigate("/addForm")}>
-              <img src={plus} alt="plus" className="h-5 w-5" />
-              ثبت مکان جدید
+          {/* Centered Nav */}
+          <div className="absolute left-1/2 -translate-x-1/2 desktop:flex hidden items-center desktop:gap-[32px] gap-4 text-[#222222] font-myIranSansBold">
+            <button
+              className="flex flex-row items-center desktop:text-base tablet:text-base text-sm"
+              onClick={() => navigate("/")}
+            >
+              خانه
             </button>
-
-            <button className="text-gray-600 hover:text-gray-900 flex flex-row items-center  desktop:text-base tablet:text-base text-sm" onClick={() => navigate("/aboutUs")}>
+            <button
+              className="flex flex-row items-center desktop:text-base tablet:text-base text-sm"
+              onClick={() => navigate("/aboutUs")}
+            >
               درباره ما
             </button>
             <button
-              className="flex flex-row items-center text-gray-600 hover:text-gray-900  desktop:text-base tablet:text-base text-sm"
-              onClick={() => setModalType('signup')}
+              className="flex flex-row items-center desktop:text-base tablet:text-base text-sm"
+              onClick={() => navigate("/contact")}
             >
-              <img src={UserIcon} alt="" className='w-6 h-6' />
+              ارتباط با ما
             </button>
+          </div>
 
+          {/* Icons - right */}
+          <div className="flex items-center desktop:gap-[28px] gap-[8px] text-sm font-myIranSansRegular">
+            <button
+              className="flex flex-row gap-[8px] text-[#222222] items-center desktop:text-base tablet:text-base text-[10px]"
+              onClick={() => navigate("/addForm")}
+            >
+              <img src={plus} alt="plus" className="h-5 w-5 mr-1" />
+              ثبت مکان جدید
+            </button>
+            <button
+              className="bg-[#647B3B] desktop:px-[16px] px-0 desktop:py-[4px] py-0 rounded-[8px] desktop:w-[168px] w-[90px] desktop:h-[48px] h-[25px] text-white flex flex-row desktop:gap-[8px] items-center desktop:text-base text-[10px]"
+              onClick={() => setModalType('login')}
+            >
+              <img src={login} alt="plus" className="h-5 w-5 mr-1" />
+              ورود / ثبت نام
+            </button>
           </div>
         </div>
-
-        <ModalTemplate showModal={modalType !== null} onClose={() => setModalType(null)}>
-          {modalType === 'signup' && (
-            <SignUp
-              onClose={() => setModalType(null)}
-              switchToLogin={() => setModalType('login')}
-            />
-          )}
-          {modalType === 'login' && (
-            <Login
-              onClose={() => setModalType(null)}
-              switchToSignup={() => setModalType('signup')}
-            />
-          )}
-        </ModalTemplate>
-
-
       </div>
-
-      {/* Tailwind Custom Style */}
-      <style>{`
-        @keyframes slideUp {
-          0% {
-            opacity: 0;
-            transform: translateY(100%);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0%);
-          }
-        }
-
-        .animate-slide-up {
-          animation: slideUp 0.5s ease forwards;
-        }
-      `}</style>
     </nav>
+
   );
 };
 

@@ -1,45 +1,52 @@
 import React from 'react';
-import rasht from "../assets/images/mostafa-yekrangi-d4uDkMbdma0-unsplash.jpg";
 import { useNavigate } from 'react-router-dom';
+import heroAboutUs from '../assets/images/30669.jpg';
+import { ReactComponent as Magnifier } from "../assets/icons/Minimalistic Magnifer.svg";
 
 interface HeroProps {
   onAdventureClick: () => void;
 }
 
 const Hero: React.FC<HeroProps> = ({ onAdventureClick }) => {
-    const navigate = useNavigate();
+
   return (
-    <div
-      className="relative h-[500px] bg-cover bg-center"
-      style={{ backgroundImage: `url(${rasht})` }}
-    >
-      <div className="absolute inset-0 bg-black bg-opacity-50 flex items-start">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-start pt-3">
-          <div className="text-white w-full text-center lg:text-right lg:max-w-[400px] lg:ml-auto lg:mr-40 mt-4">
-            <h1 className="text-5xl font-myIranSansMedium mb-2">لوتکا</h1>
-            <p className="text-2xl font-myIranSansMedium">قایق چوبی ما،</p>
-            <p className="text-xl font-myIranSansMedium">راهِ‌تو به كشف نشده‌ها...</p>
+    <div className="relative">
+      {/* Hero Section */}
+      <div
+        className="h-[693px] bg-cover bg-center relative"
+        style={{ backgroundImage: `url(${heroAboutUs})` }}
+      >
+        {/* Dark overlay */}
+        <div className="absolute inset-0 flex items-start">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center pt-3">
+            {/* Title */}
+            <div className="text-white w-full text-center desktop:mt-[105px]">
+              <h1 className="text-[48px] font-myIranSansBold mb-[39px]">لوتکا</h1>
+              <p className="text-[24px] font-myIranSansBold">
+                قایق چوبی ما، راهِ‌تو به كشف نشده‌ها...
+              </p>
+              <p className="text-[24px] font-myIranSansMedium">
+                هر کجا در گیلان، قصه‌ای در انتظار توست؛ از بوی نان تازه تا مه جنگل‌های پنهان...
+              </p>
+            </div>
 
-
+            {/* Search */}
+            <div className="mt-[50px] flex justify-center">
+              <div className="relative w-full w-[600px]">
+                <Magnifier className="absolute right-6 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="جستجوی جاذبه‌های دیدنی، رستوران و اقامتگاه"
+                  className="w-full h-12 font-myIranSansRegular text-[#222222] text-[14px] pr-[100px] pl-1 text-right border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-300"
+                />
+              </div>
+            </div>
           </div>
-
-          <div className='pr-[54%] text-gray-50 mt-[6%] font-myIranSansMedium'>
-            <p>هر کجا در گیلان، قصه‌ای در انتظار توست؛
-
-            </p>
-
-            <p>از بوی نان تازه تا مه جنگل‌های پنهان...</p>
-          </div>
-
-           <button
-              onClick={() => navigate("/planner")}
-              className="min-[390px]:max-[743px]:mt-[32%] desktop:mt-[13%] font-myIranSansMedium tablet:mt-[18%] mt-[50%] mx-auto flex justify-center bg-gray-600 desktop:w-[15%] tablet:w-[26%] w-[60%] min-[390px]:max-[743px]:w-[36%] min-[390px]:max-[477px]:w-[50%] desktop:text-lg tablet:text-base text-sm border border-white bg-opacity-50 hover:bg-gray-700 text-white font-myIranSansFaNumBold py-2 px-6 rounded-full transition-all duration-300"
-            >
-               برنامه‌ریزی سفر 
-            </button> 
-
         </div>
       </div>
+
+
+
     </div>
   );
 };
