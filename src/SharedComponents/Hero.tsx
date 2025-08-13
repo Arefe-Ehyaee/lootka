@@ -31,7 +31,7 @@ const Hero: React.FC<HeroProps> = ({ onAdventureClick }) => {
             </div>
 
             {/* Search */}
-            <div className="mt-[50px] flex justify-center items-center">
+            <div className="mt-[50px] flex justify-center items-center w-full text-center">
               <div className="relative w-full w-[600px]">
                 <Magnifier className="absolute right-6 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <input
