@@ -17,7 +17,7 @@ import AllCafes from "./SharedComponents/AllCafes";
 
 function App() {
   return (
-    <div className="App" dir="rtl">
+    <div className="App font-myIranSansRegular" dir="rtl">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainPage></MainPage>} />
