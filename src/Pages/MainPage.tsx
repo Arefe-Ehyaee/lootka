@@ -58,7 +58,7 @@ const MainPage: React.FC = () => {
         </div>
 
 
-        <ExperienceSection />
+        {/* <ExperienceSection /> */}
         <PopularEat />
         {/* <PopularCafes /> */}
 
