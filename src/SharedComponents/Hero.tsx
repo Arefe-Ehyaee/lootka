@@ -32,15 +32,16 @@ const Hero: React.FC<HeroProps> = ({ onAdventureClick }) => {
 
             {/* Search */}
             <div className="mt-[50px] flex justify-center items-center w-full text-center">
-              <div className="relative w-full w-[600px]">
-                <Magnifier className="absolute right-6 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <div className="relative w-[600px]">
+                <Magnifier className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
                 <input
                   type="text"
                   placeholder="جستجوی جاذبه‌های دیدنی، رستوران و اقامتگاه"
-                  className="w-[600px] h-12 font-myIranSansRegular text-[#222222] text-[14px] pr-[100px] pl-1 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-300"
+                  className="w-full h-12 font-myIranSansRegular text-[#222222] text-[14px] pr-16 pl-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-300"
                 />
               </div>
             </div>
+
           </div>
         </div>
       </div>
