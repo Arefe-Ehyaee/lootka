@@ -13,25 +13,25 @@ const Hero: React.FC<HeroProps> = ({ onAdventureClick }) => {
     <div className="relative">
       {/* Hero Section */}
       <div
-        className="h-[693px] bg-cover bg-center relative"
+        className="desktop:h-[693px] h-[283px] bg-cover bg-center relative"
         style={{ backgroundImage: `url(${heroAboutUs})` }}
       >
         {/* Dark overlay */}
         <div className="absolute inset-0 flex items-start">
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center pt-3">
             {/* Title */}
-            <div className="text-white w-full text-center desktop:mt-[105px]">
-              <h1 className="text-[48px] font-myIranSansBold mb-[39px]">لوتکا</h1>
-              <p className="text-[24px] font-myIranSansBold">
+            <div className="text-white w-full text-center desktop:mt-[105px] font-myIranSansBold">
+              <h1 className="desktop:text-[48px] tablet:text-[32px] text-[24px] desktop:mb-[39px] mb-[23px]">لوتکا</h1>
+              <p className="desktop:text-[24px] tablet:text-[20px] text-[12px]">
                 قایق چوبی ما، راهِ‌تو به كشف نشده‌ها...
               </p>
-              <p className="text-[24px] font-myIranSansMedium">
+              <p className="desktop:text-[24px] tablet:text-[20px] text-[12px]">
                 هر کجا در گیلان، قصه‌ای در انتظار توست؛ از بوی نان تازه تا مه جنگل‌های پنهان...
               </p>
             </div>
 
             {/* Search */}
-            <div className="mt-[50px] flex justify-center items-center w-full text-center">
+            <div className="mt-[50px] desktop:flex hidden justify-center items-center w-full text-center">
               <div className="relative w-[600px]">
                 <Magnifier className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
                 <input

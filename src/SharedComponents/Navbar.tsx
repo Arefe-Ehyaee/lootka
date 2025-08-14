@@ -66,7 +66,7 @@ const Navbar = () => {
           {/* Icons - right */}
           <div className="flex items-center desktop:gap-[28px] gap-[8px] text-sm font-myIranSansRegular">
             <button
-              className="flex flex-row gap-[8px] text-[#222222] items-center desktop:text-base tablet:text-base text-[10px]"
+              className="flex flex-row gap-[4px] text-[#222222] items-center desktop:text-base tablet:text-base text-[10px]"
               onClick={() => navigate("/addForm")}
             >
               <img src={plus} alt="plus" className="h-5 w-5 mr-1" />
