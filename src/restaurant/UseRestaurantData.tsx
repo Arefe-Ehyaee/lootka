@@ -11,6 +11,12 @@ interface OpeningHours {
   all_day: string | null;
 }
 
+interface Image {
+  image_id: string;
+  filename: string;
+  description?: string | null;
+}
+
 interface Restaurant {
   id?: string;
   name: string;
@@ -24,6 +30,7 @@ interface Restaurant {
   website?: string;
   instagram?: string;
   image_names?: string[];
+  images?: Image[]; // <-- Add this
   Menu?: any[];
   food_types?: string[];
   mealTime?: string[];
@@ -36,6 +43,7 @@ interface Restaurant {
   description: string;
   sub_category: string;
 }
+
 
 const BASE_URL = "http://91.212.174.72:2000";
 

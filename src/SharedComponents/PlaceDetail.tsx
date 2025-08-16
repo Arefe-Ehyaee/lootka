@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import RestaurantHeader from '../restaurant/RestaurantHeader';
-import ImageGallery from '../restaurant/ImageGallary';
 import NavigationTabs from '../restaurant/NavigationTabs';
 import RestaurantInfo from '../restaurant/RestaurantInfo';
 import MapComponent from '../restaurant/MapComponent';
@@ -20,7 +19,35 @@ export interface Review {
   date: string;
 }
 
+export interface Image {
+  image_id: string;
+  filename: string;
+  description?: string | null;
+}
+
 const BASE_URL = "http://91.212.174.72:2000";
+
+interface ImageGalleryProps {
+  images: Image[];
+  restaurantName: string;
+  baseUrl: string;
+}
+
+const ImageGallery: React.FC<ImageGalleryProps> = ({ images, restaurantName, baseUrl }) => {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-6">
+      {images.map((img) => (
+        <img
+          key={img.image_id}
+          src={`${baseUrl}/images/${img.image_id}`}
+          alt={img.description || restaurantName}
+          className="w-full h-64 object-cover rounded-lg shadow-md"
+          loading="lazy"
+        />
+      ))}
+    </div>
+  );
+};
 
 const PlaceDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -92,7 +119,7 @@ const PlaceDetail: React.FC = () => {
         <RestaurantHeader restaurant={restaurant} />
 
         <ImageGallery
-          images={restaurant.image_names || []}
+          images={restaurant.images || []}
           restaurantName={restaurant.name}
           baseUrl={BASE_URL}
         />
@@ -132,7 +159,8 @@ const PlaceDetail: React.FC = () => {
           name={restaurant.name}
         />
       </div>
-         {id && <DeleteButton hostelId={id} />} 
+
+      {id && <DeleteButton hostelId={id} />} 
       <Footer />
     </div>
   );
