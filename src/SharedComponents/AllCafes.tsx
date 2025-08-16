@@ -100,7 +100,7 @@ const AllCafes: React.FC = () => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-2 py-3">
                 <div className="p-4 md:p-10">
-                    <h1 className="text-xl font-myIranSansFaNumBold mb-6">همه کافه‌ها</h1>
+                    <h1 className="text-xl font-myIranSansFaNumBold mb-6 mt-12">همه کافه‌ها</h1>
 
                     {loading ? (
                         <div className="text-center py-20">در حال بارگذاری...</div>

@@ -92,7 +92,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, restaurantName, bas
           </div>
         ) : (
           <div className="bg-gray-100 rounded-lg h-48 sm:h-64 flex flex-col items-center justify-center p-4">
-            <img src={NoImg} alt={restaurantName} className="w-16 sm:w-1/3 h-auto opacity-50" />
+<img src={NoImg} alt={restaurantName} className="w-12 sm:w-24 h-auto opacity-50" />
             <p className="text-gray-500 mt-2 text-sm sm:text-base text-center">تصویری موجود نیست</p>
           </div>
         )}

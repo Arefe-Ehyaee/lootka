@@ -9,6 +9,7 @@ import { ReactComponent as Magnifier } from "../assets/icons/Minimalistic Magnif
 import ExperienceSection from '../SharedComponents/ExperienceSection';
 import HeroNavigation from '../SharedComponents/HeroNavigatoin';
 import HeroNavigationMobile from '../SharedComponents/HeroNavigationMobile';
+import PopularCafes from '../SharedComponents/PopularCafes';
 
 const MainPage: React.FC = () => {
   const assistantRef = useRef<HTMLDivElement>(null);
@@ -52,7 +53,7 @@ const MainPage: React.FC = () => {
         </div> */}
 
         {/* Features section with padding to account for overlapping ExperienceSection */}
-        <div className="pt-32">
+        <div className="pt-20">
           <PopularDestinations />
 
         </div>
