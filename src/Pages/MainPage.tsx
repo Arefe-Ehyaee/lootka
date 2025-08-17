@@ -61,7 +61,7 @@ const MainPage: React.FC = () => {
 
         {/* <ExperienceSection /> */}
         <PopularEat />
-        {/* <PopularCafes /> */}
+        <PopularCafes />
 
         <PopularHostels />
 
