@@ -27,7 +27,7 @@ const ExperiencesSection = () => {
       {/* Central content */}
       <div className="relative z-10 text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2" dir="rtl">
-          تجربه‌های خودتو به لونیکا
+          تجربه‌های خودتو به لوتکا
         </h2>
         <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6" dir="rtl">
           اضافه کن
