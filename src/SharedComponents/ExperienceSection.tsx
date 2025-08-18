@@ -5,8 +5,9 @@ import g1 from "../assets/images/Shahrdari.jpg";
 import g5 from "../assets/images/Sights_Rasht_ParkeShahr_1.webp.jpg";
 import g6 from "../assets/images/photo_2025-05-18_17-27-08.jpg";
 import g7 from "../assets/images/30669.jpg";
-
-
+import wave from "../assets/icons/wave.svg"
+import cir from "../assets/icons/cir.svg"
+import loc from "../assets/icons/loc-fncy.svg"
 
 const ExperiencesSection = () => {
   // Sample image URLs - replace with your actual images
@@ -83,11 +84,43 @@ const ExperiencesSection = () => {
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full overflow-hidden shadow-md rotate-3">
           <img src={images[7]} alt="" className="w-full h-full object-cover" />
         </div>
+
+        <div className="absolute bottom-20 left-20 transform -translate-x-1/2  ">
+          <img src={wave} alt="" className="w-full h-full object-cover" />
+        </div>
+
+
+        <div className="absolute bottom-20 right-10 transform -translate-x-1/2  ">
+          <img src={wave} alt="" className="w-full h-full object-cover" />
+        </div>
+
+        <div className="absolute top-24 left-64 transform -translate-x-1/2  ">
+          <img src={cir} alt="" className="w-full h-full object-cover" />
+        </div>
+
+        <div className="absolute top-24 right-60 transform -translate-x-1/2 rotate-180 ">
+          <img src={cir} alt="" className="w-full h-full object-cover" />
+        </div>
+
+        <div className="absolute top-48 left-3/4 transform -translate-x-1/2 ">
+          <img src={loc} alt="" className="w-full h-full object-cover" />
+        </div>
+
+        <div className="absolute top-48 right-3/4 transform -translate-x-1/2 ">
+          <img src={loc} alt="" className="w-full h-full object-cover" />
+        </div>
       </div>
 
       {/* Decorative elements */}
       <div className="absolute top-8 right-1/3 w-2 h-2 bg-green-400 rounded-full opacity-60"></div>
       <div className="absolute bottom-12 left-1/3 w-3 h-3 bg-blue-400 rounded-full opacity-40"></div>
+      <div className="absolute bottom-24 left-1/2 w-3 h-3 border rounded-full opacity-80"></div>
+      <div className="absolute bottom-60 left-3/4 w-3 h-3 border rounded-full opacity-80"></div>
+      <div className="absolute bottom-20 left-1/4 w-3 h-3 border rounded-full opacity-80"></div>
+      <div className="absolute top-24 left-1/3 w-3 h-3 border rounded-full opacity-80"></div>
+      <div className="absolute top-42 right-3/4 w-3 h-3 border rounded-full opacity-80"></div>
+      <div className="absolute top-24 right-1/3 w-3 h-3 border rounded-full opacity-80"></div>
+
       <div className="absolute top-1/3 left-1/4 w-1 h-1 bg-yellow-400 rounded-full opacity-70"></div>
     </div>
   );
