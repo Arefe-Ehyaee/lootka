@@ -29,7 +29,7 @@ const MainPage: React.FC = () => {
       <div className="relative">
         <Hero onAdventureClick={scrollToAssistant} />
 
-        <div className="mt-[32px] px-[24px] flex desktop:hidden justify-center items-center w-full text-center">
+        {/* <div className="mt-[32px] px-[24px] flex desktop:hidden justify-center items-center w-full text-center">
           <div className="relative w-[600px]">
             <Magnifier className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none w-[20px] h-[20px]" />
             <input
@@ -38,7 +38,7 @@ const MainPage: React.FC = () => {
               className="w-full h-[40px] font-myIranSansRegular text-[#222222] text-[10px] pr-12 pl-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-300"
             />
           </div>
-        </div>
+        </div> */}
         {/* ExperienceSection positioned to overlap Hero and Features */}
         <div className="desktop:flex hidden relative -mt-14 z-10">
           <HeroNavigation />
