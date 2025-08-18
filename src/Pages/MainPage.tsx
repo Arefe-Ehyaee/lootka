@@ -10,6 +10,8 @@ import ExperienceSection from '../SharedComponents/ExperienceSection';
 import HeroNavigation from '../SharedComponents/HeroNavigatoin';
 import HeroNavigationMobile from '../SharedComponents/HeroNavigationMobile';
 import PopularCafes from '../SharedComponents/PopularCafes';
+import TravelFeatures from '../SharedComponents/TravelFeatures';
+import UserComments from '../SharedComponents/UserComments';
 
 const MainPage: React.FC = () => {
   const assistantRef = useRef<HTMLDivElement>(null);
@@ -64,6 +66,8 @@ const MainPage: React.FC = () => {
         <PopularCafes />
 
         <PopularHostels />
+        <TravelFeatures></TravelFeatures>
+        <UserComments></UserComments>
 
         {/* <PopularDestinationsNew /> */}
         {/* <FreeHostels></FreeHostels> */}
