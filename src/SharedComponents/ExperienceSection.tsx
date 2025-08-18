@@ -16,7 +16,7 @@ const ExperiencesSection = () => {
   ];
 
   return (
-    <div className="relative mx-6 p-8 border border-[#CFD6DC] rounded-3xl overflow-hidden h-[400px]">
+    <div className="relative mx-6 md:mx-12 p-8 border border-[#CFD6DC] rounded-3xl overflow-hidden h-[400px]">
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-10">
         <svg className="w-full h-full" viewBox="0 0 400 300">
