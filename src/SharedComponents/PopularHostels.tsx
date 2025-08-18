@@ -113,7 +113,7 @@ const HostelCard: React.FC<{
         <div className="md:hidden py-2 px-3 text-black rounded-lg rounded-t-none border border-t-0 h-[150px]">
           <div className='flex justify-between items-center'>
             <h3 className="text-sm font-myIranSansMedium line-clamp-1">{hostel.name}</h3>
-            <div className='bg-[#EDF9F3] border text-[#1BA75E] rounded-lg text-sm flex items-center gap-1 px-1'>
+            <div className='bg-[#EDF9F3] border text-[#1BA75E] font-myIranSansFaNumRegular rounded-lg text-sm flex items-center gap-1 px-1'>
               {hostel.Rate}
               <img src={starGreen} alt="" className='w-3 h-3' />
             </div>
@@ -126,9 +126,11 @@ const HostelCard: React.FC<{
             </div>
           )}
 
-          <div className="text-[8px]">
-            <p className='text-[10px] mb-0.5 font-bold'>توضیحات</p>
-            <p className='line-clamp-3'>{hostel.description}</p>
+          <div className="text-[8px] pb-1 mt-4">
+            <p className="text-justify font-myIranSansMedium line-clamp-3">
+              <p className='text-[10px] mb-0.5'>توضیحات</p>
+              <ReactMarkdown>{hostel.description}</ReactMarkdown>
+            </p>
           </div>
         </div>
 
@@ -136,7 +138,7 @@ const HostelCard: React.FC<{
         <div className="hidden md:block py-2 px-2 text-black rounded-lg rounded-t-none h-[170px] border border-t-0">
           <div className="flex justify-between items-center">
             <h3 className="text-[18px] font-myIranSansMedium line-clamp-1">{hostel.name}</h3>
-            <div className="bg-[#EDF9F3] border text-[#1BA75E] rounded-lg text-base flex items-center gap-2 px-1">
+            <div className="bg-[#EDF9F3] border text-[#1BA75E] font-myIranSansFaNumRegular rounded-lg text-base flex items-center gap-2 px-1">
               {hostel.Rate}
               <img src={starGreen} alt="" className="w-4 h-4" />
             </div>
@@ -149,11 +151,11 @@ const HostelCard: React.FC<{
             </div>
           )}
 
-          <div className="text-[10px] pb-2 flex justify-between">
-            <div>
-              <p className='text-xs mb-1 font-bold'>توضیحات</p>
+          <div className="text-[10px] pb-2 mt-4 flex items-end justify-between font-myIranSansFaNumRegular">
+            <p className="text-justify line-clamp-3">
+              <p className='font-myIranSansFaNumBold text-xs mb-1'>توضیحات</p>
               <ReactMarkdown>{hostel.description}</ReactMarkdown>
-            </div>
+            </p>
             <button><ChevronLeftIcon className="h-5 w-5" /></button>
           </div>
         </div>

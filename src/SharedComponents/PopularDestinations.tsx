@@ -122,9 +122,11 @@ const AttractionCard: React.FC<{
               <span className="line-clamp-1">{attraction.address}</span>
             </div>
           )}
-          <div className="text-[8px] font-myIranSansMedium pb-1">
-            <p className='font-myIranSansFaNumBold text-[10px] mb-0.5'>توضیحات</p>
-            <p className='font-myIranSansMedium line-clamp-3'>{attraction.description}</p>
+          <div className="text-[8px] pb-1 mt-4">
+            <p className="text-justify font-myIranSansMedium line-clamp-3">
+              <p className='text-[10px] mb-0.5'>توضیحات</p>
+              <ReactMarkdown>{attraction.description}</ReactMarkdown>
+            </p>
           </div>
         </div>
 
@@ -143,11 +145,12 @@ const AttractionCard: React.FC<{
               <span className="line-clamp-1">{attraction.address}</span>
             </div>
           )}
-          <div className="text-[10px] pb-2 flex justify-between">
-            <div className='line-clamp-4'>
+          <div className="text-[10px] pb-2 mt-4 flex items-end justify-between font-myIranSansFaNumRegular">
+            <p className="text-justify line-clamp-3">
               <p className='font-myIranSansFaNumBold text-xs mb-1'>توضیحات</p>
               <ReactMarkdown>{attraction.description}</ReactMarkdown>
-            </div>
+            </p>
+            <button><ChevronLeftIcon className="h-5 w-5" /></button>
           </div>
         </div>
       </div>
