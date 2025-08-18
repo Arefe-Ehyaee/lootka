@@ -49,19 +49,19 @@ const MainPage: React.FC = () => {
       </div>
 
       {/* <SearchBar /> */}
-      <div className="max-w-8xl mx-auto py-3">
+      <div className="max-w-8xl mx-auto py-2">
         {/* <div ref={assistantRef}>
           <AIAssistant />
         </div> */}
 
         {/* Features section with padding to account for overlapping ExperienceSection */}
-        <div className="pt-20">
+        <div className="pt-6">
           <PopularDestinations />
 
         </div>
 
 
-        {/* <ExperienceSection /> */}
+        <ExperienceSection />
         <PopularEat />
         <PopularCafes />
 

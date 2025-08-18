@@ -1,44 +1,96 @@
-import React from "react";
+import g4 from "../assets/images/aerial-shot-village-houses-beautiful-grass-covered-fields.jpg";
+import g2 from "../assets/images/rasht-great-bazaar.jpg";
+import g3 from "../assets/images/20180615-205636-largejpg.jpg";
+import g1 from "../assets/images/Shahrdari.jpg";
+import g5 from "../assets/images/Sights_Rasht_ParkeShahr_1.webp.jpg";
+import g6 from "../assets/images/photo_2025-05-18_17-27-08.jpg";
+import g7 from "../assets/images/30669.jpg";
 
-const ExperienceSection = () => {
+
+
+const ExperiencesSection = () => {
+  // Sample image URLs - replace with your actual images
   const images = [
-    "/images/place1.jpg",
-    "/images/place2.jpg",
-    "/images/place3.jpg",
-    "/images/place4.jpg",
-    "/images/place5.jpg",
-    "/images/place6.jpg",
+    g1, g4, g3, g2, g5, g6, g7, g7
   ];
 
   return (
-    <section className="relative bg-gray-900 text-white rounded-2xl p-8 overflow-hidden">
-      {/* تصاویر شناور */}
-      {images.map((src, index) => (
-        <img
-          key={index}
-          src={src}
-          alt={`place-${index}`}
-          className={`absolute w-20 h-20 rounded-full object-cover border-2 border-green-600`}
-          style={{
-            top: `${Math.random() * 80}%`,
-            left: `${Math.random() * 80}%`,
-          }}
-        />
-      ))}
+    <div className="relative mx-6 p-8 border border-[#CFD6DC] rounded-3xl overflow-hidden h-[400px]">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 opacity-10">
+        <svg className="w-full h-full" viewBox="0 0 400 300">
+          <path d="M50,150 Q200,50 350,150 Q200,250 50,150" fill="none" stroke="#e5e7eb" strokeWidth="2" />
+          <path d="M100,100 Q200,200 300,100" fill="none" stroke="#e5e7eb" strokeWidth="1" />
+        </svg>
+      </div>
 
-      <div className="relative z-10 text-center max-w-2xl mx-auto">
-        <h2 className="text-2xl md:text-4xl font-bold mb-4">
-          تجربه‌های خودتو به لوتکا اضافه کن
+      {/* Central content */}
+      <div className="relative z-10 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2" dir="rtl">
+          تجربه‌های خودتو به لونیکا
         </h2>
-        <p className="mb-6 text-gray-300">
+        <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6" dir="rtl">
+          اضافه کن
+        </h3>
+        <p className="text-gray-600 mb-8 max-w-md mx-auto" dir="rtl">
           جایی که رفتی و دوستش داشتی؟ به بقیه هم پیشنهاد بده!
         </p>
-        <button className="bg-green-700 hover:bg-green-600 px-6 py-3 rounded-lg text-white font-semibold">
+
+
+        <button
+          className="bg-[#647B3B] desktop:px-[16px] px-0 desktop:py-[4px] py-0 rounded-[8px] desktop:w-[168px] w-[84px] desktop:h-[48px] h-[24px] text-white desktop:text-base text-[10px]"
+
+        >
           ادامه
         </button>
       </div>
-    </section>
+
+      {/* Floating circular images */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* gym */}
+        <div className="absolute desktop:top-10 top-40 desktop:right-40 right-10 w-12 h-12 md:w-20 md:h-20 rounded-full overflow-hidden shadow-lg transform">
+          <img src={images[0]} alt="" className="w-full h-full object-cover" />
+        </div>
+
+        {/* vintage */}
+        <div className="absolute desktop:top-40 desktop:left-40 bottom-24 right-10 w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden shadow-md transform">
+          <img src={images[1]} alt="" className="w-full h-full object-cover" />
+        </div>
+
+        {/* pool */}
+        <div className="absolute desktop:top-10 top-40 desktop:left-40 left-10 w-12 h-12 md:w-20 md:h-20 rounded-full overflow-hidden shadow-lg transform">
+          <img src={images[2]} alt="" className="w-full h-full object-cover" />
+        </div>
+
+        {/* vintage poool */}
+        <div className="absolute desktop:top-40 desktop:left-20 bottom-24 left-10 w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden shadow-md">
+          <img src={images[3]} alt="" className="w-full h-full object-cover" />
+        </div>
+
+        {/* Bottom right */}
+        <div className="absolute bottom-12 right-1/4 w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden shadow-md transform rotate-15">
+          <img src={images[4]} alt="" className="w-full h-full object-cover" />
+        </div>
+
+        {/* Bottom left */}
+        <div className="absolute bottom-12 left-1/4 w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden shadow-md transform rotate-15">
+          <img src={images[5]} alt="" className="w-full h-full object-cover" />
+        </div>
+
+
+
+        {/* Bottom center */}
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full overflow-hidden shadow-md rotate-3">
+          <img src={images[7]} alt="" className="w-full h-full object-cover" />
+        </div>
+      </div>
+
+      {/* Decorative elements */}
+      <div className="absolute top-8 right-1/3 w-2 h-2 bg-green-400 rounded-full opacity-60"></div>
+      <div className="absolute bottom-12 left-1/3 w-3 h-3 bg-blue-400 rounded-full opacity-40"></div>
+      <div className="absolute top-1/3 left-1/4 w-1 h-1 bg-yellow-400 rounded-full opacity-70"></div>
+    </div>
   );
 };
 
-export default ExperienceSection;
+export default ExperiencesSection;
