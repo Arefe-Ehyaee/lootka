@@ -35,8 +35,8 @@ const Navbar = () => {
           <div>
             <Link to="/">
               <div className="flex flex-row gap-[6px] items-center">
-                <img src={logo} alt="Logo" className="w-[57px] h-[40px]" />
-                <h2 className="text-[#4C3516] font-myIranSansBold text-[24px]">لوتکا</h2>
+                <img src={logo} alt="Logo" className="desktop:w-[57px] desktop:h-[40px] w-[43px] h-[30px]" />
+                <h2 className="text-[#4C3516] font-myIranSansBold text-[16px] desktop:text-[24px]">لوتکا</h2>
               </div>
             </Link>
           </div>

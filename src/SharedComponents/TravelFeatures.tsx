@@ -61,18 +61,17 @@ const TravelFeatures: React.FC = () => {
             </div>
 
             {/* نمایش موبایل */}
-            <div className="sm:hidden flex items-start gap-4">
-
+            <div className="sm:hidden flex items-stretch gap-0">
                 {/* تصویر سمت راست */}
-                <div className="flex-2">
+                <div className="flex-1 flex">
                     <img
                         src={MobileImage}
                         alt="سفر با لوتکا"
-                        className="max-h-[300px] w-fit"
+                        className="max-h-[300px] w-full object-contain"
                     />
                 </div>
                 {/* لیست موارد */}
-                <ul className="flex-1 space-y-[32px] mt-2">
+                <ul className="flex-2 space-y-[32px] h-full flex flex-col justify-center mt-2">
                     {allFeatures.map((item, idx) => (
                         <li
                             key={idx}
@@ -84,6 +83,7 @@ const TravelFeatures: React.FC = () => {
                     ))}
                 </ul>
             </div>
+
         </section>
     );
 };
