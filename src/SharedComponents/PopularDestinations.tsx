@@ -111,7 +111,7 @@ const AttractionCard: React.FC<{
         <div className="md:hidden py-2 px-3 text-black rounded-lg rounded-t-none border border-t-0 h-[150px]">
           <div className='flex flex-row justify-between items-center'>
             <h3 className="text-sm font-myIranSansMedium line-clamp-1">{attraction.name}</h3>
-            <div className='bg-[#EDF9F3] border text-[#1BA75E] rounded-lg text-sm flex items-center gap-1 px-1'>
+            <div className='bg-[#EDF9F3] border text-[#1BA75E] font-myIranSansFaNumRegular rounded-lg text-sm flex items-center gap-1 px-1'>
               {attraction.Rate}
               <img src={starGreen} alt="" className='w-3 h-3' />
             </div>
@@ -134,7 +134,7 @@ const AttractionCard: React.FC<{
         <div className="hidden md:block py-2 px-2 text-black rounded-lg rounded-t-none h-[170px] border border-t-0">
           <div className="flex flex-row justify-between items-center">
             <h3 className="text-[18px] font-myIranSansMedium line-clamp-1">{attraction.name}</h3>
-            <div className="bg-[#EDF9F3] border text-[#1BA75E] rounded-lg text-base flex items-center gap-2 px-1">
+            <div className="bg-[#EDF9F3] border text-[#1BA75E] font-myIranSansFaNumRegular rounded-lg text-base flex items-center gap-2 px-1">
               {attraction.Rate}
               <img src={starGreen} alt="" className="w-4 h-4" />
             </div>

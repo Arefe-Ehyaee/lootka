@@ -156,7 +156,7 @@ const CafeCard: React.FC<{
           {cafe.opening_hours && (
             <div className="flex items-start text-sm mt-4 font-myIranSansFaNumRegular" dir='rtl'>
               <ClockIcon className="h-4 w-4 ml-1 flex-shrink-0" />
-              <div>{cafe.opening_hours}</div>
+              <div className='truncate'>{cafe.opening_hours}</div>
             </div>
           )}
           {cafe.address && (
