@@ -118,7 +118,7 @@ const UserComments: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-2 px-4 md:px-16 relative">
+    <section className="py-12 px-6 desktop:px-20 relative">
       <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
         نظرات کاربران
       </h2>
@@ -126,13 +126,13 @@ const UserComments: React.FC = () => {
       {/* arrows */}
       <button
         onClick={() => scroll("left")}
-        className="hidden md:flex absolute left-6 top-1/2 z-10 hover:text-gray-100 items-center justify-center transform -translate-y-1/2"
+        className="hidden md:flex absolute left-12 top-1/2 z-10 hover:text-gray-100 items-center justify-center transform -translate-y-1/2"
       >
         <ChevronLeftIcon className="w-6 h-6" />
       </button>
       <button
         onClick={() => scroll("right")}
-        className="hidden md:flex absolute right-6 top-1/2 z-10 hover:text-gray-100  items-center justify-center transform -translate-y-1/2"
+        className="hidden md:flex absolute right-16 top-1/2 z-10 hover:text-gray-100  items-center justify-center transform -translate-y-1/2"
       >
         <ChevronRightIcon className="w-6 h-6" />
       </button>

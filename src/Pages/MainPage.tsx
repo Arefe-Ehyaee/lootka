@@ -29,17 +29,6 @@ const MainPage: React.FC = () => {
       <div className="relative">
         <Hero onAdventureClick={scrollToAssistant} />
 
-        {/* <div className="mt-[32px] px-[24px] flex desktop:hidden justify-center items-center w-full text-center">
-          <div className="relative w-[600px]">
-            <Magnifier className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none w-[20px] h-[20px]" />
-            <input
-              type="text"
-              placeholder="جستجوی جاذبه‌های دیدنی، رستوران و اقامتگاه"
-              className="w-full h-[40px] font-myIranSansRegular text-[#222222] text-[10px] pr-12 pl-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-300"
-            />
-          </div>
-        </div> */}
-        {/* ExperienceSection positioned to overlap Hero and Features */}
         <div className="desktop:flex hidden relative -mt-14 z-10">
           <HeroNavigation />
         </div>
@@ -54,12 +43,9 @@ const MainPage: React.FC = () => {
           <AIAssistant />
         </div> */}
 
-        {/* Features section with padding to account for overlapping ExperienceSection */}
         <div className="pt-6">
           <PopularDestinations />
-
         </div>
-
 
         <ExperienceSection />
         <PopularEat />

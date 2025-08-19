@@ -255,8 +255,8 @@ const PopularDestination: React.FC = () => {
   if (error) return <div className="text-red-500 text-center">{error}</div>;
 
   return (
-    <div className="py-12 px-6">
-      <div className="flex justify-between items-center mb-6 desktop:px-11 px-4">
+    <div className="py-12 px-6 desktop:px-16">
+      <div className="flex justify-between items-center mb-6 desktop:px-16 px-10">
         <h2 className="text-base tablet:text-2xl desktop:text-3xl font-myIranSansMedium">جاهای دیدنی</h2>
         <Link to="/attractions" className="text-sm text-gray-800 hover:underline font-myIranSansRegular">مشاهده همه</Link>
       </div>
