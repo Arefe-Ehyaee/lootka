@@ -107,7 +107,7 @@ const HostelCard: React.FC<{ hostel: Hostel }> = ({ hostel }) => {
       <div className="p-3">
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-myIranSansMedium">{hostel.name}</h2>
-          <div className="bg-[#EDF9F3] border text-[#1BA75E] rounded-lg text-base flex items-center gap-1 px-1">
+          <div className="bg-[#EDF9F3] font-myIranSansFaNumRegular border text-[#1BA75E] rounded-lg text-base flex items-center gap-1 px-1">
             {hostel.Rate}
             <img src={starGreen} alt="" className="w-4 h-4" />
           </div>
@@ -156,7 +156,7 @@ const AllResorts: React.FC = () => {
             return {
               id: item.place_id,
               name: item.name,
-              Rate: item.rating || 0,
+              Rate: item.rate || 0,
               ImgName: images[0] || 'NaN',
               image_names: images,
               address: item.address,

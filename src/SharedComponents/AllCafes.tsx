@@ -56,7 +56,7 @@ const AllCafes: React.FC = () => {
             return {
               id: item.place_id,
               name: item.name,
-              Rate: item.rating || 0,
+              Rate: item.rate || 0,
               address: item.address,
               opening_hours: item.opening_hours,
               description: item.description,
@@ -215,7 +215,7 @@ const AllCafes: React.FC = () => {
                       <div className="p-3">
                         <div className="flex justify-between items-center">
                           <h2 className="text-lg font-myIranSansMedium">{restaurant.name}</h2>
-                          <div className="bg-[#EDF9F3] border border-green-100 text-[#1BA75E] rounded-lg text-base font-myIranSansFaNumRegular flex flex-row items-center gap-2 px-1">
+                          <div className="bg-[#EDF9F3] font-myIranSansFaNumRegular border border-green-100 text-[#1BA75E] rounded-lg text-base font-myIranSansFaNumRegular flex flex-row items-center gap-2 px-1">
                             {restaurant.Rate}
                             <img src={starGreen} alt="" className="w-4 h-4" />
                           </div>

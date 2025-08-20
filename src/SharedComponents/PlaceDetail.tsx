@@ -160,7 +160,6 @@ const PlaceDetail: React.FC = () => {
         />
       </div>
 
-      {id && <DeleteButton hostelId={id} />} 
       <Footer />
     </div>
   );

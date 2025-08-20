@@ -10,13 +10,10 @@ import cir from "../assets/icons/cir.svg"
 import loc from "../assets/icons/loc-fncy.svg"
 
 const ExperiencesSection = () => {
-  // Sample image URLs - replace with your actual images
-  const images = [
-    g1, g4, g3, g2, g5, g6, g7, g7
-  ];
+  const images = [g1, g4, g3, g2, g5, g6, g7, g7];
 
   return (
-    <div className="relative mx-6 desktop:mx-32 p-8 border border-[#CFD6DC] rounded-3xl overflow-hidden h-[400px]">
+    <div className="relative desktop:mx-6 desktop:mx-32 desktop:p-8 p-2 py-4 desktop:border border-[#CFD6DC] border-y desktop:rounded-3xl overflow-hidden desktop:h-[400px] h-[140px]">
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-10">
         <svg className="w-full h-full" viewBox="0 0 400 300">
@@ -27,20 +24,18 @@ const ExperiencesSection = () => {
 
       {/* Central content */}
       <div className="relative z-10 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2" dir="rtl">
+        <h2 className="text-[12px] desktop:text-[40px] font-bold text-gray-800 mb-1" dir="rtl">
           تجربه‌های خودتو به لوتکا
         </h2>
-        <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6" dir="rtl">
+        <h3 className="text-[12px] desktop:text-[40px] font-bold text-gray-800 desktop:mb-6 mb-3" dir="rtl">
           اضافه کن
         </h3>
-        <p className="text-gray-600 mb-8 max-w-md mx-auto" dir="rtl">
+        <p className="text-[10px] desktop:text-[24px] text-gray-600 desktop:mb-8 mb-4 max-w-md mx-auto" dir="rtl">
           جایی که رفتی و دوستش داشتی؟ به بقیه هم پیشنهاد بده!
         </p>
 
-
         <button
-          className="bg-[#647B3B] desktop:px-[16px] px-0 desktop:py-[4px] py-0 rounded-[8px] desktop:w-[168px] w-[84px] desktop:h-[48px] h-[24px] text-white desktop:text-base text-[10px]"
-
+          className="bg-[#647B3B] desktop:px-[16px] px-0 desktop:py-[4px] py-0 rounded-[8px] desktop:w-[168px] w-[84px] desktop:h-[24px] h-[24px] text-white desktop:text-base text-[10px]"
         >
           ادامه
         </button>
@@ -49,70 +44,67 @@ const ExperiencesSection = () => {
       {/* Floating circular images */}
       <div className="absolute inset-0 pointer-events-none">
         {/* gym */}
-        <div className="absolute desktop:top-10 top-40 desktop:right-40 right-10 w-12 h-12 md:w-20 md:h-20 rounded-full overflow-hidden shadow-lg transform">
+        <div className="absolute desktop:top-10 top-40 desktop:right-40 right-10 w-8 h-8 md:w-14 md:h-14 lg:w-20 lg:h-20 rounded-full overflow-hidden shadow-lg">
           <img src={images[0]} alt="" className="w-full h-full object-cover" />
         </div>
 
         {/* vintage */}
-        <div className="absolute desktop:top-40 desktop:left-40 bottom-24 right-10 w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden shadow-md transform">
+        <div className="absolute desktop:top-40 desktop:left-40 bottom-24 right-10 w-8 h-8 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full overflow-hidden shadow-md">
           <img src={images[1]} alt="" className="w-full h-full object-cover" />
         </div>
 
         {/* pool */}
-        <div className="absolute desktop:top-10 top-40 desktop:left-40 left-10 w-12 h-12 md:w-20 md:h-20 rounded-full overflow-hidden shadow-lg transform">
+        <div className="absolute desktop:top-10 top-40 desktop:left-40 left-10 w-8 h-8 md:w-14 md:h-14 lg:w-20 lg:h-20 rounded-full overflow-hidden shadow-lg">
           <img src={images[2]} alt="" className="w-full h-full object-cover" />
         </div>
 
-        {/* vintage poool */}
-        <div className="absolute desktop:top-40 desktop:left-20 bottom-24 left-10 w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden shadow-md">
+        {/* vintage pool */}
+        <div className="absolute desktop:top-40 desktop:left-20 bottom-24 left-10 w-8 h-8 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full overflow-hidden shadow-md">
           <img src={images[3]} alt="" className="w-full h-full object-cover" />
         </div>
 
         {/* Bottom right */}
-        <div className="absolute bottom-12 right-1/4 w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden shadow-md transform rotate-15">
+        <div className="absolute desktop:bottom-12 bottom-4 right-1/4 w-8 h-8 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full overflow-hidden shadow-md transform rotate-15">
           <img src={images[4]} alt="" className="w-full h-full object-cover" />
         </div>
 
         {/* Bottom left */}
-        <div className="absolute bottom-12 left-1/4 w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden shadow-md transform rotate-15">
+        <div className="absolute desktop:bottom-12 bottom-4 left-1/4 w-8 h-8 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full overflow-hidden shadow-md transform rotate-15">
           <img src={images[5]} alt="" className="w-full h-full object-cover" />
         </div>
 
-
-
         {/* Bottom center */}
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full overflow-hidden shadow-md rotate-3">
+        <div className="desktop:absolute hidden bottom-4 left-1/2 transform -translate-x-1/2 w-8 h-8 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full overflow-hidden shadow-md rotate-3">
           <img src={images[7]} alt="" className="w-full h-full object-cover" />
         </div>
 
-        <div className="absolute bottom-20 left-20 transform -translate-x-1/2  ">
+        {/* Decorative icons */}
+        <div className="absolute desktop:bottom-20 bottom-2 desktop:left-20 left-2 transform -translate-x-1/2">
           <img src={wave} alt="" className="w-full h-full object-cover" />
         </div>
 
-
-        <div className="absolute bottom-20 right-10 transform -translate-x-1/2  ">
+        <div className="absolute desktop:bottom-20 bottom-2 desktop:right-10 right-0">
           <img src={wave} alt="" className="w-full h-full object-cover" />
         </div>
 
-        <div className="absolute top-24 left-64 transform -translate-x-1/2  ">
+        <div className="absolute top-24 left-64 transform -translate-x-1/2">
           <img src={cir} alt="" className="w-full h-full object-cover" />
         </div>
 
-        <div className="absolute top-24 right-60 transform -translate-x-1/2 rotate-180 ">
+        <div className="absolute top-24 right-60 transform -translate-x-1/2 rotate-180">
           <img src={cir} alt="" className="w-full h-full object-cover" />
         </div>
 
-        <div className="absolute top-48 left-3/4 transform -translate-x-1/2 ">
+        <div className="absolute top-48 left-3/4 transform -translate-x-1/2">
           <img src={loc} alt="" className="w-full h-full object-cover" />
         </div>
 
-        <div className="absolute top-48 right-3/4 transform -translate-x-1/2 ">
+        <div className="absolute top-48 right-3/4 transform -translate-x-1/2">
           <img src={loc} alt="" className="w-full h-full object-cover" />
         </div>
       </div>
 
-      {/* Decorative elements */}
-      <div className="absolute top-8 right-1/3 w-2 h-2 bg-green-400 rounded-full opacity-60"></div>
+      {/* Decorative dots */}
       <div className="absolute bottom-12 left-1/3 w-3 h-3 bg-blue-400 rounded-full opacity-40"></div>
       <div className="absolute bottom-24 left-1/2 w-3 h-3 border rounded-full opacity-80"></div>
       <div className="absolute bottom-60 left-3/4 w-3 h-3 border rounded-full opacity-80"></div>

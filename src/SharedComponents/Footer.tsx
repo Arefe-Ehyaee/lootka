@@ -10,15 +10,33 @@ const Footer = () => {
   return (
     <footer className="bg-white border-t mt-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-8 text-right">
+        <div className="flex flex-col gap-2 md:flex-row md:justify-between md:items-start text-right">
 
+          {/* Logo and About */}
+          <div className="flex-1 desktop:hidden md:hidden space-y-1">
+            <div>
+              <Link to="/">
+                <div className="flex flex-row gap-[12px] items-center justify-center">
+                  <img src={logo} alt="Logo" className="desktop:w-[97px] desktop:h-[60px] w-[53px] h-[40px]" />
+                  <h2 className="text-[#4C3516] font-myIranSansBold text-[24px] desktop:text-[40px]">لوتکا</h2>
+                </div>
+              </Link>
+            </div>
+            <p className="text-gray-600 text-sm font-myIranSansMedium leading-relaxed pt-[32px]">
+              لوتکا یک بستر جامع برای کشف بهترین مکان‌های گردشگری، اقامتی و رستوران ها در شهرهای شمال ایران است.             </p>
+
+            <ul className="text-gray-600 text-sm space-y-2 font-myIranSansFaNumRegular py-[32px]">
+              <li>ایمیل: lootka.info@gmail.com</li>
+              <li>تلفن:013۳۲۲۲۲۲۲۲</li>
+            </ul>
+          </div>
 
           <div className='flex-1 flex-col'>
 
-            <div className='flex flex-row flex-1'>
+            <div className='flex flex-row flex-1 mx-auto'>
               {/* Links */}
               <div className="flex-1 space-y-2">
-                <h4 className="font-myIranSansMedium mb-[32px] text-gray-800">لوتکا</h4>
+                <h4 className="font-myIranSansBold mb-[32px] text-gray-800">لوتکا</h4>
                 <ul className="text-gray-600 text-sm space-y-2 font-myIranSansFaNumRegular">
                   <li><Link to="/" className="hover:text-lootka-green">ارتباط با لوتکا</Link></li>
                   <li><Link to="/" className="hover:text-lootka-green">پشتیبانی</Link></li>
@@ -29,7 +47,7 @@ const Footer = () => {
 
               {/* Links */}
               <div className="flex-1 space-y-2">
-                <h4 className="font-myIranSansMedium mb-[32px] text-gray-800">دسترسی سریع</h4>
+                <h4 className="font-myIranSansBold mb-[32px] text-gray-800">دسترسی سریع</h4>
                 <ul className="text-gray-600 text-sm space-y-2 font-myIranSansFaNumRegular">
                   <li><Link to="/restaurants" className="hover:text-lootka-green">خورد و خوراک</Link></li>
                   <li><Link to="/attractions" className="hover:text-lootka-green">جاهای دیدنی</Link></li>
@@ -39,8 +57,8 @@ const Footer = () => {
               </div>
 
               {/* Contact / Language */}
-              <div className="flex-1 space-y-2">
-                <h4 className="font-myIranSansMedium mb-[32px] text-gray-800">تماس با لوتکا</h4>
+              <div className="desktop:flex desktop:flex-col desktop:flex-1 hidden space-y-2">
+                <h4 className="font-myIranSansBold mb-[32px] text-gray-800">تماس با لوتکا</h4>
                 <ul className="text-gray-600 text-sm space-y-2 font-myIranSansFaNumRegular">
                   <li>ایمیل: lootka.info@gmail.com</li>
                   <li>تلفن:013۳۲۲۲۲۲۲۲</li>
@@ -52,7 +70,7 @@ const Footer = () => {
             </div>
 
             {/* Social Media */}
-            <ul className='flex flex-row items-center justify-start gap-[16px] mt-[60px]'>
+            <ul className='flex flex-row items-center desktop:justify-start md:justify-start justify-center gap-[16px] mt-[60px]'>
               <li>
                 <img src={tel} alt="" />
               </li>
@@ -63,14 +81,11 @@ const Footer = () => {
                 <img src={wat} alt="" />
               </li>
             </ul>
-
-
-
           </div>
 
 
           {/* Logo and About */}
-          <div className="flex-1 space-y-1">
+          <div className="desktop:flex desktop:flex-col desktop:flex-1 md:flex md:flex-col md:flex-1 hidden space-y-1 ">
             <div>
               <Link to="/">
                 <div className="flex flex-row gap-[12px] items-center">
@@ -79,9 +94,13 @@ const Footer = () => {
                 </div>
               </Link>
             </div>
-            <p className="text-gray-600 text-sm font-myIranSansMedium leading-relaxed">
+            <p className="text-gray-600 text-sm font-myIranSansMedium leading-relaxed pt-[32px]">
               لوتکا یک بستر جامع برای کشف بهترین مکان‌های گردشگری، اقامتی و رستوران ها در شهرهای شمال ایران است.             </p>
 
+            <ul className="text-gray-600 text-sm gap-4 font-myIranSansFaNumRegular py-[32px] hidden desktop:hidden md:flex md:flex-row">
+              <li>ایمیل: lootka.info@gmail.com</li>
+              <li>تلفن:013۳۲۲۲۲۲۲۲</li>
+            </ul>
           </div>
         </div>
 
