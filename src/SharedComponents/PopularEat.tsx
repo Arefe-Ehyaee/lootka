@@ -127,7 +127,7 @@ const RestaurantCard: React.FC<{
           {restaurant.opening_hours && (
             <div className="flex items-center text-xs mt-2" dir='rtl'>
               <ClockIcon className="h-3 w-3 ml-1" />
-              <div className="line-clamp-1 font-myIranSansFaNumMedium">{restaurant.opening_hours}</div>
+              <div className="line-clamp-1 font-myIranSansFaNumRegular">{restaurant.opening_hours}</div>
             </div>
           )}
           {restaurant.address && (
@@ -136,9 +136,9 @@ const RestaurantCard: React.FC<{
               <span className="line-clamp-1 font-myIranSansFaNumRegular">{restaurant.address}</span>
             </div>
           )}
-          <div className="text-[8px] pb-1 mt-1">
+          <div className="text-[8px] pb-1 mt-2">
             <p className="text-justify font-myIranSansMedium line-clamp-3">
-              <p className='text-[10px] mb-0.5'>توضیحات</p>
+              {/* <p className='text-[10px] mb-0.5'>توضیحات</p> */}
               <ReactMarkdown>{restaurant.description}</ReactMarkdown>
             </p>
           </div>
@@ -282,7 +282,7 @@ const PopularEat: React.FC = () => {
   return (
     <div className="py-12 px-0 desktop:px-16">
       <div className="flex justify-between items-center mb-4 desktop:px-16 px-[16px]">
-        <h2 className="text-base tablet:text-2xl desktop:text-3xl  font-myIranSansMedium">خورد و خوراک</h2>
+        <h2 className="text-base tablet:text-2xl desktop:text-3xl font-myIranSansMedium">خورد و خوراک</h2>
         <Link to="/restaurants" className="text-sm text-gray-800 hover:underline font-myIranSansRegular">مشاهده همه</Link>
       </div>
 

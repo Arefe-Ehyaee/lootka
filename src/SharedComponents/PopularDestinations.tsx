@@ -108,7 +108,7 @@ const AttractionCard: React.FC<{
         </div>
 
         {/* Mobile */}
-        <div className="md:hidden py-2 px-3 text-black rounded-lg rounded-t-none border border-t-0 h-[140px]">
+        <div className="md:hidden p-[16px] text-black rounded-lg rounded-t-none border border-t-0 h-[130px]">
           <div className='flex flex-row justify-between items-center'>
             <h3 className="text-sm font-myIranSansMedium line-clamp-1">{attraction.name}</h3>
             <div className='bg-[#EDF9F3] border text-[#1BA75E] font-myIranSansFaNumRegular rounded-lg text-sm flex items-center gap-1 px-1'>
@@ -117,8 +117,8 @@ const AttractionCard: React.FC<{
             </div>
           </div>
           {attraction.address && (
-            <div className="flex items-start mb-2 text-xs">
-              <MapPinIcon className="h-3 w-3 ml-1 mt-0.5" />
+            <div className="flex items-start mb-2 text-xs mt-4">
+              <MapPinIcon className="h-3 w-3 ml-1 flex-shrink-0" />
               <span className="line-clamp-1">{attraction.address}</span>
             </div>
           )}
@@ -131,7 +131,7 @@ const AttractionCard: React.FC<{
         </div>
 
         {/* Desktop */}
-        <div className="hidden md:block py-2 px-2 text-black rounded-lg rounded-t-none h-[160px] border border-t-0">
+        <div className="hidden md:block p-[16px] text-black rounded-lg rounded-t-none h-[160px] border border-t-0">
           <div className="flex flex-row justify-between items-center">
             <h3 className="text-[18px] font-myIranSansMedium line-clamp-1">{attraction.name}</h3>
             <div className="bg-[#EDF9F3] border text-[#1BA75E] font-myIranSansFaNumRegular rounded-lg text-base flex items-center gap-2 px-1">
@@ -141,7 +141,7 @@ const AttractionCard: React.FC<{
           </div>
           {attraction.address && (
             <div className="flex items-center mt-5 mb-3 text-sm">
-              <MapPinIcon className="h-4 w-4 ml-1" />
+              <MapPinIcon className="h-4 w-4 ml-1 flex-shrink-0" />
               <span className="line-clamp-1">{attraction.address}</span>
             </div>
           )}
@@ -255,23 +255,23 @@ const PopularDestination: React.FC = () => {
   if (error) return <div className="text-red-500 text-center">{error}</div>;
 
   return (
-    <div className="py-12 px-6 desktop:px-16">
-      <div className="flex justify-between items-center mb-6 desktop:px-16 px-10">
+    <div className="py-12 px-0 desktop:px-16">
+      <div className="flex justify-between items-center mb-4 desktop:px-16 px-[16px]">
         <h2 className="text-base tablet:text-2xl desktop:text-3xl font-myIranSansMedium">جاهای دیدنی</h2>
         <Link to="/attractions" className="text-sm text-gray-800 hover:underline font-myIranSansRegular">مشاهده همه</Link>
       </div>
-      
-{/* Mobile View */}
-<div className="relative md:hidden px-8">
-  <div
-    ref={mobileScrollRef}
-    className="flex overflow-x-auto space-x-4 rtl:space-x-reverse scroll-smooth pb-6 scrollbar-hide px-2"
-  >
-    {filteredAttractions.map(attr => (
-      <AttractionCard key={attr.id} attraction={attr} getImageUrl={getImageUrl} />
-    ))}
-  </div>
-</div>
+
+      {/* Mobile View */}
+      <div className="relative md:hidden px-0">
+        <div
+          ref={mobileScrollRef}
+          className="flex overflow-x-auto space-x-4 rtl:space-x-reverse scroll-smooth pb-6 scrollbar-hide px-2"
+        >
+          {filteredAttractions.map(attr => (
+            <AttractionCard key={attr.id} attraction={attr} getImageUrl={getImageUrl} />
+          ))}
+        </div>
+      </div>
 
 
       {/* Desktop View */}

@@ -110,7 +110,7 @@ const HostelCard: React.FC<{
         </div>
 
         {/* Mobile Info */}
-        <div className="md:hidden p-[16px] text-black rounded-lg rounded-t-none border border-t-0 h-[140px]">
+        <div className="md:hidden p-[16px] text-black rounded-lg rounded-t-none border border-t-0 h-[120px]">
           <div className='flex justify-between items-center'>
             <h3 className="text-sm font-myIranSansMedium line-clamp-1">{hostel.name}</h3>
             <div className='bg-[#EDF9F3] border text-[#1BA75E] font-myIranSansFaNumRegular rounded-lg text-sm flex items-center gap-1 px-1'>
@@ -120,7 +120,7 @@ const HostelCard: React.FC<{
           </div>
 
           {hostel.address && (
-            <div className="flex items-start text-xs mt-2">
+            <div className="flex items-start text-xs mt-4">
               <MapPinIcon className="h-3 w-3 ml-1 mt-0.5 flex-shrink-0" />
               <span className="line-clamp-1 font-myIranSansFaNumRegular">{hostel.address}</span>
             </div>

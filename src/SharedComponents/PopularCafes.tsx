@@ -126,8 +126,8 @@ const CafeCard: React.FC<{
           </div>
           {cafe.opening_hours && (
             <div className="flex items-center text-xs mt-2" dir='rtl'>
-              <ClockIcon className="h-3 w-3 ml-1" />
-              <div className="line-clamp-1 font-myIranSansFaNumMedium">{cafe.opening_hours}</div>
+              <ClockIcon className="h-3 w-3 ml-1 flex-shrink-0" />
+              <div className="line-clamp-1 font-myIranSansFaNumRegular">{cafe.opening_hours}</div>
             </div>
           )}
           {cafe.address && (
@@ -136,7 +136,7 @@ const CafeCard: React.FC<{
               <span className="line-clamp-1 font-myIranSansFaNumRegular">{cafe.address}</span>
             </div>
           )}
-          <div className="text-[8px] pb-1 mt-1">
+          <div className="text-[8px] pb-1 mt-2">
             <p className="text-justify font-myIranSansMedium line-clamp-3">
               {/* <p className='text-[10px] mb-0.5'>توضیحات</p> */}
               <ReactMarkdown>{cafe.description}</ReactMarkdown>
