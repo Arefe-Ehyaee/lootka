@@ -24,21 +24,25 @@ const ExperiencesSection = () => {
 
       {/* Central content */}
       <div className="relative z-10 text-center">
-        <h2 className="text-[12px] desktop:text-[40px] font-bold text-gray-800 mb-1" dir="rtl">
-          تجربه‌های خودتو به لوتکا
+        <h2 className="text-[12px] desktop:text-[40px] font-bold text-gray-800 desktop:mb-6 mb-2" dir="rtl">
+          تجربه‌های خودتو به لوتکا اضافه کن
         </h2>
-        <h3 className="text-[12px] desktop:text-[40px] font-bold text-gray-800 desktop:mb-6 mb-3" dir="rtl">
+        {/* <h3 className="text-[12px] desktop:text-[40px] font-bold text-gray-800 desktop:mb-6 mb-2" dir="rtl">
           اضافه کن
-        </h3>
+        </h3> */}
+        <p className="text-[10px] desktop:text-[24px] text-gray-600 desktop:mb-2 mb-1 max-w-md mx-auto" dir="rtl">
+          جایی که رفتی رو دوستش داشتی؟ 
+        </p>
         <p className="text-[10px] desktop:text-[24px] text-gray-600 desktop:mb-8 mb-4 max-w-md mx-auto" dir="rtl">
-          جایی که رفتی و دوستش داشتی؟ به بقیه هم پیشنهاد بده!
+           به بقیه هم پیشنهاد بده!
         </p>
 
-        <button
-          className="bg-[#647B3B] desktop:px-[16px] px-0 desktop:py-[4px] py-0 rounded-[8px] desktop:w-[168px] w-[84px] desktop:h-[24px] h-[24px] text-white desktop:text-base text-[10px]"
-        >
-          ادامه
-        </button>
+<button
+  className="flex items-center justify-center bg-[#647B3B] desktop:px-[16px] px-0 desktop:py-4 py-2 rounded-[8px] desktop:w-[168px] w-[84px] desktop:h-[24px] h-[24px] text-white desktop:text-base text-[10px] mx-auto"
+>
+  ادامه
+</button>
+
       </div>
 
       {/* Floating circular images */}

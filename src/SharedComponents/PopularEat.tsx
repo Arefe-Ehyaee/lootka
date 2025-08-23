@@ -116,7 +116,7 @@ const RestaurantCard: React.FC<{
         </div>
 
         {/* Mobile */}
-        <div className="md:hidden py-2 px-3 text-black rounded-lg rounded-t-none border border-t-0 h-[150px]">
+        <div className="md:hidden p-[16px] text-black rounded-lg rounded-t-none border border-t-0 h-[150px]">
           <div className='flex justify-between items-center'>
             <h3 className="text-sm font-myIranSansMedium line-clamp-1">{restaurant.name}</h3>
             <div className='bg-[#EDF9F3] text-[#1BA75E] rounded-lg text-sm font-myIranSansFaNumRegular flex items-center gap-1 px-1'>
@@ -132,7 +132,7 @@ const RestaurantCard: React.FC<{
           )}
           {restaurant.address && (
             <div className="flex items-start text-xs mt-1">
-              <MapPinIcon className="h-3 w-3 ml-1 mt-0.5" />
+              <MapPinIcon className="h-3 w-3 ml-1 mt-0.5 flex-shrink-0" />
               <span className="line-clamp-1 font-myIranSansFaNumRegular">{restaurant.address}</span>
             </div>
           )}
@@ -145,7 +145,7 @@ const RestaurantCard: React.FC<{
         </div>
 
         {/* Desktop */}
-        <div className="hidden md:block py-2 px-2 text-black rounded-lg rounded-t-none h-[170px] border border-t-0">
+        <div className="hidden md:block p-[16px] text-black rounded-lg rounded-t-none h-[170px] border border-t-0">
           <div className='flex justify-between items-center'>
             <h3 className="text-[18px] font-myIranSansMedium line-clamp-1">{restaurant.name}</h3>
             <div className='bg-[#EDF9F3] text-[#1BA75E] rounded-lg text-base font-myIranSansFaNumRegular flex items-center gap-2 px-1'>
@@ -160,14 +160,14 @@ const RestaurantCard: React.FC<{
             </div>
           )}
           {restaurant.address && (
-            <div className="flex items-center text-sm mt-2 font-myIranSansFaNumRegular">
-              <MapPinIcon className="w-4 h-4 ml-1" />
-              <span className="flex-1 truncate">{restaurant.address}</span>
+            <div className="flex items-start text-sm mt-1">
+              <MapPinIcon className="h-4 w-4 ml-1 mt-0.5 flex-shrink-0" />
+              <span className="line-clamp-1 font-myIranSansFaNumRegular">{restaurant.address}</span>
             </div>
           )}
           <div className="text-[10px] pb-2 mt-2 flex items-end justify-between font-myIranSansFaNumRegular">
             <p className="text-justify line-clamp-3">
-              <p className='font-myIranSansFaNumBold text-xs mb-1'>توضیحات</p>
+              {/* <p className='font-myIranSansFaNumBold text-xs mb-1'>توضیحات</p> */}
               <ReactMarkdown>{restaurant.description}</ReactMarkdown>
             </p>
             <button><ChevronLeftIcon className="h-5 w-5" /></button>
@@ -280,27 +280,25 @@ const PopularEat: React.FC = () => {
   if (error) return <div className="text-red-500 text-center">{error}</div>;
 
   return (
-    <div className="py-12 px-6 desktop:px-16">
-      <div className="flex justify-between items-center mb-6 desktop:px-16 px-10">
+    <div className="py-12 px-0 desktop:px-16">
+      <div className="flex justify-between items-center mb-4 desktop:px-16 px-[16px]">
         <h2 className="text-base tablet:text-2xl desktop:text-3xl  font-myIranSansMedium">خورد و خوراک</h2>
         <Link to="/restaurants" className="text-sm text-gray-800 hover:underline font-myIranSansRegular">مشاهده همه</Link>
       </div>
 
       {/* Mobile */}
       <div className="relative md:hidden">
-        <div className="px-8">
-          <button onClick={scrollMobilePrev} className="absolute left-0 top-[130px] -translate-y-1/2 z-10 hover:bg-gray-100 w-8 h-8">
-            <ChevronLeftIcon className="h-5 w-5" />
-          </button>
-          <button onClick={scrollMobileNext} className="absolute right-0 top-[130px] -translate-y-1/2 z-10 hover:bg-gray-100 w-8 h-8">
-            <ChevronRightIcon className="h-5 w-5" />
-          </button>
-          <div ref={mobileScrollRef} className="flex overflow-x-auto pb-6 scrollbar-hide space-x-4 rtl:space-x-reverse scroll-smooth px-2">
-            {filteredRestaurants.map(restaurant => (
-              <RestaurantCard key={restaurant.id} restaurant={restaurant} getImageUrl={getImageUrl} />
+        <div className="px-0 relative">
+          <div
+            ref={mobileScrollRef}
+            className="flex overflow-x-auto pb-6 space-x-4 rtl:space-x-reverse scroll-smooth px-2 scrollbar-hide"
+          >
+            {filteredRestaurants.map(h => (
+              <RestaurantCard key={h.id} restaurant={h} getImageUrl={getImageUrl} />
             ))}
           </div>
         </div>
+
       </div>
 
       {/* Desktop */}

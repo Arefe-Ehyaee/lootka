@@ -110,7 +110,7 @@ const HostelCard: React.FC<{
         </div>
 
         {/* Mobile Info */}
-        <div className="md:hidden py-2 px-3 text-black rounded-lg rounded-t-none border border-t-0 h-[150px]">
+        <div className="md:hidden p-[16px] text-black rounded-lg rounded-t-none border border-t-0 h-[140px]">
           <div className='flex justify-between items-center'>
             <h3 className="text-sm font-myIranSansMedium line-clamp-1">{hostel.name}</h3>
             <div className='bg-[#EDF9F3] border text-[#1BA75E] font-myIranSansFaNumRegular rounded-lg text-sm flex items-center gap-1 px-1'>
@@ -120,22 +120,22 @@ const HostelCard: React.FC<{
           </div>
 
           {hostel.address && (
-            <div className="flex items-start mb-2 text-xs">
-              <MapPinIcon className="h-3 w-3 ml-1 mt-0.5" />
-              <span className="line-clamp-1">{hostel.address}</span>
+            <div className="flex items-start text-xs mt-2">
+              <MapPinIcon className="h-3 w-3 ml-1 mt-0.5 flex-shrink-0" />
+              <span className="line-clamp-1 font-myIranSansFaNumRegular">{hostel.address}</span>
             </div>
           )}
 
           <div className="text-[8px] pb-1 mt-4">
             <p className="text-justify font-myIranSansMedium line-clamp-3">
-              <p className='text-[10px] mb-0.5'>توضیحات</p>
+              {/* <p className='text-[10px] mb-0.5'>توضیحات</p> */}
               <ReactMarkdown>{hostel.description}</ReactMarkdown>
             </p>
           </div>
         </div>
 
         {/* Desktop Info */}
-        <div className="hidden md:block py-2 px-2 text-black rounded-lg rounded-t-none h-[170px] border border-t-0">
+        <div className="hidden md:block p-[16px] text-black rounded-lg rounded-t-none h-[160px] border border-t-0">
           <div className="flex justify-between items-center">
             <h3 className="text-[18px] font-myIranSansMedium line-clamp-1">{hostel.name}</h3>
             <div className="bg-[#EDF9F3] border text-[#1BA75E] font-myIranSansFaNumRegular rounded-lg text-base flex items-center gap-2 px-1">
@@ -146,14 +146,14 @@ const HostelCard: React.FC<{
 
           {hostel.address && (
             <div className="flex items-center mt-5 mb-3 text-sm">
-              <MapPinIcon className="h-4 w-4 ml-1" />
+              <MapPinIcon className="h-4 w-4 ml-1 flex-shrink-0" />
               <span className="line-clamp-1">{hostel.address}</span>
             </div>
           )}
 
           <div className="text-[10px] pb-2 mt-4 flex items-end justify-between font-myIranSansFaNumRegular">
             <p className="text-justify line-clamp-3">
-              <p className='font-myIranSansFaNumBold text-xs mb-1'>توضیحات</p>
+              {/* <p className='font-myIranSansFaNumBold text-xs mb-1'>توضیحات</p> */}
               <ReactMarkdown>{hostel.description}</ReactMarkdown>
             </p>
             <button><ChevronLeftIcon className="h-5 w-5" /></button>
@@ -278,25 +278,25 @@ const PopularHostels: React.FC = () => {
   if (error) return <div className="text-red-500 text-center">{error}</div>;
 
   return (
-    <div className="py-12 px-6 desktop:px-16">
-      <div className="flex justify-between items-center mb-6 desktop:px-16 px-10">
+    <div className="py-12 px-0 desktop:px-16">
+      <div className="flex justify-between items-center mb-4 desktop:px-16 px-[16px]">
         <h2 className="text-base tablet:text-2xl desktop:text-3xl  font-myIranSansMedium">اقامتگاه</h2>
         <Link to="/hostels" className="text-sm text-gray-800 hover:underline">مشاهده همه</Link>
       </div>
 
       {/* Mobile View */}
       <div className="md:hidden relative">
-        <div className="px-8 relative">
-          <button onClick={scrollMobilePrev} className="absolute left-0 top-[130px] z-10">
-            <ChevronLeftIcon className="h-5 w-5" />
-          </button>
-          <button onClick={scrollMobileNext} className="absolute right-0 top-[130px] z-10">
-            <ChevronRightIcon className="h-5 w-5" />
-          </button>
-          <div ref={mobileScrollRef} className="flex overflow-x-auto pb-6 space-x-4 rtl:space-x-reverse scroll-smooth px-2 scrollbar-hide">
-            {filteredHostels.map(h => <HostelCard key={h.id} hostel={h} getImageUrl={getImageUrl} />)}
+        <div className="px-0 relative">
+          <div
+            ref={mobileScrollRef}
+            className="flex overflow-x-auto pb-6 space-x-4 rtl:space-x-reverse scroll-smooth px-2 scrollbar-hide"
+          >
+            {filteredHostels.map(h => (
+              <HostelCard key={h.id} hostel={h} getImageUrl={getImageUrl} />
+            ))}
           </div>
         </div>
+
       </div>
 
       {/* Desktop View */}

@@ -98,12 +98,6 @@ body {
 } 
 
 
-.lootka-logo {
-  background-image: url("./assets/images/logo-removebg-preview.png");
-
-}
-
-
 /* global.css or tailwind.css */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
