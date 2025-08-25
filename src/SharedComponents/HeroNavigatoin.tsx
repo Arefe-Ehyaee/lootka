@@ -21,7 +21,7 @@ const HeroNavigation = () => {
                     <img src={suitcase} alt="" />
                 </button>
                 <button
-                    onClick={() => navigate('/')}
+                    onClick={() => navigate('/planner')}
                     className="flex flex-col items-center justify-center w-[100px] h-[100px] border-[1.8px] border-[#CFD6DC] rounded-lg "
                 >
                     <img src={map} alt="" />

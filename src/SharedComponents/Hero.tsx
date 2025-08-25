@@ -20,7 +20,7 @@ const Hero: React.FC<HeroProps> = ({ onAdventureClick }) => {
         <div className="absolute inset-0 flex items-start">
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center pt-3">
             {/* Title */}
-            <div className="text-white w-full text-center mt-20 desktop:mt-[105px] font-myIranSansBold">
+            <div className="text-[#222222] w-full text-center mt-20 desktop:mt-[105px] font-myIranSansBold">
               <h1 className="desktop:text-[48px] tablet:text-[32px] text-[24px] desktop:mb-[39px] mb-[16px]">لوتکا</h1>
               <p className="desktop:text-[24px] tablet:text-[20px] text-[12px]">
                 قایق چوبی ما، راهِ‌تو به كشف نشده‌ها...
