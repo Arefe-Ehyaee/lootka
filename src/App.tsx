@@ -14,11 +14,13 @@ import AllAttractions from "./SharedComponents/AllAttractions";
 import PlaceDetail from "./SharedComponents/PlaceDetail";
 import RestaurantForm from "./SharedComponents/RestaurantForm";
 import AllCafes from "./SharedComponents/AllCafes";
+import ScrollToTop from "./SharedComponents/ScrollToTop";
 
 function App() {
   return (
     <div className="App font-myIranSansRegular" dir="rtl">
       <BrowserRouter>
+        <ScrollToTop /> 
         <Routes>
           <Route path="/" element={<MainPage></MainPage>} />
           <Route path="/places/:id" element={<PlaceDetail />} />

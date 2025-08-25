@@ -15,19 +15,19 @@ const HeroNavigation = () => {
             {/* Navigation buttons without text */}
             <div className="h-[120px] w-[894px] px-[0px] mx-auto bg-white rounded-full pt-4 flex justify-around items-center text-center">
                 <button
-                    onClick={() => navigate('/restaurants')}
+                    onClick={() => navigate('/')}
                     className="flex flex-col items-center justify-center w-[100px] h-[100px] border-[1.8px] border-[#CFD6DC] rounded-lg "
                 >
                     <img src={suitcase} alt="" />
                 </button>
                 <button
-                    onClick={() => navigate('/cafes')}
+                    onClick={() => navigate('/')}
                     className="flex flex-col items-center justify-center w-[100px] h-[100px] border-[1.8px] border-[#CFD6DC] rounded-lg "
                 >
                     <img src={map} alt="" />
                 </button>
                 <button
-                    onClick={() => navigate('/destinations')}
+                    onClick={() => navigate('/restaurants')}
                     className="flex flex-col items-center justify-center w-[100px] h-[100px] border-[1.8px] border-[#CFD6DC] rounded-lg "
                 >
                     <img src={eat} alt="" />
@@ -40,14 +40,14 @@ const HeroNavigation = () => {
                     <img src={tent} alt="" />
                 </button>
                 <button
-                    onClick={() => navigate('/restaurants')}
+                    onClick={() => navigate('/')}
                     className="flex flex-col items-center justify-center w-[100px] h-[100px] border-[1.8px] border-[#CFD6DC] rounded-lg "
                 >
                     <img src={boat} alt="" />
 
                 </button>
                 <button
-                    onClick={() => navigate('/restaurants')}
+                    onClick={() => navigate('/')}
                     className="flex flex-col items-center justify-center w-[100px] h-[100px] border-[1.8px] border-[#CFD6DC] rounded-lg "
                 >
                     <img src={scuba} alt="" />
