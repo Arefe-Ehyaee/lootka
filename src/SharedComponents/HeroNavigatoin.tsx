@@ -15,13 +15,13 @@ const HeroNavigation = () => {
             {/* Navigation buttons without text */}
             <div className="h-[120px] w-[894px] px-[0px] mx-auto bg-white rounded-full pt-4 flex justify-around items-center text-center">
                 <button
-                    onClick={() => navigate('/')}
+                    onClick={() => navigate('/planner')}
                     className="flex flex-col items-center justify-center w-[100px] h-[100px] border-[1.8px] border-[#CFD6DC] rounded-lg "
                 >
                     <img src={suitcase} alt="" />
                 </button>
                 <button
-                    onClick={() => navigate('/planner')}
+                    onClick={() => navigate('/attractions')}
                     className="flex flex-col items-center justify-center w-[100px] h-[100px] border-[1.8px] border-[#CFD6DC] rounded-lg "
                 >
                     <img src={map} alt="" />
@@ -31,16 +31,15 @@ const HeroNavigation = () => {
                     className="flex flex-col items-center justify-center w-[100px] h-[100px] border-[1.8px] border-[#CFD6DC] rounded-lg "
                 >
                     <img src={eat} alt="" />
-
                 </button>
                 <button
-                    onClick={() => navigate('/hostels')}
+                    onClick={() => navigate('/cafes')}
                     className="flex flex-col items-center justify-center w-[100px] h-[100px] border-[1.8px] border-[#CFD6DC] rounded-lg "
                 >
                     <img src={tent} alt="" />
                 </button>
                 <button
-                    onClick={() => navigate('/')}
+                    onClick={() => navigate('/hostels')}
                     className="flex flex-col items-center justify-center w-[100px] h-[100px] border-[1.8px] border-[#CFD6DC] rounded-lg "
                 >
                     <img src={boat} alt="" />
@@ -56,11 +55,11 @@ const HeroNavigation = () => {
 
             {/* Section names displayed below */}
             <div className="w-[894px] mx-auto mt-[10px] flex items-center text-center justify-between px-[24px]">
-                <span className="text-sm font-myIranSansMedium w-[100px]">تور</span>
-                <span className="text-sm font-myIranSansMedium w-[100px]">برنامه‌ریزی سفر</span>
-                <span className="text-sm font-myIranSansMedium w-[100px]">کافه و رستوران</span>
-                <span className="text-sm font-myIranSansMedium w-[100px]">هتل و اقامتگاه</span>
-                <span className="text-sm font-myIranSansMedium w-[100px]">تفریح</span>
+                <span className="text-sm font-myIranSansMedium w-[100px]">برنامه‌ریز سفر</span>
+                <span className="text-sm font-myIranSansMedium w-[100px]">جای دیدنی</span>
+                <span className="text-sm font-myIranSansMedium w-[100px]">رستوران</span>
+                <span className="text-sm font-myIranSansMedium w-[100px]">کافه</span>
+                <span className="text-sm font-myIranSansMedium w-[100px]">اقامتگاه بومگردی</span>
                 <span className="text-sm font-myIranSansMedium w-[100px]">تجربه خاص</span>
             </div>
         </div>

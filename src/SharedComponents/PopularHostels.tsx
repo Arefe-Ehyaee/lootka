@@ -289,7 +289,7 @@ const PopularHostels: React.FC = () => {
         <div className="px-0 relative">
           <div
             ref={mobileScrollRef}
-            className="flex overflow-x-auto pb-6 space-x-4 rtl:space-x-reverse scroll-smooth px-2 scrollbar-hide"
+            className="flex overflow-x-auto pb-6 space-x-2 rtl:space-x-reverse scroll-smooth px-2 scrollbar-hide"
           >
             {filteredHostels.map(h => (
               <HostelCard key={h.id} hostel={h} getImageUrl={getImageUrl} />
@@ -308,7 +308,7 @@ const PopularHostels: React.FC = () => {
           <button onClick={scrollDesktopNext} className="absolute left-0 top-1/2 -translate-y-1/2 z-10">
             <ChevronLeftIcon className="h-6 w-6" />
           </button>
-          <div ref={desktopScrollRef} className="flex overflow-x-auto pb-6 space-x-6 rtl:space-x-reverse scroll-smooth px-4 scrollbar-hide">
+          <div ref={desktopScrollRef} className="flex overflow-x-auto pb-6 space-x-2 rtl:space-x-reverse scroll-smooth px-4 scrollbar-hide">
             {filteredHostels.map(h => <HostelCard key={h.id} hostel={h} getImageUrl={getImageUrl} />)}
           </div>
         </div>

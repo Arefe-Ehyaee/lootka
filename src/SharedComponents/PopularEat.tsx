@@ -291,7 +291,7 @@ const PopularEat: React.FC = () => {
         <div className="px-0 relative">
           <div
             ref={mobileScrollRef}
-            className="flex overflow-x-auto pb-6 space-x-4 rtl:space-x-reverse scroll-smooth px-2 scrollbar-hide"
+            className="flex overflow-x-auto pb-6 space-x-2 rtl:space-x-reverse scroll-smooth px-2 scrollbar-hide"
           >
             {filteredRestaurants.map(h => (
               <RestaurantCard key={h.id} restaurant={h} getImageUrl={getImageUrl} />
@@ -310,7 +310,7 @@ const PopularEat: React.FC = () => {
           <button onClick={scrollDesktopNext} className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10">
             <ChevronLeftIcon className="h-6 w-6" />
           </button>
-          <div ref={desktopScrollRef} className="flex overflow-x-auto pb-6 scrollbar-hide space-x-6 rtl:space-x-reverse scroll-smooth px-4">
+          <div ref={desktopScrollRef} className="flex overflow-x-auto pb-6 scrollbar-hide space-x-2 rtl:space-x-reverse scroll-smooth px-4">
             {filteredRestaurants.map(restaurant => (
               <RestaurantCard key={restaurant.id} restaurant={restaurant} getImageUrl={getImageUrl} />
             ))}

@@ -265,7 +265,7 @@ const PopularDestination: React.FC = () => {
       <div className="relative md:hidden px-0">
         <div
           ref={mobileScrollRef}
-          className="flex overflow-x-auto space-x-4 rtl:space-x-reverse scroll-smooth pb-6 scrollbar-hide px-2"
+          className="flex overflow-x-auto space-x-2 rtl:space-x-reverse scroll-smooth pb-6 scrollbar-hide px-2"
         >
           {filteredAttractions.map(attr => (
             <AttractionCard key={attr.id} attraction={attr} getImageUrl={getImageUrl} />
@@ -282,7 +282,7 @@ const PopularDestination: React.FC = () => {
         <button onClick={scrollDesktopNext} className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10">
           <ChevronLeftIcon className="h-6 w-6" />
         </button>
-        <div ref={desktopScrollRef} className="flex overflow-x-auto space-x-6 rtl:space-x-reverse scroll-smooth pb-6 scrollbar-hide px-4">
+        <div ref={desktopScrollRef} className="flex overflow-x-auto space-x-2 rtl:space-x-reverse scroll-smooth pb-6 scrollbar-hide px-4">
           {filteredAttractions.map(attr => (
             <AttractionCard key={attr.id} attraction={attr} getImageUrl={getImageUrl} />
           ))}

@@ -74,6 +74,10 @@ const CafeCard: React.FC<{
 
   const getCurrentImage = () => {
     if (!imageList || imageList.length === 0) return getImageUrl('NaN');
+    // ✅ On mobile always return first image
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      return getImageUrl(imageList[0]);
+    }
     return getImageUrl(imageList[currentImageIndex]);
   };
 
@@ -88,8 +92,9 @@ const CafeCard: React.FC<{
           />
           <img src={heart} alt="" className='absolute top-3 right-1' />
 
+          {/* ✅ Carousel only on desktop */}
           {imageCount > 1 && (
-            <>
+            <div className="hidden md:block">
               <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2">
                 {Array.from({ length: imageCount }).map((_, index) => (
                   <div
@@ -111,7 +116,7 @@ const CafeCard: React.FC<{
               <button onClick={handleNextImage} className="absolute top-1/2 left-2 -translate-y-1/2 z-20 hover:bg-black/40 text-white rounded-full w-8 h-8 flex items-center justify-center">
                 <ChevronLeftIcon className="h-5 w-5" />
               </button>
-            </>
+            </div>
           )}
         </div>
 
@@ -138,7 +143,6 @@ const CafeCard: React.FC<{
           )}
           <div className="text-[8px] pb-1 mt-2">
             <p className="text-justify font-myIranSansMedium line-clamp-3">
-              {/* <p className='text-[10px] mb-0.5'>توضیحات</p> */}
               <ReactMarkdown>{cafe.description}</ReactMarkdown>
             </p>
           </div>
@@ -167,7 +171,6 @@ const CafeCard: React.FC<{
           )}
           <div className="text-[10px] pb-2 mt-2 flex items-end justify-between font-myIranSansFaNumRegular">
             <p className="text-justify line-clamp-3">
-              {/* <p className='font-myIranSansFaNumBold text-xs mb-1'>توضیحات</p> */}
               <ReactMarkdown>{cafe.description}</ReactMarkdown>
             </p>
             <button><ChevronLeftIcon className="h-5 w-5" /></button>
@@ -177,6 +180,7 @@ const CafeCard: React.FC<{
     </Link>
   );
 };
+
 
 const PopularCafes: React.FC = () => {
   const [cafes, setCafes] = useState<Cafe[]>([]);
@@ -290,7 +294,7 @@ const PopularCafes: React.FC = () => {
         <div className="px-0 relative">
           <div
             ref={mobileScrollRef}
-            className="flex overflow-x-auto pb-6 space-x-4 rtl:space-x-reverse scroll-smooth px-2 scrollbar-hide"
+            className="flex overflow-x-auto pb-6 space-x-2 rtl:space-x-reverse scroll-smooth px-2 scrollbar-hide"
           >
             {filteredCafes.map(h => (
               <CafeCard key={h.id} cafe={h} getImageUrl={getImageUrl} />
@@ -309,7 +313,7 @@ const PopularCafes: React.FC = () => {
           <button onClick={scrollDesktopNext} className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10">
             <ChevronLeftIcon className="h-6 w-6" />
           </button>
-          <div ref={desktopScrollRef} className="flex overflow-x-auto pb-6 scrollbar-hide space-x-6 rtl:space-x-reverse scroll-smooth px-4">
+          <div ref={desktopScrollRef} className="flex overflow-x-auto pb-6 scrollbar-hide space-x-2 rtl:space-x-reverse scroll-smooth px-4">
             {filteredCafes.map(cafe => (
               <CafeCard key={cafe.id} cafe={cafe} getImageUrl={getImageUrl} />
             ))}
