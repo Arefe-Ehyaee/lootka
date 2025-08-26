@@ -84,7 +84,7 @@ const Footer = () => {
                 </div>
 
                 {/* تماس با لوتکا */}
-                <div className="desktop:flex-1 hidden">
+                <div className="flex-1">
                   <h4 className="font-myIranSansBold mb-4 text-gray-800">تماس با لوتکا</h4>
                   <ul className="text-gray-600 text-sm space-y-2 font-myIranSansFaNumRegular">
                     <li>ایمیل: lootka.info@gmail.com</li>
@@ -94,7 +94,7 @@ const Footer = () => {
                 </div>
 
 
-                <div className="desktop:flex-1 hidden">
+                <div className="flex-1">
                   <div className="flex flex-row gap-4">
                     <img src={enamad} alt="Enamad" className="w-1/2" />
                     <img src={saman} alt="Samandehi" className="w-1/2" />
@@ -104,21 +104,14 @@ const Footer = () => {
                     <img src={gardeshgari} alt="Samandehi" className="w-1/2" />
                   </div>
                 </div>
+
+
+
               </div>
 
 
-            </div>
 
-
-            <div className="flex flex-row gap-4">
-              <img src={enamad} alt="Enamad" className="w-1/4" />
-              <img src={saman} alt="Samandehi" className="w-1/4" />
             </div>
-            <div className="flex flex-row gap-4 mt-2">
-              <img src={parkfanavar} alt="Enamad" className="w-1/4" />
-              <img src={gardeshgari} alt="Samandehi" className="w-1/4" />
-            </div>
-
 
             {/* Social Media */}
             <ul className='flex flex-row items-center desktop:justify-start md:justify-start justify-center gap-[16px] mt-[60px]'>
