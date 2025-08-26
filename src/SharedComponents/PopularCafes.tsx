@@ -192,7 +192,7 @@ const PopularCafes: React.FC = () => {
   const mobileScrollRef = useRef<HTMLDivElement>(null);
   const desktopScrollRef = useRef<HTMLDivElement>(null);
 
-  const pageSize = 6;
+  const pageSize = 10;
 
   const getImageUrl = (idOrFilename: string) =>
     !idOrFilename || idOrFilename === 'NaN' ? NoImg : `${BASE_URL}/images/${idOrFilename}`;

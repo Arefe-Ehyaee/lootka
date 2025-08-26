@@ -189,7 +189,7 @@ const PopularEat: React.FC = () => {
   const desktopScrollRef = useRef<HTMLDivElement>(null);
 
   const categories: CategoryType[] = ['همه', 'فست فود', 'غذای محلی', 'کافه', 'فود تراک'];
-  const pageSize = 6;
+  const pageSize = 10;
 
   const getImageUrl = (idOrFilename: string) =>
     !idOrFilename || idOrFilename === 'NaN' ? NoImg : `${BASE_URL}/images/${idOrFilename}`;

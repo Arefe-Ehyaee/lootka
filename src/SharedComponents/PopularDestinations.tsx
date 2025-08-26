@@ -169,7 +169,7 @@ const PopularDestination: React.FC = () => {
   const desktopScrollRef = useRef<HTMLDivElement>(null);
 
   const categories: CategoryType[] = ['همه', 'فست فود', 'غذای محلی', 'کافه', 'فود تراک'];
-  const pageSize = 6;
+  const pageSize = 10;
 
   useEffect(() => {
     const fetchAttractions = async () => {
