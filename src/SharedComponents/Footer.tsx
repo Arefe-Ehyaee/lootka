@@ -104,24 +104,20 @@ const Footer = () => {
                     <img src={gardeshgari} alt="Samandehi" className="w-1/2" />
                   </div>
                 </div>
-
-
-
               </div>
-
 
 
             </div>
 
-  
-                  <div className="flex flex-row gap-4">
-                    <img src={enamad} alt="Enamad" className="w-1/4" />
-                    <img src={saman} alt="Samandehi" className="w-1/4" />
-                  </div>
-                  <div className="flex flex-row gap-4 mt-2">
-                    <img src={parkfanavar} alt="Enamad" className="w-1/4" />
-                    <img src={gardeshgari} alt="Samandehi" className="w-1/4" />
-                  </div>
+
+            <div className="flex flex-row gap-4">
+              <img src={enamad} alt="Enamad" className="w-1/4" />
+              <img src={saman} alt="Samandehi" className="w-1/4" />
+            </div>
+            <div className="flex flex-row gap-4 mt-2">
+              <img src={parkfanavar} alt="Enamad" className="w-1/4" />
+              <img src={gardeshgari} alt="Samandehi" className="w-1/4" />
+            </div>
 
 
             {/* Social Media */}
