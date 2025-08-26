@@ -10,11 +10,11 @@ const HeroNavigationMobile = () => {
     const navigate = useNavigate();
 
     const navItems = [
-        { img: suitcase, path: '/restaurants', label: 'تور' },
-        { img: map, path: '/cafes', label: 'برنامه‌ریزی سفر' },
-        { img: eat, path: '/destinations', label: 'کافه و رستوران' },
-        { img: tent, path: '/hostels', label: 'هتل و اقامتگاه' },
-        { img: boat, path: '/restaurants', label: 'تفریح' },
+        { img: suitcase, path: '/planner', label: 'برنامه ریز سفر' },
+        { img: map, path: '/destinations', label: 'جای دیدنی' },
+        { img: eat, path: '/restaurants', label: '  رستوران' },
+        { img: boat, path: '/cafes', label: 'کافه' },
+        { img: tent, path: '/hostels', label: 'اقامتگاه بومگردی' },
         { img: scuba, path: '/restaurants', label: 'تجربه خاص' }
     ];
 

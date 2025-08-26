@@ -61,7 +61,7 @@ const Footer = () => {
                 <h4 className="font-myIranSansBold mb-[32px] text-gray-800">تماس با لوتکا</h4>
                 <ul className="text-gray-600 text-sm space-y-2 font-myIranSansFaNumRegular">
                   <li>ایمیل: lootka.info@gmail.com</li>
-                  <li>تلفن:013۳۲۲۲۲۲۲۲</li>
+                  <li>تلفن:09019419057</li>
                   <li>
                     آدرس: ایران، تهران
                   </li>
@@ -71,15 +71,30 @@ const Footer = () => {
 
             {/* Social Media */}
             <ul className='flex flex-row items-center desktop:justify-start md:justify-start justify-center gap-[16px] mt-[60px]'>
-              <li>
-                <img src={tel} alt="" />
-              </li>
-              <li>
-                <img src={ins} alt="" />
-              </li>
-              <li>
-                <img src={wat} alt="" />
-              </li>
+               <a
+                href="https://www.instagram.com/yourInstagramUsername"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block"
+              >
+                <img src={tel} alt="Instagram" className="w-8 h-8 cursor-pointer" />
+              </a>
+              <a
+                href="https://www.instagram.com/lootka.iran/?utm_source=ig_web_button_share_sheet"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block"
+              >
+                <img src={ins} alt="Instagram" className="w-8 h-8 cursor-pointer" />
+              </a>
+              <a
+                href="https://www.instagram.com/yourInstagramUsername"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block"
+              >
+                <img src={wat} alt="Instagram" className="w-8 h-8 cursor-pointer" />
+              </a>
             </ul>
           </div>
 
@@ -99,7 +114,7 @@ const Footer = () => {
 
             <ul className="text-gray-600 text-sm gap-4 font-myIranSansFaNumRegular py-[32px] hidden desktop:hidden md:flex md:flex-row">
               <li>ایمیل: lootka.info@gmail.com</li>
-              <li>تلفن:013۳۲۲۲۲۲۲۲</li>
+              <li>تلفن:09019419057</li>
             </ul>
           </div>
         </div>
