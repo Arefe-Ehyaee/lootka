@@ -299,18 +299,35 @@ const PopularHostels: React.FC = () => {
 
       </div>
 
-      {/* Desktop View */}
-      <div className="hidden md:block relative">
-        <div className="px-14 relative">
-          <button onClick={scrollDesktopPrev} className="absolute right-0 top-1/2 -translate-y-1/2 z-10">
+
+
+      {/* Desktop */}
+      <div className="hidden md:block relative px-12">
+        <div className="relative flex items-center">
+          {/* Left chevron */}
+          <button
+            onClick={scrollDesktopPrev}
+            className="z-10 w-10 h-10 flex items-center justify-center"
+          >
             <ChevronRightIcon className="h-6 w-6" />
           </button>
-          <button onClick={scrollDesktopNext} className="absolute left-0 top-1/2 -translate-y-1/2 z-10">
+
+          {/* Scrollable content */}
+          <div
+            ref={desktopScrollRef}
+            className="flex overflow-x-auto pb-6 scrollbar-hide space-x-2 rtl:space-x-reverse scroll-smooth flex-1"
+          >
+            {filteredHostels.map(h => <HostelCard key={h.id} hostel={h} getImageUrl={getImageUrl} />)}
+
+          </div>
+
+          {/* Right chevron */}
+          <button
+            onClick={scrollDesktopNext}
+            className="z-10 w-10 h-10 flex items-center justify-center"
+          >
             <ChevronLeftIcon className="h-6 w-6" />
           </button>
-          <div ref={desktopScrollRef} className="flex overflow-x-auto pb-6 space-x-2 rtl:space-x-reverse scroll-smooth px-4 scrollbar-hide">
-            {filteredHostels.map(h => <HostelCard key={h.id} hostel={h} getImageUrl={getImageUrl} />)}
-          </div>
         </div>
       </div>
 
