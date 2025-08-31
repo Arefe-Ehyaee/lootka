@@ -40,6 +40,7 @@ const Navbar = () => {
             <div className="absolute left-1/2 -translate-x-1/2 desktop:flex hidden items-center desktop:gap-[32px] gap-4 text-[#222222] font-myYekanDemibold">
               <button onClick={() => navigate("/")}>خانه</button>
               <button onClick={() => navigate("/aboutUs")}>درباره ما</button>
+              <button onClick={() => navigate("/")}>قوانین و مقررات</button>
               <button onClick={() => navigate("/contact")}>ارتباط با ما</button>
             </div>
 
