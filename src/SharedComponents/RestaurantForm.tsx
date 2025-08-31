@@ -23,7 +23,7 @@ interface FormDataShape {
   images: File[];
 }
 
-const API_BASE_URL = "http://91.212.174.72:2000";
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 // Simple Input Component
 const Input = ({ label, ...props }: any) => (
@@ -120,14 +120,14 @@ export default function RestaurantForm() {
   const uploadOneImage = async (file: File): Promise<string> => {
     const fd = new FormData();
     fd.append("file", file);
-    const res = await axios.post(`${API_BASE_URL}/images/upload`, fd);
+    const res = await axios.post(`${BASE_URL}/images/upload`, fd);
     if (res.data?.img_path) return res.data.img_path;
     throw new Error(`Upload failed: ${JSON.stringify(res.data)}`);
   };
 
   const attachImageToPlace = async (placeId: string, imgPath: string, description?: string) => {
     await axios.post(
-      `${API_BASE_URL}/images/set/place/${encodeURIComponent(placeId)}`,
+      `${BASE_URL}/images/set/place/${encodeURIComponent(placeId)}`,
       null,
       { params: { img_path: imgPath, ...(description ? { description } : {}) } }
     );
@@ -159,7 +159,7 @@ export default function RestaurantForm() {
         images: [],
       };
 
-      const placeRes = await axios.post(`${API_BASE_URL}/places/`, placePayload, {
+      const placeRes = await axios.post(`${BASE_URL}/places/`, placePayload, {
         headers: { "Content-Type": "application/json" },
         validateStatus: (status) => status < 500,
       });

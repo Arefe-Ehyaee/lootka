@@ -17,7 +17,7 @@ const CustomButton = ({
   size = "medium", 
 }:ButtonProps) => {
   const baseStyle =
-    " flex items-center gap-2 rounded-xl text-sm font-isf subpixel-antialiased";
+    " flex items-center gap-2 rounded-full text-sm font-isf subpixel-antialiased";
   
   const sizeStyle = {
     small: "h-[32px] px-4 py-2",

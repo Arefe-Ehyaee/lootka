@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { ClockIcon, MapPinIcon } from '@heroicons/react/24/outline';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 import NoImg from '../assets/images/no-image-icon-23485.png';
@@ -8,7 +9,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import starGreen from "../assets/icons/StarGreen.svg";
 
-const BASE_URL = "http://91.212.174.72:2000";
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 interface Restaurant {
     id: string;
@@ -22,9 +23,11 @@ interface Restaurant {
     image_ids?: string[];
 }
 
+// React Query functions
 const fetchImageFilenames = async (placeId: string): Promise<string[]> => {
     try {
         const res = await fetch(`${BASE_URL}/entity_images/place/${placeId}`);
+        if (!res.ok) throw new Error('Failed to fetch images');
         const data = await res.json();
         return data.map((img: any) => img.image_id);
     } catch (err) {
@@ -33,12 +36,49 @@ const fetchImageFilenames = async (placeId: string): Promise<string[]> => {
     }
 };
 
+const fetchRestaurants = async (page: number, pageSize: number) => {
+    const res = await fetch(
+        `${BASE_URL}/places?page=${page}&limit=${pageSize}&sub_category=${encodeURIComponent("رستوران")}`
+    );
+    
+    if (!res.ok) {
+        throw new Error('Failed to fetch restaurants');
+    }
+    
+    const json = await res.json();
+    
+    // Fetch images for all restaurants in parallel
+    const formatted: Restaurant[] = await Promise.all(
+        json.data.map(async (item: any) => {
+            const imageIds = await fetchImageFilenames(item.place_id);
+            
+            return {
+                id: item.place_id,
+                name: item.name,
+                Rate: item.rate || 0,
+                ImgName: item.image_names?.[0] || 'NaN',
+                address: item.address,
+                opening_hours: item.opening_hours,
+                description: item.description,
+                sub_category: item.sub_category,
+                image_ids: imageIds,
+            };
+        })
+    );
+    
+    return {
+        restaurants: formatted,
+        totalPages: json.total ? Math.ceil(json.total / pageSize) : 
+                   (json.data.length === pageSize ? page + 1 : page)
+    };
+};
+
 const getImageUrl = (idOrFilename: string) =>
     !idOrFilename || idOrFilename === 'NaN'
         ? NoImg
         : `${BASE_URL}/images/${idOrFilename}`;
 
-/** ✅ Extracted RestaurantCard with useState inside */
+/** RestaurantCard with image state management */
 const RestaurantCard: React.FC<{ restaurant: Restaurant }> = ({ restaurant }) => {
     const [currentImage, setCurrentImage] = useState(0);
 
@@ -128,57 +168,27 @@ const RestaurantCard: React.FC<{ restaurant: Restaurant }> = ({ restaurant }) =>
 };
 
 const AllRestaurants: React.FC = () => {
-    const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
-    const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
     const pageSize = 10;
 
-    useEffect(() => {
-        const fetchRestaurants = async () => {
-            setLoading(true);
-            try {
-                const res = await fetch(
-                    `${BASE_URL}/places?page=${currentPage}&limit=${pageSize}&sub_category=${encodeURIComponent("رستوران")}`
-                );
+    // React Query for fetching restaurants
+    const {
+        data,
+        isLoading,
+        isError,
+        error,
+        isPlaceholderData
+    } = useQuery({
+        queryKey: ['restaurants', currentPage, pageSize],
+        queryFn: () => fetchRestaurants(currentPage, pageSize),
+        staleTime: 5 * 60 * 1000, // 5 minutes
+        gcTime: 10 * 60 * 1000, // 10 minutes (previously cacheTime)
+        placeholderData: (previousData) => previousData, // Keep previous data while fetching new page
+        refetchOnWindowFocus: false, // Prevent unnecessary refetches
+    });
 
-                const json = await res.json();
-
-                const formatted: Restaurant[] = await Promise.all(
-                    json.data.map(async (item: any) => {
-                        const imageIds = await fetchImageFilenames(item.place_id);
-
-                        return {
-                            id: item.place_id,
-                            name: item.name,
-                            Rate: item.rate || 0,
-                            ImgName: item.image_names?.[0] || 'NaN',
-                            address: item.address,
-                            opening_hours: item.opening_hours,
-                            description: item.description,
-                            sub_category: item.sub_category,
-                            image_ids: imageIds,
-                        };
-                    })
-                );
-
-                setRestaurants(formatted);
-
-                if (json.total) {
-                    setTotalPages(Math.ceil(json.total / pageSize));
-                } else {
-                    const hasMore = json.data.length === pageSize;
-                    setTotalPages(hasMore ? currentPage + 1 : currentPage);
-                }
-            } catch (e) {
-                console.error(e);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchRestaurants();
-    }, [currentPage]);
+    const restaurants = data?.restaurants || [];
+    const totalPages = data?.totalPages || 1;
 
     const handlePageChange = (newPage: number) => {
         window.scrollTo(0, 0);
@@ -203,6 +213,22 @@ const AllRestaurants: React.FC = () => {
         return pageNumbers;
     };
 
+    if (isError) {
+        return (
+            <div className="min-h-screen min-w-screen">
+                <Navbar />
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-2 py-3">
+                    <div className="p-4 md:p-10">
+                        <div className="text-center py-20 text-red-600">
+                            خطا در بارگذاری رستوران‌ها: {error?.message}
+                        </div>
+                    </div>
+                </div>
+                <Footer />
+            </div>
+        );
+    }
+
     return (
         <div className="min-h-screen min-w-screen">
             <Navbar />
@@ -211,8 +237,12 @@ const AllRestaurants: React.FC = () => {
                 <div className="p-4 md:p-10">
                     <h1 className="text-xl font-myIranSansFaNumBold mb-6 mt-12">همه رستوران‌ها</h1>
 
-                    {loading ? (
+                    {isLoading ? (
                         <div className="text-center py-20">در حال بارگذاری...</div>
+                    ) : isPlaceholderData ? (
+                        <div className="text-center py-20">
+                            <div className="text-gray-500 text-lg">در حال بارگذاری صفحه جدید...</div>
+                        </div>
                     ) : (
                         <>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -221,45 +251,53 @@ const AllRestaurants: React.FC = () => {
                                 ))}
                             </div>
 
-                            {/* Pagination */}
-                            <div className="mt-8 flex justify-center font-myIranSansFaNumRegular">
-                                <nav className="flex items-center gap-1">
-                                    <button
-                                        onClick={() => handlePageChange(currentPage - 1)}
-                                        disabled={currentPage === 1}
-                                        className={`p-2 rounded-md ${currentPage === 1
-                                                ? 'text-gray-400 cursor-not-allowed'
-                                                : 'text-gray-700 hover:bg-gray-100'
-                                            }`}
-                                    >
-                                        <ChevronRightIcon className="h-5 w-5" />
-                                    </button>
+                            {restaurants.length === 0 && (
+                                <div className="text-center py-20 text-gray-500">
+                                    هیچ رستورانی یافت نشد
+                                </div>
+                            )}
 
-                                    {getPageNumbers().map(page => (
+                            {/* Pagination */}
+                            {totalPages > 1 && (
+                                <div className="mt-8 flex justify-center font-myIranSansFaNumRegular">
+                                    <nav className="flex items-center gap-1">
                                         <button
-                                            key={page}
-                                            onClick={() => handlePageChange(page)}
-                                            className={`px-3 py-1 rounded-md ${currentPage === page
-                                                    ? 'bg-green-100 text-green-700 font-myIranSansFaNumBold'
-                                                    : 'hover:bg-gray-100'
+                                            onClick={() => handlePageChange(currentPage - 1)}
+                                            disabled={currentPage === 1}
+                                            className={`p-2 rounded-md ${currentPage === 1
+                                                    ? 'text-gray-400 cursor-not-allowed'
+                                                    : 'text-gray-700 hover:bg-gray-100'
                                                 }`}
                                         >
-                                            {page}
+                                            <ChevronRightIcon className="h-5 w-5" />
                                         </button>
-                                    ))}
 
-                                    <button
-                                        onClick={() => handlePageChange(currentPage + 1)}
-                                        disabled={currentPage === totalPages}
-                                        className={`p-2 rounded-md ${currentPage === totalPages
-                                                ? 'text-gray-400 cursor-not-allowed'
-                                                : 'text-gray-700 hover:bg-gray-100'
-                                            }`}
-                                    >
-                                        <ChevronRightIcon className="h-5 w-5" />
-                                    </button>
-                                </nav>
-                            </div>
+                                        {getPageNumbers().map(page => (
+                                            <button
+                                                key={page}
+                                                onClick={() => handlePageChange(page)}
+                                                className={`px-3 py-1 rounded-md ${currentPage === page
+                                                        ? 'bg-green-100 text-green-700 font-myIranSansFaNumBold'
+                                                        : 'hover:bg-gray-100'
+                                                    }`}
+                                            >
+                                                {page}
+                                            </button>
+                                        ))}
+
+                                        <button
+                                            onClick={() => handlePageChange(currentPage + 1)}
+                                            disabled={currentPage === totalPages}
+                                            className={`p-2 rounded-md ${currentPage === totalPages
+                                                    ? 'text-gray-400 cursor-not-allowed'
+                                                    : 'text-gray-700 hover:bg-gray-100'
+                                                }`}
+                                        >
+                                            <ChevronLeftIcon className="h-5 w-5" />
+                                        </button>
+                                    </nav>
+                                </div>
+                            )}
                         </>
                     )}
                 </div>

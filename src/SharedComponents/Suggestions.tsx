@@ -83,7 +83,7 @@ const Suggestions = () => {
             <img src={special} className="w-8 h-8" alt="Special icon" />
             <h2 className="desktop:text-3xl tablet:text-2xl text-base font-myIranSansFaNumBold">لوتکا سواری</h2>
           </span>
-          <h2 className="flex flex-row items-center gap-1 desktop:text-md tablet:text-base text-sm mb-1">
+          <h2 className="flex flex-row items-center gap-1 font-myYekanRegular desktop:text-md tablet:text-base text-sm mb-1">
             مشاهده همه
             <img src={left} className="w-3 h-3" alt="Arrow" />
           </h2>

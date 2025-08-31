@@ -21,7 +21,7 @@ const NavigationTabs: React.FC<NavigationTabsProps> = ({ activeTab, setActiveTab
             key={tab.id}
             className={`px-4 py-3 font-medium text-sm ${
               activeTab === tab.id 
-                ? 'font-myIranSansMedium text-black' 
+                ? 'font-myYekanFaNumMedium text-black' 
                 : 'text-gray-500'
             }`}
             onClick={() => setActiveTab(tab.id)}

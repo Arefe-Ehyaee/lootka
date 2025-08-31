@@ -24,7 +24,7 @@ const StarRating = ({ rating }: { rating: number }) => {
     <div className="flex items-center gap-2">
       <img src={user} alt="user" />
       <div className="flex flex-col gap-1">
-        <span className="font-myIranSansFaNumBold">کاربر سایت</span>
+        <span className="font-myYekanFaNumDemiBold">کاربر سایت</span>
         <div className="flex items-center ml-2">
           {[1, 2, 3, 4, 5].map((star) => {
             if (star <= Math.floor(rating)) {
@@ -73,12 +73,12 @@ const ReviewsSection: React.FC<ReviewsSectionProps> = ({
 }) => {
   return (
     <div className="w-full">
-      <h3 className="text-xl font-myIranSansFaNumBold mb-4">نظرات کاربران</h3>
+      <h3 className="text-xl font-myYekanFaNumDemiBold mb-4">نظرات کاربران</h3>
 
       <p className="text-gray-600 mb-6">{reviewSummary}</p>
 
       {reviews.length === 0 ? (
-        <p className="text-gray-500 font-myIranSansRegular">هنوز نظری ثبت نشده است.</p>
+        <p className="text-gray-500 font-myYekanFaNumRegular">هنوز نظری ثبت نشده است.</p>
       ) : (
         <div className="space-y-4">
           {reviews.map((review) => (
@@ -91,7 +91,7 @@ const ReviewsSection: React.FC<ReviewsSectionProps> = ({
                   <StarRating rating={review.rate} />
                 </div>
               </div>
-              <p className="text-gray-800 leading-relaxed font-myIranSansFaNumRegular">
+              <p className="text-gray-800 leading-relaxed font-myYekanFaNumRegular">
                 {review.comment}
               </p>
             </div>
@@ -99,7 +99,7 @@ const ReviewsSection: React.FC<ReviewsSectionProps> = ({
 
           {/* Custom Pagination */}
           {totalPages > 1 && (
-            <div className="mt-8 flex justify-center font-myIranSansFaNumRegular">
+            <div className="mt-8 flex justify-center font-myYekanFaNumRegular">
               <nav className="flex items-center gap-1">
                 <button
                   onClick={() => onPageChange(currentPage - 1)}
@@ -119,7 +119,7 @@ const ReviewsSection: React.FC<ReviewsSectionProps> = ({
                     onClick={() => onPageChange(page)}
                     className={`px-3 py-1 rounded-md ${
                       currentPage === page
-                        ? 'bg-green-100 text-green-700 font-myIranSansFaNumBold'
+                        ? 'bg-green-100 text-green-700 font-myYekanFaNumDemiBold'
                         : 'hover:bg-gray-100'
                     }`}
                   >

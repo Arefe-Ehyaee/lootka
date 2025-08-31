@@ -37,7 +37,7 @@ interface Attraction {
   description: string;
 }
 
-const BASE_URL = "http://91.212.174.72:2000";
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export const useAttractionData    = (id: string | undefined) => {
   const [attraction, setAttraction] = useState<Attraction | null>(null);

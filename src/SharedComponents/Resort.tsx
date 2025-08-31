@@ -212,7 +212,7 @@ const Resort: React.FC = () => {
           <img src={building} className="w-7 h-7" alt="icon" />
           <h2 className="desktop:text-3xl tablet:text-2xl text-base font-myIranSansMedium">موندنی</h2>
         </span>
-        <Link to="/hotels" className="flex items-center text-sm gap-1 text-gray-800 font-myIranSansRegular hover:underline"
+        <Link to="/hotels" className="flex items-center text-sm gap-1 text-gray-800 font-myYekanRegular"
         >
           مشاهده همه
         </Link>

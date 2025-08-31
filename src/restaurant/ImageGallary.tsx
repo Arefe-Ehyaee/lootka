@@ -5,7 +5,7 @@ import gallary from "../assets/icons/image-03 (1).svg";
 interface ImageGalleryProps {
   images: string[];
   restaurantName: string;
-  baseUrl: string;
+  baseUrl?: string;
 }
 
 const ImageGallery: React.FC<ImageGalleryProps> = ({ images, restaurantName, baseUrl }) => {

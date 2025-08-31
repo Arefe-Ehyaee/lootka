@@ -3,6 +3,52 @@
 @tailwind utilities;
 
 @font-face {
+  font-family: "myYekan-regular";
+  src: url("./assets/fonts/woff2/IRANYekanX-Regular.woff2") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "myYekan-medium";
+  src: url("./assets/fonts/woff2/IRANYekanX-Medium.woff2") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "myYekan-demibold";
+  src: url("./assets/fonts/woff2/IRANYekanX-DemiBold.woff2") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "myYekanFaNum-regular";
+  src: url("./assets/fonts/fNum/Woff2/IRANYekanXFaNum-Regular.woff2")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "myYekanFaNum-medium";
+  src: url("./assets/fonts/fNum/Woff2/IRANYekanXFaNum-Medium.woff2")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "myYekanFaNum-demiBold";
+  src: url("./assets/fonts/fNum/Woff2/IRANYekanXFaNum-DemiBold.woff2")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
   font-family: "myIranSans-regular";
   src: url("./assets/fonts/woff2/IRANSansWeb.woff2") format("truetype");
 }
@@ -106,3 +152,46 @@ body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+
+@keyframes float1 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(0deg); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(20px) rotate(0deg); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(0deg); }
+}
+
+@keyframes float4 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(12px) rotate(0deg); }
+}
+
+.float1 { animation: float1 6s ease-in-out infinite; }
+.float2 { animation: float2 8s ease-in-out infinite; }
+.float3 { animation: float3 7s ease-in-out infinite; }
+.float4 { animation: float4 9s ease-in-out infinite; }
+
+        @keyframes floatUp {
+          0% {
+            transform: translateY(100%);
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          90% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(-120%);
+            opacity: 0;
+          }
+        }

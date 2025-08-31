@@ -37,7 +37,8 @@ interface Hostel {
   sub_category: string;
 }
 
-const BASE_URL = "http://91.212.174.72:2000";
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 
 export const UseHostelData = (id: string | undefined) => {
   const [hostel, setHostel] = useState<Hostel | null>(null);

@@ -15,9 +15,9 @@ const Footer = () => {
           <div className="w-full md:w-2/5">
             <Link to="/" className="flex flex-row gap-[12px] items-center justify-center md:justify-start">
               <img src={logo} alt="Logo" className="w-[53px] h-[40px] md:w-[97px] md:h-[60px]" />
-              <h2 className="text-[#4C3516] font-myIranSansBold text-[24px] md:text-[40px]">لوتکا</h2>
+              <h2 className="text-[#4C3516] font-myYekanFaNumDemiBold text-[24px] md:text-[40px]">لوتکا</h2>
             </Link>
-            <p className="text-gray-600 text-sm font-myIranSansMedium leading-relaxed pt-[24px] text-justify md:text-right">
+            <p className="text-gray-600 text-sm font-myYekanFaNumMedium leading-relaxed pt-[24px] text-justify md:text-right">
               لوتکا یک بستر جامع برای کشف بهترین مکان‌های گردشگری، اقامتی و رستوران‌ها در شهرهای شمال ایران است.
             </p>
           </div>
@@ -27,8 +27,8 @@ const Footer = () => {
 
             {/* لوتکا */}
             <div className="w-1/2 md:w-1/5">
-              <h4 className="font-myIranSansBold mb-4 text-gray-800">لوتکا</h4>
-              <ul className="text-gray-600 text-sm space-y-2 font-myIranSansFaNumRegular">
+              <h4 className="font-myYekanFaNumDemiBold mb-4 text-gray-800">لوتکا</h4>
+              <ul className="text-gray-600 text-sm space-y-2 font-myYekanFaNumRegular">
                 <li><Link to="/" className="hover:text-lootka-green">ارتباط با لوتکا</Link></li>
                 <li><Link to="/" className="hover:text-lootka-green">پشتیبانی</Link></li>
                 <li><Link to="/" className="hover:text-lootka-green">قوانین و مقررات</Link></li>
@@ -38,8 +38,8 @@ const Footer = () => {
 
             {/* دسترسی سریع */}
             <div className="w-1/2 md:w-1/5">
-              <h4 className="font-myIranSansBold mb-4 text-gray-800">دسترسی سریع</h4>
-              <ul className="text-gray-600 text-sm space-y-2 font-myIranSansFaNumRegular">
+              <h4 className="font-myYekanFaNumDemiBold mb-4 text-gray-800">دسترسی سریع</h4>
+              <ul className="text-gray-600 text-sm space-y-2 font-myYekanFaNumRegular">
                 <li><Link to="/restaurants" className="hover:text-lootka-green">خورد و خوراک</Link></li>
                 <li><Link to="/attractions" className="hover:text-lootka-green">جاهای دیدنی</Link></li>
                 <li><Link to="/hostels" className="hover:text-lootka-green">اقامتگاه</Link></li>
@@ -49,8 +49,8 @@ const Footer = () => {
 
             {/* تماس با لوتکا (فقط دسکتاپ) */}
             <div className="hidden md:block md:w-1/5">
-              <h4 className="font-myIranSansBold mb-4 text-gray-800">تماس با لوتکا</h4>
-              <ul className="text-gray-600 text-sm space-y-2 font-myIranSansFaNumRegular">
+              <h4 className="font-myYekanFaNumDemiBold mb-4 text-gray-800">تماس با لوتکا</h4>
+              <ul className="text-gray-600 text-sm space-y-2 font-myYekanFaNumRegular">
                 <li>ایمیل: lootka.info@gmail.com</li>
                 <li>تلفن:09019419057</li>
                 <li>آدرس: ایران، گیلان</li>
@@ -62,8 +62,8 @@ const Footer = () => {
 
         {/* راه‌های ارتباطی (فقط موبایل) */}
         <div className="md:hidden mt-10 text-right">
-          <p className="font-myIranSansBold mb-3 text-gray-800">راه‌های ارتباطی</p>
-          <ul className="text-gray-600 text-sm space-y-2 font-myIranSansFaNumRegular">
+          <p className="font-myYekanFaNumDemiBold mb-3 text-gray-800">راه‌های ارتباطی</p>
+          <ul className="text-gray-600 text-sm space-y-2 font-myYekanFaNumRegular">
             <li>ایمیل: lootka.info@gmail.com</li>
             <li>تلفن:09019419057</li>
           </ul>
@@ -98,7 +98,7 @@ const Footer = () => {
         </ul>
 
         {/* کپی‌رایت */}
-        <div className="border-t mt-8 pt-4 text-center text-sm text-gray-500 font-myIranSansFaNumRegular">
+        <div className="border-t mt-8 pt-4 text-center text-sm text-gray-500 font-myYekanFaNumRegular">
           © {new Date().getFullYear()} تمامی حقوق محفوظ است.
         </div>
       </div>

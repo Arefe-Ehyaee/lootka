@@ -365,7 +365,7 @@ const FreeHostels: React.FC = () => {
         </span>
         <Link
           to="/hostels"
-          className="flex items-center text-sm gap-1 text-gray-800 font-myIranSansRegular hover:underline"
+          className="flex items-center text-sm gap-1 text-gray-800 font-myYekanRegular "
         >
           مشاهده همه
         </Link>

@@ -5,13 +5,13 @@ import { z } from "zod";
 import InputField from "./TextInputComponent";
 import Box from "./BoxComponent";
 import EnterSignup from "./EnterSignup";
-import Label from "./Label";
 import { NavLink, useNavigate } from "react-router-dom";
-import ArrowLink from "./ArrowLink";
 import UserSvg from "../assets/icons/user.svg";
 import keySvg from "../assets/icons/key.svg";
 import CustomButton from "./CustomButton";
-import lootka from "../assets/images/logo-removebg-preview.png"
+import lootka from "../assets/images/logo-removebg-preview.png";
+import { ReactComponent as Close } from "../assets/icons/x-circle.svg";
+
 const loginSchema = z.object({
   phone: z
     .string({ required_error: "شماره تلفن برای ثبت نام لازمه!" })
@@ -57,21 +57,21 @@ const Login = ({ onClose, switchToSignup }: LoginProps) => {
   };
 
   return (
-    <Box heightClass="h-[500px]">
+    <Box heightClass="h-[500px] p-4">
 
       <button
         onClick={onClose}
         className="absolute top-6 left-6 z-50 text-gray-700 hover:text-gray-500 text-2xl font-myIranSansFaNumBold"
         aria-label="Close"
       >
-        ×
+        <Close></Close>
       </button>
       <img src={lootka} alt="lootka" className="absolute top-2 w-[50%]" />
       <EnterSignup switchToSignup={switchToSignup} />
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="mt-[15%] flex flex-col items-center"
+        className="mt-[12%] flex flex-col items-center"
       >
         <InputField
           type="text"
@@ -92,13 +92,13 @@ const Login = ({ onClose, switchToSignup }: LoginProps) => {
         {/* <RememberMe /> */}
         <CustomButton
           text="ورود به لوتکا"
-          className="mt-4 bg-lootka-darkGreen text-sm w-full justify-center"
+          className="mt-4 bg-[#4D93A5] text-white text-sm w-[50%] justify-center font-myYekanMedium"
         ></CustomButton>
         <div className="flex flex-col gap-4 absolute bottom-8 mx-auto ">
           <button
             type="button"
             onClick={switchToSignup}
-            className="mt-2 text-sm text-lootka-darkGreen hover:text-lootka-lightGreen"
+            className="mt-2 text-sm text-lootka-darkGreen hover:text-lootka-lightGreen font-myYekanRegular"
           >
             فراموشی رمز عبور
           </button>
@@ -106,7 +106,7 @@ const Login = ({ onClose, switchToSignup }: LoginProps) => {
           <button
             type="button"
             onClick={switchToSignup}
-            className="mt-2 text-sm text-lootka-darkGreen hover:text-lootka-lightGreen"
+            className="mt-2 text-sm text-lootka-darkGreen hover:text-lootka-lightGreen font-myYekanRegular"
           >
             حساب کاربری ندارید؟ ثبت‌نام کنید
           </button>

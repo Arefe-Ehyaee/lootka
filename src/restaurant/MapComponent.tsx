@@ -29,7 +29,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ mapUrl, latitude, longitude
 <div className="w-full mt-4">
 
       <div className="bg-white rounded-lg overflow-hidden h-[30%]">
-        <h3 className="p-4 font-myIranSansMedium border-b">لوکیشن</h3>
+        <h3 className="p-4 font-myYekanFaNumMedium border-b">لوکیشن</h3>
 
         {longitude && latitude ? (
           <div>
@@ -48,7 +48,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ mapUrl, latitude, longitude
                   coordinates={[latitude, longitude]}
                 />
                 <Mapir.Popup coordinates={[latitude, longitude]} anchor="top">
-                  <div className="font-myIranSansRegular text-[14px] text-gray-800 font-myIranSansMedium">
+                  <div className="text-[14px] text-gray-800 font-myYekanFaNumMedium">
                     {name}
                   </div>
                 </Mapir.Popup>

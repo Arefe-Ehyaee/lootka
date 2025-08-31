@@ -1,21 +1,21 @@
 import { useNavigate } from "react-router-dom";
-import suitcase from "../assets/images/Suitcase.svg";
-import scuba from "../assets/images/Scuba.svg";
-import map from "../assets/images/map.svg";
-import tent from "../assets/images/tent.svg";
-import eat from "../assets/images/eat (2).svg";
-import boat from "../assets/images/Boat.svg";
+import map from "../assets/images/map.webp";
+import camera from "../assets/images/camera.webp";
+import resort from "../assets/images/localResort.webp"
+import cuisine from "../assets/images/cuisine.webp"
+import cafe from "../assets/images/cafe.webp"
+import road from "../assets/images/roud.webp"
 
 const HeroNavigationMobile = () => {
     const navigate = useNavigate();
 
     const navItems = [
-        { img: suitcase, path: '/planner', label: 'برنامه ریز سفر' },
-        { img: map, path: '/destinations', label: 'جای دیدنی' },
-        { img: eat, path: '/restaurants', label: '  رستوران' },
-        { img: boat, path: '/cafes', label: 'کافه' },
-        { img: tent, path: '/hostels', label: 'اقامتگاه بومگردی' },
-        { img: scuba, path: '/restaurants', label: 'تجربه خاص' }
+        { img: map, path: '/planner', label: 'برنامه ریز سفر' },
+        { img: camera, path: '/destinations', label: 'جای دیدنی' },
+        { img: cuisine, path: '/restaurants', label: '  رستوران' },
+        { img: cafe, path: '/cafes', label: 'کافه' },
+        { img: resort, path: '/hostels', label: 'اقامتگاه بومگردی' },
+        { img: road, path: '/restaurants', label: 'تجربه خاص' }
     ];
 
     return (
@@ -27,7 +27,7 @@ const HeroNavigationMobile = () => {
                             onClick={() => navigate(item.path)}
                             className="flex items-center justify-center w-[100px] h-[100px] border border-[#CFD6DC] rounded-lg"
                         >
-                            <img src={item.img} alt={item.label} />
+                            <img src={item.img} alt={item.label} className="rounded-lg" />
                         </button>
                         <span className="mt-2 text-sm font-myIranSansMedium text-center w-[100px]">
                             {item.label}

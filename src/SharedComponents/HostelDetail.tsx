@@ -11,7 +11,8 @@ import DeleteButton from './DeleteButton';
 import ReactMarkdown from 'react-markdown';
 import Footer from './Footer';
 import { UseHostelData } from '../hostel/UseHostelData';
-const BASE_URL = "http://91.212.174.72:2000";
+
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const HostelDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();

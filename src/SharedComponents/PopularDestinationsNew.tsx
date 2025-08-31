@@ -154,7 +154,7 @@ const PopularDestinationsNew = () => {
         {/* Desktop view with next/prev buttons similar to PopularRestaurants */}
         <div className='flex flex-row items-center justify-between'>
         <h2 className="text-3xl font-myIranSansFaNumBold mb-3">دیدنی های رشت</h2>
-        <h2 className="flex flex-row items-center gap-1 text-md mb-1">مشاهده همه
+        <h2 className="flex flex-row items-center gap-1 text-md mb-1 font-myYekanRegular">مشاهده همه
         <img src={left} className='w-3 h-3'></img>
         </h2>
       </div>

@@ -5,7 +5,6 @@ import Hero from '../SharedComponents/Hero';
 import Footer from '../SharedComponents/Footer';
 import PopularEat from '../SharedComponents/PopularEat';
 import PopularHostels from '../SharedComponents/PopularHostels';
-import { ReactComponent as Magnifier } from "../assets/icons/Minimalistic Magnifer.svg";
 import ExperienceSection from '../SharedComponents/ExperienceSection';
 import HeroNavigation from '../SharedComponents/HeroNavigatoin';
 import HeroNavigationMobile from '../SharedComponents/HeroNavigationMobile';
@@ -50,9 +49,8 @@ const MainPage: React.FC = () => {
         <ExperienceSection />
         <PopularEat />
         <PopularCafes />
-
-        <PopularHostels />
         <TravelFeatures></TravelFeatures>
+        <PopularHostels />
         <UserComments></UserComments>
 
         {/* <PopularDestinationsNew /> */}

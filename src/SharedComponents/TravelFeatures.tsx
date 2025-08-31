@@ -20,7 +20,7 @@ const TravelFeatures: React.FC = () => {
 
     return (
         <section className="w-full bg-white py-12 px-6 md:px-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-myYekanDemibold text-center mb-12">
                 چرا با لوتکا راحت‌تر سفر می‌کنی؟
             </h2>
 
@@ -31,7 +31,7 @@ const TravelFeatures: React.FC = () => {
                     {featuresLeft.map((item, idx) => (
                         <li
                             key={idx}
-                            className="flex items-center justify-end text-lg font-myIranSansRegular"
+                            className="flex items-center justify-end text-lg font-myYekanFaNumRegular"
                         >
                             <Check className="w-5 h-5 text-green-700" />
                             <span className="mr-2">{item}</span>
@@ -51,7 +51,7 @@ const TravelFeatures: React.FC = () => {
                     {featuresRight.map((item, idx) => (
                         <li
                             key={idx}
-                            className="flex items-center text-lg font-myIranSansRegular"
+                            className="flex items-center text-lg font-myYekanFaNumRegular"
                         >
                             <Check className="w-5 h-5 text-green-700 ml-2" />
                             <span>{item}</span>
@@ -62,7 +62,20 @@ const TravelFeatures: React.FC = () => {
 
             {/* نمایش موبایل */}
             <div className="sm:hidden flex items-stretch gap-0">
-                {/* تصویر سمت راست */}
+
+                {/* لیست موارد */}
+                <ul className="flex-2 space-y-[32px] h-full flex flex-col justify-center mt-2">
+                    {allFeatures.map((item, idx) => (
+                        <li
+                            key={idx}
+                            className="flex items-center justify-start text-[12px] font-myYekanFaNumRegular"
+                        >
+                            <Check className="w-5 h-5 text-green-700" />
+                            <span className="mr-2">{item}</span>
+                        </li>
+                    ))}
+                </ul>
+                                {/* تصویر سمت راست */}
                 <div className="flex-1 flex">
                     <img
                         src={MobileImage}
@@ -70,18 +83,6 @@ const TravelFeatures: React.FC = () => {
                         className="max-h-[300px] w-full object-contain"
                     />
                 </div>
-                {/* لیست موارد */}
-                <ul className="flex-2 space-y-[32px] h-full flex flex-col justify-center mt-2">
-                    {allFeatures.map((item, idx) => (
-                        <li
-                            key={idx}
-                            className="flex items-center justify-start text-[12px] font-myIranSansRegular"
-                        >
-                            <Check className="w-5 h-5 text-green-700" />
-                            <span className="mr-2">{item}</span>
-                        </li>
-                    ))}
-                </ul>
             </div>
 
         </section>

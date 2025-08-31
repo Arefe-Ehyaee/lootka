@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { MapPinIcon } from '@heroicons/react/24/outline';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 import NoImg from '../assets/images/no-image-icon-23485.png';
@@ -8,7 +9,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import starGreen from "../assets/icons/StarGreen.svg";
 
-const BASE_URL = "http://91.212.174.72:2000";
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 interface Hostel {
   id: string;
@@ -21,9 +22,11 @@ interface Hostel {
   description: string;
 }
 
+// React Query functions
 const fetchImagesForHostel = async (placeId: string): Promise<string[]> => {
   try {
     const res = await fetch(`${BASE_URL}/entity_images/place/${placeId}`);
+    if (!res.ok) throw new Error('Failed to fetch images');
     const imageMeta = await res.json();
 
     const imageUrls: string[] = [];
@@ -39,6 +42,42 @@ const fetchImagesForHostel = async (placeId: string): Promise<string[]> => {
     console.error(`Error fetching images for ${placeId}`, err);
     return [];
   }
+};
+
+const fetchHostels = async (page: number, pageSize: number) => {
+  const res = await fetch(
+    `${BASE_URL}/places/?page=${page}&limit=${pageSize}&sub_category=${encodeURIComponent("اقامتگاه")}`
+  );
+  
+  if (!res.ok) {
+    throw new Error('Failed to fetch hostels');
+  }
+  
+  const json = await res.json();
+  
+  // Fetch images for all hostels in parallel
+  const formatted: Hostel[] = await Promise.all(
+    json.data.map(async (item: any) => {
+      const images = await fetchImagesForHostel(item.place_id);
+      
+      return {
+        id: item.place_id,
+        name: item.name,
+        Rate: item.rate || 0,
+        ImgName: images[0] || 'NaN',
+        image_names: images,
+        address: item.address,
+        opening_hours: item.opening_hours,
+        description: item.description,
+      };
+    })
+  );
+  
+  return {
+    hostels: formatted,
+    totalPages: json.total ? Math.ceil(json.total / pageSize) : 
+               (json.data.length === pageSize ? page + 1 : page)
+  };
 };
 
 const HostelCard: React.FC<{ hostel: Hostel }> = ({ hostel }) => {
@@ -74,13 +113,13 @@ const HostelCard: React.FC<{ hostel: Hostel }> = ({ hostel }) => {
           <>
             <button
               onClick={handlePrevImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 text-white"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full w-8 h-8 flex items-center justify-center"
             >
               <ChevronLeftIcon className="h-5 w-5" />
             </button>
             <button
               onClick={handleNextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 text-white"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full w-8 h-8 flex items-center justify-center"
             >
               <ChevronRightIcon className="h-5 w-5" />
             </button>
@@ -135,54 +174,26 @@ const HostelCard: React.FC<{ hostel: Hostel }> = ({ hostel }) => {
 };
 
 const AllResorts: React.FC = () => {
-  const [hostels, setRHostels] = useState<Hostel[]>([]);
-  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
   const pageSize = 10;
 
-  useEffect(() => {
-    const fetchHostels = async () => {
-      setLoading(true);
-      try {
-        const res = await fetch(
-          `${BASE_URL}/places?page=${currentPage}&limit=${pageSize}&sub_category=${encodeURIComponent("اقامتگاه")}`
-        );
-        const json = await res.json();
+  // React Query for fetching hostels
+  const {
+    data,
+    isLoading,
+    isError,
+    error,
+    isPlaceholderData
+  } = useQuery({
+    queryKey: ['hostels', currentPage, pageSize],
+    queryFn: () => fetchHostels(currentPage, pageSize),
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    gcTime: 10 * 60 * 1000, // 10 minutes
+    refetchOnWindowFocus: false, // Prevent unnecessary refetches
+  });
 
-        const formatted: Hostel[] = await Promise.all(
-          json.data.map(async (item: any) => {
-            const images = await fetchImagesForHostel(item.place_id);
-            return {
-              id: item.place_id,
-              name: item.name,
-              Rate: item.rate || 0,
-              ImgName: images[0] || 'NaN',
-              image_names: images,
-              address: item.address,
-              opening_hours: item.opening_hours,
-              description: item.description,
-            };
-          })
-        );
-
-        setRHostels(formatted);
-
-        if (json.total) {
-          setTotalPages(Math.ceil(json.total / pageSize));
-        } else {
-          const hasMore = json.data.length === pageSize;
-          setTotalPages(hasMore ? currentPage + 1 : currentPage);
-        }
-      } catch (e) {
-        console.error(e);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchHostels();
-  }, [currentPage]);
+  const hostels = data?.hostels || [];
+  const totalPages = data?.totalPages || 1;
 
   const handlePageChange = (newPage: number) => {
     window.scrollTo(0, 0);
@@ -206,6 +217,22 @@ const AllResorts: React.FC = () => {
     return pageNumbers;
   };
 
+  if (isError) {
+    return (
+      <div className="min-h-screen min-w-screen">
+        <Navbar />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-2 py-3">
+          <div className="p-4 md:p-10">
+            <div className="text-center py-20 text-red-600">
+              خطا در بارگذاری اقامتگاه‌ها: {error?.message}
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen min-w-screen">
       <Navbar />
@@ -214,8 +241,12 @@ const AllResorts: React.FC = () => {
         <div className="p-4 md:p-10">
           <h1 className="text-xl font-myIranSansFaNumBold mb-6 mt-12">همه اقامتگاه ها</h1>
 
-          {loading ? (
+          {isLoading ? (
             <div className="text-center py-20">در حال بارگذاری...</div>
+          ) : isPlaceholderData ? (
+            <div className="text-center py-20">
+              <div className="text-gray-500 text-lg">در حال بارگذاری صفحه جدید...</div>
+            </div>
           ) : (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -224,45 +255,53 @@ const AllResorts: React.FC = () => {
                 ))}
               </div>
 
-              {/* Pagination */}
-              <div className="mt-8 flex justify-center font-myIranSansFaNumRegular">
-                <nav className="flex items-center gap-1">
-                  <button
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    className={`p-2 rounded-md ${currentPage === 1
-                      ? 'text-gray-400 cursor-not-allowed'
-                      : 'text-gray-700 hover:bg-gray-100'
-                      }`}
-                  >
-                    <ChevronRightIcon className="h-5 w-5" />
-                  </button>
+              {hostels.length === 0 && (
+                <div className="text-center py-20 text-gray-500">
+                  هیچ اقامتگاهی یافت نشد
+                </div>
+              )}
 
-                  {getPageNumbers().map(page => (
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="mt-8 flex justify-center font-myIranSansFaNumRegular">
+                  <nav className="flex items-center gap-1">
                     <button
-                      key={page}
-                      onClick={() => handlePageChange(page)}
-                      className={`px-3 py-1 rounded-md ${currentPage === page
-                        ? 'bg-green-100 text-green-700 font-myIranSansFaNumBold'
-                        : 'hover:bg-gray-100'
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                      className={`p-2 rounded-md ${currentPage === 1
+                        ? 'text-gray-400 cursor-not-allowed'
+                        : 'text-gray-700 hover:bg-gray-100'
                         }`}
                     >
-                      {page}
+                      <ChevronRightIcon className="h-5 w-5" />
                     </button>
-                  ))}
 
-                  <button
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                    className={`p-2 rounded-md ${currentPage === totalPages
-                      ? 'text-gray-400 cursor-not-allowed'
-                      : 'text-gray-700 hover:bg-gray-100'
-                      }`}
-                  >
-                    <ChevronLeftIcon className="h-5 w-5" />
-                  </button>
-                </nav>
-              </div>
+                    {getPageNumbers().map(page => (
+                      <button
+                        key={page}
+                        onClick={() => handlePageChange(page)}
+                        className={`px-3 py-1 rounded-md ${currentPage === page
+                          ? 'bg-green-100 text-green-700 font-myIranSansFaNumBold'
+                          : 'hover:bg-gray-100'
+                          }`}
+                      >
+                        {page}
+                      </button>
+                    ))}
+
+                    <button
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                      className={`p-2 rounded-md ${currentPage === totalPages
+                        ? 'text-gray-400 cursor-not-allowed'
+                        : 'text-gray-700 hover:bg-gray-100'
+                        }`}
+                    >
+                      <ChevronLeftIcon className="h-5 w-5" />
+                    </button>
+                  </nav>
+                </div>
+              )}
             </>
           )}
         </div>

@@ -34,8 +34,8 @@ const RestaurantInfo: React.FC<RestaurantInfoProps> = ({ restaurant }) => {
     return (
         <div className="flex flex-row gap-1 mb-6">
             <div className="">
-                <div className="text-sm sm:text-base font-myIranSansFaNumRegular">
-                    <h2 className="text-lg sm:text-xl font-myIranSansFaNumBold mb-3 sm:mb-4">در یک نگاه</h2>
+                <div className="text-sm sm:text-base font-myYekanFaNumRegular">
+                    <h2 className="text-lg sm:text-xl font-myYekanFaNumDemiBold mb-3 sm:mb-4">در یک نگاه</h2>
 
                     <div className='flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-14'>
                         <div className=''>
@@ -49,7 +49,7 @@ const RestaurantInfo: React.FC<RestaurantInfoProps> = ({ restaurant }) => {
                             {restaurant.opening_hours.all_day && (
                                 <div className="flex items-center mb-2 sm:mb-3" dir='rtl'>
                                     <ClockIcon className="h-4 w-4 sm:h-5 sm:w-5 ml-1 flex-shrink-0" />
-                                    <div className='flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 font-myIranSansFaNumRegular'>
+                                    <div className='flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 font-myYekanFaNumRegular'>
                                         <div className="text-sm sm:text-base">ساعت کاری:</div>
                                         <div className="text-sm sm:text-base"> {restaurant.opening_hours.all_day} </div>
                                     </div>
@@ -103,8 +103,8 @@ const RestaurantInfo: React.FC<RestaurantInfoProps> = ({ restaurant }) => {
                         <div className="">
 
                             <div className='flex flex-row gap-2 mb-3 sm:mb-4'>
-                                <button className='border rounded-full border-black px-2 py-1 font-myIranSansRegular text-sm desktop:w-[80px]'>تماس</button>
-                                <button className='border rounded-full border-black px-2 py-1 font-myIranSansRegular text-sm desktop:w-[80px]'>مسیریابی</button>
+                                <button className='border rounded-full border-black px-2 py-1 font-myYekanFaNumRegular text-sm desktop:w-[80px]'>تماس</button>
+                                <button className='border rounded-full border-black px-2 py-1 font-myYekanFaNumRegular text-sm desktop:w-[80px]'>مسیریابی</button>
                             </div>
                             {/* Meal Times */}
                             {restaurant.mealTime && restaurant.mealTime.length > 0 && (

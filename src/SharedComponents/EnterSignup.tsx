@@ -5,10 +5,10 @@ interface EnterSignupProps {
   
   export default function EnterSignup({ switchToSignup, switchToLogin }: EnterSignupProps) {
     return (
-      <div className="flex gap-x-10 absolute top-36 text-xl">
-        <button onClick={switchToSignup} className="text-lootka-darkGreen hover:text-lootka-lightGreen">ثبت نام</button>
-        <span className="block w-px h-8  bg-lootka-darkGreen"></span>
-        <button onClick={switchToLogin} className="text-lootka-darkGreen hover:text-lootka-lightGreen">ورود</button>
+      <div className="flex gap-x-8 absolute top-32 text-base font-myYekanMedium">
+        <button onClick={switchToSignup} className="text-lootka-darkGreen hover:text-[#4D93A5]/80">ثبت نام</button>
+        <span className="block w-px h-8  bg-black/10"></span>
+        <button onClick={switchToLogin} className="text-lootka-darkGreen hover:text-[#4D93A5]/80">ورود</button>
       </div>
     );
   }

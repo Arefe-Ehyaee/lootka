@@ -25,12 +25,12 @@ export interface Image {
   description?: string | null;
 }
 
-const BASE_URL = "http://91.212.174.72:2000";
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 interface ImageGalleryProps {
   images: Image[];
   restaurantName: string;
-  baseUrl: string;
+  baseUrl?: string;
 }
 
 const ImageGallery: React.FC<ImageGalleryProps> = ({ images, restaurantName, baseUrl }) => {
@@ -91,10 +91,10 @@ const PlaceDetail: React.FC = () => {
     return (
       <div className="min-h-screen bg-gray-50 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-myIranSansFaNumBold text-gray-900">Restaurant not found</h1>
+          <h1 className="text-3xl font-myYekanDemibold text-gray-900">مکان مورد نظر پیدا نشد.</h1>
           <p className="text-gray-600 mt-2">{error}</p>
-          <Link to="/restaurant" className="text-lootka-green hover:underline mt-4 inline-block">
-            Back to Restaurants
+          <Link to="/restaurant" className="text-lootka-green font-myYekanRegular hover:underline mt-4 inline-block">
+           بازگشت
           </Link>
         </div>
       </div>
@@ -132,12 +132,12 @@ const PlaceDetail: React.FC = () => {
         <RestaurantInfo restaurant={restaurant} />
 
         <div className="mb-6">
-          <h2 className="text-xl font-myIranSansFaNumBold mb-4">
+          <h2 className="text-xl font-myYekanDemibold mb-4">
             {restaurant.sub_category === "رستوران" && "درباره رستوران"}
             {restaurant.sub_category === "اقامتگاه" && "درباره اقامتگاه"}
             {restaurant.sub_category === "جای دیدنی" && "درباره جای دیدنی"}
           </h2>
-          <p className="text-gray-700 text-justify leading-relaxed font-myIranSansRegular">
+          <p className="text-gray-700 text-justify leading-relaxed font-myYekanFaNumRegular">
             <ReactMarkdown>{restaurant.description}</ReactMarkdown>
           </p>
         </div>

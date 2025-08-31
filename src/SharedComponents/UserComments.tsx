@@ -118,8 +118,8 @@ const UserComments: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-12 px-6 desktop:px-20 relative">
-      <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
+    <section className="py-12 px-6 desktop:px-16 relative">
+      <h2 className="text-2xl md:text-3xl font-myYekanDemibold text-center mb-8">
         نظرات کاربران
       </h2>
 
@@ -140,7 +140,7 @@ const UserComments: React.FC = () => {
       {/* scrollable container */}
       <div
         ref={scrollRef}
-        className="flex flex-row-reverse gap-6 overflow-x-auto scroll-smooth px-4 md:px-12 scrollbar-hide font-myIranSansFaNumRegular"
+        className="flex flex-row-reverse gap-6 overflow-x-auto scroll-smooth px-4 md:px-12 scrollbar-hide font-myYekanFaNumRegular"
         style={{
           scrollbarWidth: 'none', /* Firefox */
           msOverflowStyle: 'none', /* IE and Edge */

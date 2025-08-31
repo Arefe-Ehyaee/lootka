@@ -39,7 +39,7 @@ const StarRating = ({ rating }: { rating: number }) => {
           }
         })}
       </div>
-      <span className="font-myIranSansFaNumMedium text-sm sm:text-base">{rating}</span>
+      <span className="font-myYekanFaNumMedium text-sm sm:text-base">{rating}</span>
     </div>
   );
 };
@@ -49,7 +49,7 @@ const RestaurantHeader: React.FC<RestaurantHeaderProps> = ({ restaurant }) => {
     <div className="mb-3">
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
         <div className='flex flex-row justify-between items-center'>
-          <h1 className="desktop:text-3xl tablet:text-xl text-xl font-myIranSansMedium text-black">
+          <h1 className="desktop:text-3xl tablet:text-xl text-xl font-myYekanFaNumMedium text-black">
             {restaurant.name}
           </h1>
           <div className="flex items-center mr-3">
@@ -57,7 +57,7 @@ const RestaurantHeader: React.FC<RestaurantHeaderProps> = ({ restaurant }) => {
           </div>
         </div>
 
-        <div className="flex items-center justify-center sm:justify-end space-x-1 space-x-reverse text-xs sm:text-sm font-myIranSansMedium">
+        <div className="flex items-center justify-center sm:justify-end space-x-1 space-x-reverse text-xs sm:text-sm font-myYekanFaNumMedium">
           <button className="flex items-center text-black px-1 sm:px-2 py-1">
             <img src={share} alt="" className='w-3 h-3 sm:w-4 sm:h-4 ml-1' />
             <span>اشتراک گذاری</span>

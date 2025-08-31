@@ -77,7 +77,7 @@ const Specials = () => {
             <img src={star} className="w-8 h-8" alt="Special" />
             <h2 className="desktop:text-3xl tablet:text-2xl text-base font-myIranSansFaNumBold">تجربه خاص</h2>
           </span>
-          <h2 className="flex flex-row items-center gap-1 desktop:text-md tablet:text-base text-sm">
+          <h2 className="flex flex-row items-center gap-1 font-myYekanRegular desktop:text-md tablet:text-base text-sm">
             مشاهده همه
             <img src={left} className="w-3 h-3" alt="Arrow" />
           </h2>

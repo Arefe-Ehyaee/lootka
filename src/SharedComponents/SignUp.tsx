@@ -4,15 +4,14 @@ import InputField from "./TextInputComponent";
 import UserSvg from "../assets/icons/user.svg";
 import GmailSvg from "../assets/icons/gmail.svg";
 import keySvg from "../assets/icons/key.svg";
-import Label from "./Label";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "./CustomButton";
-import { toast } from "react-toastify";
-import lootka from "../assets/images/logo-removebg-preview.png"
+import lootka from "../assets/images/logo-removebg-preview.png";
+import { ReactComponent as Close } from "../assets/icons/x-circle.svg";
+
 const signupSchema = z
   .object({
     username: z
@@ -73,7 +72,7 @@ const SignUp = ({ onClose, switchToLogin }: SignUpProps) => {
 
   };
  return (
-    <Box heightClass="h-[500px] relative">
+    <Box heightClass="h-[500px] relative p-4">
       {/* Close Button */}
 
   <button
@@ -81,7 +80,7 @@ const SignUp = ({ onClose, switchToLogin }: SignUpProps) => {
     className="absolute top-6 left-6 z-50 text-gray-700 hover:text-gray-500 text-2xl font-myIranSansFaNumBold"
     aria-label="Close"
   >
-    ×
+ <Close></Close>
   </button>
 
 
@@ -92,7 +91,7 @@ const SignUp = ({ onClose, switchToLogin }: SignUpProps) => {
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="mt-[35%] flex flex-col items-center"
+        className="mt-[34%] flex flex-col items-center"
       >
         <InputField
           type="text"
@@ -118,17 +117,17 @@ const SignUp = ({ onClose, switchToLogin }: SignUpProps) => {
           error={errors.password?.message}
           register={register}
         />
-        <InputField
+        {/* <InputField
           type="password"
           placeholder="تکرار رمز عبور"
           name="repeatpassword"
           iconsrc={keySvg}
           error={errors.repeatpassword?.message}
           register={register}
-        />
+        /> */}
         <CustomButton
           text="ثبت نام"
-          className="mt-4 bg-lootka-darkGreen text-sm"
+          className="mt-6 bg-[#4D93A5] text-white w-[50%] justify-center text-sm font-myYekanMedium"
         />
       </form>
     </Box>
