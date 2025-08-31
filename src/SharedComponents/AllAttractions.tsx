@@ -41,7 +41,7 @@ const fetchImagesForAttraction = async (placeId: string): Promise<string[]> => {
 
 const fetchAttractions = async (page: number, pageSize: number) => {
   const res = await fetch(
-    `${BASE_URL}/places?page=${page}&limit=${pageSize}&sub_category=${encodeURIComponent("جای دیدنی")}`
+    `${BASE_URL}/places/?page=${page}&limit=${pageSize}&sub_category=${encodeURIComponent("جای دیدنی")}`
   );
   
   if (!res.ok) {

@@ -183,7 +183,7 @@ const PopularCafes: React.FC = () => {
 
   const fetchCafes = async (): Promise<Cafe[]> => {
     const res = await fetch(
-      `${BASE_URL}/places?page=1&limit=${pageSize}&sub_category=${encodeURIComponent(
+      `${BASE_URL}/places/?page=1&limit=${pageSize}&sub_category=${encodeURIComponent(
         "کافه"
       )}`
     );

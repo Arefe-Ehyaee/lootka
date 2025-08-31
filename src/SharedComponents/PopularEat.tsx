@@ -166,7 +166,7 @@ const PopularEat: React.FC = () => {
   };
 
   const fetchRestaurants = async (): Promise<Restaurant[]> => {
-    const res = await fetch(`${BASE_URL}/places?page=1&limit=${pageSize}&sub_category=${encodeURIComponent("رستوران")}`);
+    const res = await fetch(`${BASE_URL}/places/?page=1&limit=${pageSize}&sub_category=${encodeURIComponent("رستوران")}`);
     const data: BackendResponse = await res.json();
 
     return Promise.all(

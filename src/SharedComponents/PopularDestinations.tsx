@@ -52,7 +52,7 @@ const pageSize = 10;
 // 🔹 fetcher with image fetch inside
 const fetchAttractions = async (): Promise<Attraction[]> => {
   const res = await fetch(
-    `${BASE_URL}/places?page=1&limit=${pageSize}&sub_category=${encodeURIComponent("جای دیدنی")}`
+    `${BASE_URL}/places/?page=1&limit=${pageSize}&sub_category=${encodeURIComponent("جای دیدنی")}`
   );
   const data: BackendResponse = await res.json();
 

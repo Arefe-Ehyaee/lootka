@@ -36,7 +36,7 @@ const fetchImageFilenames = async (placeId: string): Promise<string[]> => {
 
 const fetchCafes = async (page: number, pageSize: number) => {
   const res = await fetch(
-    `${BASE_URL}/places?page=${page}&limit=${pageSize}&sub_category=${encodeURIComponent("کافه")}`
+    `${BASE_URL}/places/?page=${page}&limit=${pageSize}&sub_category=${encodeURIComponent("کافه")}`
   );
   
   if (!res.ok) {
