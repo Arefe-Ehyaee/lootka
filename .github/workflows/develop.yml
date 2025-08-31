@@ -30,7 +30,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
           cd /${{ secrets.SERVER_USER }}/frontend/app
-          yarn install --frozen-lockfile
+          # yarn install --frozen-lockfile
           yarn build
 
           # Remove old build
