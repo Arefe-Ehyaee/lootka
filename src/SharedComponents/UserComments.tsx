@@ -172,7 +172,7 @@ const UserComments: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center gap-1 text-sm">
-                <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                <Star className="w-4 h-4 text-[#1BA75E] fill-[#1BA75E]" />
                 <span className="text-[#222222]/50">{review.rating}</span>
               </div>
             </div>
