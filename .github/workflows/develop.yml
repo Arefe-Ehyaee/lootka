@@ -22,6 +22,21 @@ jobs:
         source: "."
         target: "/${{ secrets.SERVER_USER }}/frontend/app"
 
-    - name: Inject API URL into backend
-      run: |
-        echo "Backend uploaded"
+    - name: Build project on server and deploy to Nginx
+      uses: appleboy/ssh-action@v0.1.8
+      with:
+        host: ${{ secrets.SERVER_IP }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          cd /${{ secrets.SERVER_USER }}/frontend/app
+          yarn install --frozen-lockfile
+          yarn build
+
+          # Remove old build
+          sudo rm -rf /var/www/frontend/*
+
+          # Copy new build
+          sudo cp -r build/* /var/www/frontend/
+
+          echo "✅ Frontend deployed successfully!"
