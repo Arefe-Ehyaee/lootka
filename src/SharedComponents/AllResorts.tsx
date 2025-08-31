@@ -81,19 +81,11 @@ const fetchHostels = async (page: number, pageSize: number) => {
 };
 
 const HostelCard: React.FC<{ hostel: Hostel }> = ({ hostel }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const images = hostel.image_names?.length ? hostel.image_names : [hostel.ImgName];
-
-  const handleNextImage = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const handlePrevImage = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  const getImage = () => {
+    if (hostel.image_names?.length) {
+      return hostel.image_names[0];
+    }
+    return hostel.ImgName === 'NaN' ? NoImg : hostel.ImgName;
   };
 
   return (
@@ -101,45 +93,13 @@ const HostelCard: React.FC<{ hostel: Hostel }> = ({ hostel }) => {
       to={`/places/${hostel.id}`}
       className="group border rounded-lg overflow-hidden hover:shadow-lg transition"
     >
-      {/* Image Carousel */}
+      {/* Single Image Display */}
       <div className="relative">
         <img
-          src={images[currentImageIndex] || NoImg}
+          src={getImage()}
           alt={hostel.name}
           className="w-full h-60 object-cover group-hover:brightness-75 transition"
         />
-
-        {images.length > 1 && (
-          <>
-            <button
-              onClick={handlePrevImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full w-8 h-8 flex items-center justify-center"
-            >
-              <ChevronLeftIcon className="h-5 w-5" />
-            </button>
-            <button
-              onClick={handleNextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full w-8 h-8 flex items-center justify-center"
-            >
-              <ChevronRightIcon className="h-5 w-5" />
-            </button>
-
-            {/* Dots indicator */}
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
-              {images.map((_, index) => (
-                <div
-                  key={index}
-                  className={`w-2 h-2 rounded-full cursor-pointer ${currentImageIndex === index ? 'bg-white' : 'bg-white/40'}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setCurrentImageIndex(index);
-                  }}
-                />
-              ))}
-            </div>
-          </>
-        )}
       </div>
 
       {/* Card Info */}
@@ -187,7 +147,7 @@ const AllResorts: React.FC = () => {
   } = useQuery({
     queryKey: ['hostels', currentPage, pageSize],
     queryFn: () => fetchHostels(currentPage, pageSize),
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 10 * 60 * 1000, // 10 minutes
     gcTime: 10 * 60 * 1000, // 10 minutes
     refetchOnWindowFocus: false, // Prevent unnecessary refetches
   });

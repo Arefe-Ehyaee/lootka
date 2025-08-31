@@ -51,31 +51,23 @@ const RestaurantCard: React.FC<{
   restaurant: Restaurant;
   getImageUrl: (img: string) => string;
 }> = ({ restaurant, getImageUrl }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(
-    restaurant.image_ids && restaurant.image_ids.length > 1 ? 1 : 0
-  );
-
-  const imageList = restaurant.image_ids?.length
-    ? restaurant.image_ids
-    : restaurant.image_names;
-
-  const imageCount = imageList?.length || 1;
-
-  const handleNextImage = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setCurrentImageIndex((prev) => (prev + 1) % imageCount);
-  };
-
-  const handlePrevImage = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setCurrentImageIndex((prev) => (prev - 1 + imageCount) % imageCount);
-  };
+  // Remove all carousel-related state and functions
+  // const [currentImageIndex, setCurrentImageIndex] = useState(...);
+  // const handleNextImage = (e: React.MouseEvent) => { ... };
+  // const handlePrevImage = (e: React.MouseEvent) => { ... };
 
   const getCurrentImage = () => {
-    if (!imageList || imageList.length === 0) return getImageUrl('NaN');
-    return getImageUrl(imageList[currentImageIndex]);
+    // Get the first available image from either image_ids or image_names
+    const imageList = restaurant.image_ids?.length
+      ? restaurant.image_ids
+      : restaurant.image_names;
+    
+    if (!imageList || imageList.length === 0) {
+      return getImageUrl('NaN');
+    }
+    
+    // Just return the first image
+    return getImageUrl(imageList[1]);
   };
 
   return (
@@ -89,31 +81,7 @@ const RestaurantCard: React.FC<{
           />
           <img src={heart} alt="" className='absolute top-3 right-1' />
 
-          {imageCount > 1 && (
-            <>
-              <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2">
-                {Array.from({ length: imageCount }).map((_, index) => (
-                  <div
-                    key={index}
-                    className={`w-2 h-2 rounded-full ${currentImageIndex === index ? 'bg-white' : 'bg-white/40 hover:bg-white/70'}`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setCurrentImageIndex(index);
-                    }}
-                    role="button"
-                  />
-                ))}
-              </div>
-
-              <button onClick={handlePrevImage} className="absolute top-1/2 right-2 -translate-y-1/2 z-20 hover:bg-black/40 text-white rounded-full w-8 h-8 flex items-center justify-center">
-                <ChevronRightIcon className="h-5 w-5" />
-              </button>
-              <button onClick={handleNextImage} className="absolute top-1/2 left-2 -translate-y-1/2 z-20 hover:bg-black/40 text-white rounded-full w-8 h-8 flex items-center justify-center">
-                <ChevronLeftIcon className="h-5 w-5" />
-              </button>
-            </>
-          )}
+          {/* Remove all carousel controls - dots and navigation buttons */}
         </div>
 
         {/* Mobile */}

@@ -73,14 +73,15 @@ const fetchCafes = async (page: number, pageSize: number) => {
 const getImageUrl = (img: string) =>
   !img || img === 'NaN' ? NoImg : `${BASE_URL}/images/${img}`;
 
-/** CafeCard with image state management */
+/** CafeCard with single image display */
 const CafeCard: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
-  const [currentImage, setCurrentImage] = useState(0);
-
-  const images = cafe.image_ids?.length
-    ? cafe.image_ids
-    : cafe.image_names || [];
-  const imageCount = images.length;
+  const getImage = () => {
+    const images = cafe.image_ids?.length
+      ? cafe.image_ids
+      : cafe.image_names || [];
+    
+    return images.length > 0 ? images[0] : 'NaN';
+  };
 
   return (
     <Link
@@ -89,55 +90,10 @@ const CafeCard: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
     >
       <div className="relative">
         <img
-          src={getImageUrl(images[currentImage] || 'NaN')}
+          src={getImageUrl(getImage())}
           alt={cafe.name}
           className="w-full h-60 object-cover group-hover:brightness-75 transition"
         />
-
-        {/* Arrows if multiple images */}
-        {imageCount > 1 && (
-          <>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setCurrentImage((prev) => (prev - 1 + imageCount) % imageCount);
-              }}
-              className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/40 text-white rounded-full w-8 h-8 flex items-center justify-center"
-            >
-              <ChevronLeftIcon className="h-5 w-5" />
-            </button>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setCurrentImage((prev) => (prev + 1) % imageCount);
-              }}
-              className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/40 text-white rounded-full w-8 h-8 flex items-center justify-center"
-            >
-              <ChevronRightIcon className="h-5 w-5" />
-            </button>
-          </>
-        )}
-
-        {/* Dots */}
-        {imageCount > 1 && (
-          <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2">
-            {images.map((_, idx) => (
-              <div
-                key={idx}
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setCurrentImage(idx);
-                }}
-                className={`w-2 h-2 rounded-full cursor-pointer ${
-                  currentImage === idx ? "bg-white" : "bg-white/40"
-                }`}
-              />
-            ))}
-          </div>
-        )}
       </div>
 
       <div className="p-3">
@@ -185,7 +141,7 @@ const AllCafes: React.FC = () => {
   } = useQuery({
     queryKey: ['cafes', currentPage, pageSize],
     queryFn: () => fetchCafes(currentPage, pageSize),
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 10 * 60 * 1000, // 10 minutes
     gcTime: 10 * 60 * 1000, // 10 minutes
     refetchOnWindowFocus: false, // Prevent unnecessary refetches
   });

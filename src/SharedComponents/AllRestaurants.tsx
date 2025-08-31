@@ -78,14 +78,14 @@ const getImageUrl = (idOrFilename: string) =>
         ? NoImg
         : `${BASE_URL}/images/${idOrFilename}`;
 
-/** RestaurantCard with image state management */
+/** RestaurantCard with single image display */
 const RestaurantCard: React.FC<{ restaurant: Restaurant }> = ({ restaurant }) => {
-    const [currentImage, setCurrentImage] = useState(0);
-
-    const imageList = restaurant.image_ids?.length
-        ? restaurant.image_ids
-        : [restaurant.ImgName];
-    const imageCount = imageList.length;
+    const getImage = () => {
+        if (restaurant.image_ids?.length) {
+            return restaurant.image_ids[0];
+        }
+        return restaurant.ImgName;
+    };
 
     return (
         <Link
@@ -94,46 +94,10 @@ const RestaurantCard: React.FC<{ restaurant: Restaurant }> = ({ restaurant }) =>
         >
             <div className="relative">
                 <img
-                    src={getImageUrl(imageList[currentImage])}
+                    src={getImageUrl(getImage())}
                     alt={restaurant.name}
                     className="w-full h-60 object-cover group-hover:brightness-75 transition"
                 />
-
-                {imageCount > 1 && (
-                    <>
-                        <button
-                            onClick={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                setCurrentImage((prev) => (prev - 1 + imageCount) % imageCount);
-                            }}
-                            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full w-8 h-8 flex items-center justify-center"
-                        >
-                            <ChevronLeftIcon className="h-5 w-5" />
-                        </button>
-
-                        <button
-                            onClick={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                setCurrentImage((prev) => (prev + 1) % imageCount);
-                            }}
-                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full w-8 h-8 flex items-center justify-center"
-                        >
-                            <ChevronRightIcon className="h-5 w-5" />
-                        </button>
-
-                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
-                            {imageList.map((_, idx) => (
-                                <span
-                                    key={idx}
-                                    className={`w-2 h-2 rounded-full ${idx === currentImage ? 'bg-white' : 'bg-white/40'
-                                        }`}
-                                />
-                            ))}
-                        </div>
-                    </>
-                )}
             </div>
 
             <div className="p-3">
@@ -181,7 +145,7 @@ const AllRestaurants: React.FC = () => {
     } = useQuery({
         queryKey: ['restaurants', currentPage, pageSize],
         queryFn: () => fetchRestaurants(currentPage, pageSize),
-        staleTime: 5 * 60 * 1000, // 5 minutes
+        staleTime: 10 * 60 * 1000, // 10 minutes
         gcTime: 10 * 60 * 1000, // 10 minutes (previously cacheTime)
         placeholderData: (previousData) => previousData, // Keep previous data while fetching new page
         refetchOnWindowFocus: false, // Prevent unnecessary refetches

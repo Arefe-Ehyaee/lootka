@@ -46,31 +46,22 @@ interface BackendResponse {
 
 type CategoryType = 'همه' | 'فست فود' | 'غذای محلی' | 'کافه' | 'فود تراک';
 
-// ------------------ Card stays same ------------------
 const HostelCard: React.FC<{
   hostel: Hostel;
   getImageUrl: (img: string) => string;
 }> = ({ hostel, getImageUrl }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const imageCount = hostel.image_names?.length || 1;
-
-  const handleNextImage = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setCurrentImageIndex((prev) => (prev + 1) % imageCount);
-  };
-
-  const handlePrevImage = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setCurrentImageIndex((prev) => (prev - 1 + imageCount) % imageCount);
-  };
+  // Remove all carousel-related state and functions
+  // const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  // const imageCount = hostel.image_names?.length || 1;
+  // const handleNextImage = (e: React.MouseEvent) => { ... };
+  // const handlePrevImage = (e: React.MouseEvent) => { ... };
 
   const getCurrentImage = () => {
     if (!hostel.image_names || hostel.image_names.length === 0) {
       return getImageUrl('NaN');
     }
-    return getImageUrl(hostel.image_names[currentImageIndex]);
+    // Just return the first image instead of using currentImageIndex
+    return getImageUrl(hostel.image_names[0]);
   };
 
   return (
@@ -83,31 +74,8 @@ const HostelCard: React.FC<{
             className="w-full h-48 sm:h-52 md:h-[250px] object-cover border border-b-none rounded-lg rounded-b-none transition-opacity duration-300 group-hover:brightness-75"
           />
           <img src={heart} alt="" className='absolute top-3 right-2 w-5 h-5' />
-          {imageCount > 1 && (
-            <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2">
-              {Array.from({ length: imageCount }).map((_, index) => (
-                <div
-                  key={index}
-                  className={`w-2 h-2 rounded-full cursor-pointer ${currentImageIndex === index ? 'bg-white' : 'bg-white/40'}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setCurrentImageIndex(index);
-                  }}
-                />
-              ))}
-            </div>
-          )}
-          {imageCount > 1 && (
-            <>
-              <button onClick={handlePrevImage} className="absolute top-1/2 right-2 -translate-y-1/2 text-white">
-                <ChevronRightIcon className="h-5 w-5" />
-              </button>
-              <button onClick={handleNextImage} className="absolute top-1/2 left-2 -translate-y-1/2 text-white">
-                <ChevronLeftIcon className="h-5 w-5" />
-              </button>
-            </>
-          )}
+          
+          {/* Remove all carousel controls - dots and navigation buttons */}
         </div>
 
         {/* Mobile Info */}

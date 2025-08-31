@@ -76,26 +76,11 @@ const fetchAttractions = async (page: number, pageSize: number) => {
 };
 
 const AttractionCard: React.FC<{ attraction: Attraction }> = ({ attraction }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const imageCount = attraction.image_names?.length || 1;
-
-  const handleNextImage = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setCurrentImageIndex((prev) => (prev + 1) % imageCount);
-  };
-
-  const handlePrevImage = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setCurrentImageIndex((prev) => (prev - 1 + imageCount) % imageCount);
-  };
-
-  const getCurrentImage = () => {
+  const getImage = () => {
     if (!attraction.image_names || attraction.image_names.length === 0) {
       return NoImg;
     }
-    return attraction.image_names[currentImageIndex];
+    return attraction.image_names[0]; // Always show the first image
   };
 
   return (
@@ -106,53 +91,20 @@ const AttractionCard: React.FC<{ attraction: Attraction }> = ({ attraction }) =>
     >
       <div className="relative">
         <img
-          src={getCurrentImage()}
+          src={getImage()}
           alt={attraction.name}
           className="w-full h-60 object-cover group-hover:brightness-75 transition"
         />
-
-        {imageCount > 1 && (
-          <>
-            {/* Dots */}
-            <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2">
-              {Array.from({ length: imageCount }).map((_, index) => (
-                <div
-                  key={index}
-                  className={`w-2 h-2 rounded-full cursor-pointer ${currentImageIndex === index ? 'bg-white' : 'bg-white/40 hover:bg-white/70'}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setCurrentImageIndex(index);
-                  }}
-                />
-              ))}
-            </div>
-
-            {/* Arrows */}
-            <button
-              onClick={handlePrevImage}
-              className="absolute top-1/2 right-2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white rounded-full w-8 h-8 flex items-center justify-center"
-            >
-              <ChevronRightIcon className="h-5 w-5" />
-            </button>
-            <button
-              onClick={handleNextImage}
-              className="absolute top-1/2 left-2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white rounded-full w-8 h-8 flex items-center justify-center"
-            >
-              <ChevronLeftIcon className="h-5 w-5" />
-            </button>
-          </>
-        )}
       </div>
 
       {/* Card Content */}
       <div className="p-3">
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-myIranSansMedium">{attraction.name}</h2>
-          <div className="bg-[#EDF9F3] font-myIranSansFaNumRegular border border-green-100 text-[#1BA75E] rounded-lg text-base flex items-center gap-2 px-1">
-            {attraction.Rate}
-            <img src={starGreen} alt="" className="w-4 h-4" />
-          </div>
+            <div className="text-[#1BA75E] font-myYekanFaNumRegular rounded-lg text-sm flex items-center gap-1">
+              <img src={starGreen} alt="" className="w-4 h-4 pb-1" />
+              {attraction.Rate}
+            </div>
         </div>
 
         {attraction.address && (
@@ -187,7 +139,7 @@ const AllAttractions: React.FC = () => {
   } = useQuery({
     queryKey: ['attractions', currentPage, pageSize],
     queryFn: () => fetchAttractions(currentPage, pageSize),
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 10 * 60 * 1000, // 10 minutes
     gcTime: 10 * 60 * 1000, // 10 minutes
     refetchOnWindowFocus: false, // Prevent unnecessary refetches
   });
