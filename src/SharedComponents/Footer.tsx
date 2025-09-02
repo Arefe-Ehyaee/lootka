@@ -4,6 +4,9 @@ import logo from '../assets/images/lootka_logo.png';
 import ins from "../assets/icons/logo-instagram.svg";
 import wat from "../assets/icons/logo-whatsapp.svg";
 import tel from "../assets/icons/telegram-circled.svg";
+import phone from "../assets/icons/device-phone.svg"
+import loc from "../assets/icons/newLocation.svg";
+import email from "../assets/icons/mail-1.svg";
 
 const Footer = () => {
   return (
@@ -13,7 +16,7 @@ const Footer = () => {
 
           {/* لوگو + توضیح */}
           <div className="w-full md:w-2/5">
-            <Link to="/" className="flex flex-row gap-[12px] items-center justify-center md:justify-start">
+            <Link to="/" className="flex flex-row gap-[12px] justify-start">
               <img src={logo} alt="Logo" className="w-[53px] h-[40px] md:w-[97px] md:h-[60px]" />
               <h2 className="text-[#4C3516] font-myYekanFaNumDemiBold text-[24px] md:text-[40px]">لوتکا</h2>
             </Link>
@@ -51,9 +54,18 @@ const Footer = () => {
             <div className="hidden md:block md:w-1/5">
               <h4 className="font-myYekanFaNumDemiBold mb-4 text-gray-800">تماس با لوتکا</h4>
               <ul className="text-gray-600 text-sm space-y-2 font-myYekanFaNumRegular">
-                <li>ایمیل: lootka.info@gmail.com</li>
-                <li>تلفن:09019419057</li>
-                <li>آدرس: ایران، گیلان</li>
+            <li className='flex flex-row items-center gap-1'>
+              <img src={email} alt="" className='w-6 h-6' />
+              <span>lootka.info@gmail.com</span>
+            </li>
+            <li className='flex flex-row items-center gap-1'>
+              <img src={phone} alt="" className='w-6 h-6' />
+              <span>09019419057</span>
+            </li>
+            <li className='flex flex-row items-center gap-1'>
+              <img src={loc} alt="" className='w-5 h-5' />
+              <span>ایران، گیلان</span>
+            </li>
               </ul>
             </div>
 
@@ -64,13 +76,24 @@ const Footer = () => {
         <div className="md:hidden mt-10 text-right">
           <p className="font-myYekanFaNumDemiBold mb-3 text-gray-800">راه‌های ارتباطی</p>
           <ul className="text-gray-600 text-sm space-y-2 font-myYekanFaNumRegular">
-            <li>ایمیل: lootka.info@gmail.com</li>
-            <li>تلفن:09019419057</li>
+            <li className='flex flex-row items-center gap-1'>
+              <img src={email} alt="" className='w-6 h-6' />
+              <span>lootka.info@gmail.com</span>
+            </li>
+            <li className='flex flex-row items-center gap-1'>
+              <img src={phone} alt="" className='w-6 h-6' />
+              <span>09019419057</span>
+            </li>
+            <li className='flex flex-row items-center gap-1'>
+              <img src={loc} alt="" className='w-5 h-5' />
+              <span>ایران، گیلان</span>
+            </li>
+
           </ul>
         </div>
 
         {/* شبکه‌های اجتماعی */}
-        <ul className='flex flex-row items-center justify-center md:justify-start gap-[16px] mt-[30px]'>
+        <ul className='flex flex-row justify-start gap-[16px] mt-[30px]'>
           <a
             href="https://t.me/yourTelegramUsername"
             target="_blank"

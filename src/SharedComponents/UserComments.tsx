@@ -118,7 +118,7 @@ const UserComments: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-12 px-6 desktop:px-16 relative">
+    <section className="py-12 px-0 desktop:px-12 relative">
       <h2 className="text-2xl md:text-3xl font-myYekanDemibold text-center mb-8">
         نظرات کاربران
       </h2>
