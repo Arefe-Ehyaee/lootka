@@ -37,7 +37,7 @@ const UserComments: React.FC = () => {
       try {
         const urls = [
           "https://lootkatrip.ir/api/reviews/place/p_1753957441342_85ca2b46",
-          "http://lootkatrip.ir/api/reviews/place/p_1753957437360_bb56f11d",
+          "https://lootkatrip.ir/api/reviews/place/p_1753957437360_bb56f11d",
         ];
 
         const placeMap: Record<number, { name: string; img: string }> = {
