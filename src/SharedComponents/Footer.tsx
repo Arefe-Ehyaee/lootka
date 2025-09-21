@@ -7,6 +7,7 @@ import tel from "../assets/icons/telegram-circled.svg";
 import phone from "../assets/icons/device-phone.svg"
 import loc from "../assets/icons/newLocation.svg";
 import email from "../assets/icons/mail-1.svg";
+import lnk from "../assets/icons/icons8-linkedin 1.svg"
 
 const Footer = () => {
   return (
@@ -54,18 +55,18 @@ const Footer = () => {
             <div className="hidden md:block md:w-1/5">
               <h4 className="font-myYekanFaNumDemiBold mb-4 text-gray-800">تماس با لوتکا</h4>
               <ul className="text-gray-600 text-sm space-y-2 font-myYekanFaNumRegular">
-            <li className='flex flex-row items-center gap-1'>
-              <img src={email} alt="" className='w-6 h-6' />
-              <span>lootka.info@gmail.com</span>
-            </li>
-            <li className='flex flex-row items-center gap-1'>
-              <img src={phone} alt="" className='w-6 h-6' />
-              <span>09019419057</span>
-            </li>
-            <li className='flex flex-row items-center gap-1'>
-              <img src={loc} alt="" className='w-5 h-5' />
-              <span>ایران، گیلان</span>
-            </li>
+                <li className='flex flex-row items-center gap-1'>
+                  <img src={email} alt="" className='w-6 h-6' />
+                  <span>lootka.info@gmail.com</span>
+                </li>
+                <li className='flex flex-row items-center gap-1'>
+                  <img src={phone} alt="" className='w-6 h-6' />
+                  <span>09019419057</span>
+                </li>
+                <li className='flex flex-row items-center gap-1'>
+                  <img src={loc} alt="" className='w-5 h-5' />
+                  <span>ایران، گیلان</span>
+                </li>
               </ul>
             </div>
 
@@ -117,6 +118,14 @@ const Footer = () => {
             className="inline-block"
           >
             <img src={wat} alt="Whatsapp" className="w-8 h-8 cursor-pointer" />
+          </a>
+          <a
+            href="https://www.linkedin.com/company/lootkatrip/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block"
+          >
+            <img src={lnk} alt="linkedin" className="w-8 h-8 cursor-pointer" />
           </a>
         </ul>
 

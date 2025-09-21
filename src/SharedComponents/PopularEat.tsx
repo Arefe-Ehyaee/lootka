@@ -24,8 +24,7 @@ interface Restaurant {
   phone?: string;
   website?: string;
   instagram?: string;
-  image_names?: string[];
-  image_ids?: string[];
+  image_name?: string;
   Menu?: any[];
   food_types?: string[];
   mealTime?: string[];
@@ -51,23 +50,11 @@ const RestaurantCard: React.FC<{
   restaurant: Restaurant;
   getImageUrl: (img: string) => string;
 }> = ({ restaurant, getImageUrl }) => {
-  // Remove all carousel-related state and functions
-  // const [currentImageIndex, setCurrentImageIndex] = useState(...);
-  // const handleNextImage = (e: React.MouseEvent) => { ... };
-  // const handlePrevImage = (e: React.MouseEvent) => { ... };
-
   const getCurrentImage = () => {
-    // Get the first available image from either image_ids or image_names
-    const imageList = restaurant.image_ids?.length
-      ? restaurant.image_ids
-      : restaurant.image_names;
-    
-    if (!imageList || imageList.length === 0) {
+    if (!restaurant.ImgName || restaurant.ImgName === 'NaN') {
       return getImageUrl('NaN');
     }
-    
-    // Just return the first image
-    return getImageUrl(imageList[1]);
+    return getImageUrl(restaurant.ImgName);
   };
 
   return (
@@ -80,8 +67,6 @@ const RestaurantCard: React.FC<{
             className="w-full h-48 sm:h-52 md:h-[250px] border border-b-none object-cover rounded-lg rounded-b-none transition-opacity duration-300 group-hover:brightness-75"
           />
           <img src={heart} alt="" className='absolute top-3 right-1' />
-
-          {/* Remove all carousel controls - dots and navigation buttons */}
         </div>
 
         {/* Mobile */}
@@ -154,14 +139,16 @@ const PopularEat: React.FC = () => {
   const getImageUrl = (idOrFilename: string) =>
     !idOrFilename || idOrFilename === 'NaN' ? NoImg : `${BASE_URL}/images/${idOrFilename}`;
 
-  const fetchImageFilenames = async (placeId: string): Promise<string[]> => {
+  // فقط اولین عکس واکشی می‌شود
+  const fetchFirstImageForRestaurant = async (placeId: string): Promise<string | null> => {
     try {
       const res = await fetch(`${BASE_URL}/entity_images/place/${placeId}`);
       const data = await res.json();
-      return data.map((img: any) => img.image_id);
+      if (!data || data.length === 0) return null;
+      return data[1].image_id;
     } catch (err) {
-      console.error(`Error fetching images for ${placeId}:`, err);
-      return [];
+      console.error(`Error fetching first image for ${placeId}:`, err);
+      return null;
     }
   };
 
@@ -171,14 +158,13 @@ const PopularEat: React.FC = () => {
 
     return Promise.all(
       data.data.map(async (item) => {
-        const imageIds = await fetchImageFilenames(item.place_id);
+        const firstImageId = await fetchFirstImageForRestaurant(item.place_id);
 
         return {
           id: item.place_id,
           name: item.name,
           Rate: item.rate || 0,
-          ImgName: item.image_names?.[0] || 'NaN',
-          image_ids: imageIds,
+          ImgName: firstImageId || 'NaN',
           Category: item.food_types?.[0] || 'کافه',
           OurDescription: item.OurDescription,
           UsersDescription: item.UsersDescription,
@@ -189,7 +175,6 @@ const PopularEat: React.FC = () => {
           phone: item.phone,
           website: item.website,
           instagram: item.instagram,
-          image_names: item.image_names,
           Menu: item.Menu,
           food_types: item.food_types,
           mealTime: item.mealTime,
@@ -200,7 +185,7 @@ const PopularEat: React.FC = () => {
           map_url: item.map_url,
           review_summary: item.review_summary,
           description: item.description,
-          sub_category: item.sub_category
+          sub_category: item.sub_category,
         };
       })
     );
@@ -218,10 +203,8 @@ const PopularEat: React.FC = () => {
       ? restaurants
       : restaurants.filter(r => r.Category === selectedCategory);
 
-  const scrollMobileNext = () => mobileScrollRef.current?.scrollBy({ left: -200, behavior: 'smooth' });
-  const scrollMobilePrev = () => mobileScrollRef.current?.scrollBy({ left: 200, behavior: 'smooth' });
-  const scrollDesktopNext = () => desktopScrollRef.current?.scrollBy({ left: -600, behavior: 'smooth' });
   const scrollDesktopPrev = () => desktopScrollRef.current?.scrollBy({ left: 600, behavior: 'smooth' });
+  const scrollDesktopNext = () => desktopScrollRef.current?.scrollBy({ left: -600, behavior: 'smooth' });
 
   if (isLoading) return <div className="text-center py-20">در حال بارگذاری...</div>;
   if (isError) return <div className="text-red-500 text-center">{error.message}</div>;
@@ -229,8 +212,9 @@ const PopularEat: React.FC = () => {
   return (
     <div className="py-12 px-0 desktop:px-16">
       <div className="flex justify-between items-center mb-4 desktop:px-20 px-[16px]">
-        <h2 className="text-base tablet:text-2xl desktop:text-3xl font-myYekanDemibold">خورد و خوراک</h2>
-        <Link to="/restaurants" className="text-sm text-gray-800 font-myYekanRegular">مشاهده همه</Link>
+        <h2 className="text-xl tablet:text-2xl desktop:text-3xl font-myYekanDemibold">رستوران</h2>
+        <Link to="/restaurants" className="flex flex-row gap-1 items-center text-sm text-gray-800 font-myYekanRegular">مشاهده همه
+        <ChevronLeftIcon className="h-4 w-4" /></Link>
       </div>
 
       {/* Mobile */}

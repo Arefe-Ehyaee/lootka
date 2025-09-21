@@ -4,13 +4,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import InputField from "./TextInputComponent";
 import Box from "./BoxComponent";
-import EnterSignup from "./EnterSignup";
 import { NavLink, useNavigate } from "react-router-dom";
 import UserSvg from "../assets/icons/user.svg";
 import keySvg from "../assets/icons/key.svg";
 import CustomButton from "./CustomButton";
 import lootka from "../assets/images/logo-removebg-preview.png";
 import { ReactComponent as Close } from "../assets/icons/x-circle.svg";
+import RegisterChoise from "./RegisterChoise";
 
 const loginSchema = z.object({
   phone: z
@@ -57,7 +57,7 @@ const Login = ({ onClose, switchToSignup }: LoginProps) => {
   };
 
   return (
-    <Box heightClass="h-[500px] p-4">
+    <Box heightClass="h-[500px] p-2">
 
       <button
         onClick={onClose}
@@ -67,7 +67,7 @@ const Login = ({ onClose, switchToSignup }: LoginProps) => {
         <Close></Close>
       </button>
       <img src={lootka} alt="lootka" className="absolute top-2 w-[50%]" />
-      <EnterSignup switchToSignup={switchToSignup} />
+      <RegisterChoise switchToSignup={switchToSignup} active="login" />
 
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -92,7 +92,7 @@ const Login = ({ onClose, switchToSignup }: LoginProps) => {
         {/* <RememberMe /> */}
         <CustomButton
           text="ورود به لوتکا"
-          className="mt-4 bg-[#4D93A5] text-white text-sm w-[50%] justify-center font-myYekanMedium"
+          className="mt-2 bg-[#4D93A5] text-white text-sm w-full rounded-lg justify-center font-myYekanMedium"
         ></CustomButton>
         <div className="flex flex-col gap-4 absolute bottom-8 mx-auto ">
           <button

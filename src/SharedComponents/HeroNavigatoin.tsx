@@ -13,7 +13,7 @@ const HeroNavigation = () => {
     return (
         <div className="mx-auto">
             {/* Navigation buttons without text */}
-            <div className="h-[120px] w-[894px] px-[0px] mx-auto bg-white rounded-full pt-4 flex justify-around items-center text-center">
+            <div className="h-[120px] w-[894px] px-[0px] mx-auto bg-white rounded-lg pt-4 flex justify-around items-center text-center">
                 <button
                     onClick={() => navigate('/planner')}
                     className="flex flex-col items-center justify-center w-[100px] h-[100px] border-[1.8px] border-[#CFD6DC] rounded-lg "

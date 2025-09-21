@@ -219,8 +219,7 @@ const PopularHostels: React.FC = () => {
     desktopScrollRef.current?.scrollTo({ left: 0 });
   }, [selectedCategory, hostels]);
 
-  const scrollMobileNext = () => mobileScrollRef.current?.scrollBy({ left: -200, behavior: 'smooth' });
-  const scrollMobilePrev = () => mobileScrollRef.current?.scrollBy({ left: 200, behavior: 'smooth' });
+
   const scrollDesktopNext = () => desktopScrollRef.current?.scrollBy({ left: -600, behavior: 'smooth' });
   const scrollDesktopPrev = () => desktopScrollRef.current?.scrollBy({ left: 600, behavior: 'smooth' });
 
@@ -230,9 +229,9 @@ const PopularHostels: React.FC = () => {
   return (
     <div className="py-12 px-0 desktop:px-16">
       <div className="flex justify-between items-center mb-4 desktop:px-20 px-[16px]">
-        <h2 className="text-base tablet:text-2xl desktop:text-3xl  font-myYekanDemibold">اقامتگاه</h2>
-        <Link to="/hostels" className="text-sm text-gray-800 font-myYekanRegular">مشاهده همه</Link>
-      </div>
+        <h2 className="text-xl tablet:text-2xl desktop:text-3xl  font-myYekanDemibold">اقامتگاه بومگردی</h2>
+        <Link to="/hostels" className="flex flex-row gap-1 items-center text-sm text-gray-800 font-myYekanRegular">مشاهده همه
+        <ChevronLeftIcon className="h-4 w-4" /></Link>      </div>
 
       {/* Mobile View */}
       <div className="md:hidden relative">

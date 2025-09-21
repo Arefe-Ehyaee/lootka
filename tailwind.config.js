@@ -4,18 +4,6 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        myIranSansRegular: ["myIranSans-regular", "sans-serif"],
-        myIranSansMedium: ["myIranSans-medium", "sans-serif"],
-        myIranSansBold: ["myIranSans-Bold", "sans-serif"],
-        myIranSansLight: ["myIranSans-light", "sans-serif"],
-        myIranSansUltraLight: ["myIranSans-UltraLight", "sans-serif"],
-
-        myIranSansFaNumRegular: ["myIranSansFaNum-regular", "sans-serif"],
-        myIranSansFaNumUltraLight: ["myIranSansFaNum-UltraLight", "sans-serif"],
-        myIranSansFaNumLight: ["myIranSansFaNum-Light", "sans-serif"],
-        myIranSansFaNumMedium: ["myIranSansFaNum-medium", "sans-serif"],
-        myIranSansFaNumBold: ["myIranSansFaNum-Bold", "sans-serif"],
-
         myYekanRegular: ["myYekan-regular", "sans-serif"],
         myYekanMedium: ["myYekan-medium", "sans-serif"],
         myYekanDemibold: ["myYekan-demibold", "sans-serif"],

@@ -53,10 +53,6 @@ const MainPage: React.FC = () => {
         <PopularHostels />
         <UserComments></UserComments>
 
-        {/* <PopularDestinationsNew /> */}
-        {/* <FreeHostels></FreeHostels> */}
-        {/* <Suggestions />
-        <Specials></Specials> */}
       </div>
       <Footer />
     </div>

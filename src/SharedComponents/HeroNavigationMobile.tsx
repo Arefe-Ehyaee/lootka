@@ -20,7 +20,7 @@ const HeroNavigationMobile = () => {
 
     return (
         <div className="mx-auto">
-            <div className="bg-white rounded-3xl p-4 grid grid-cols-3 gap-4 w-full">
+            <div className="bg-white rounded-3xl p-4 grid grid-cols-3 gap-4 w-full  font-myYekanDemibold">
                 {navItems.map((item, i) => (
                     <div key={i} className="flex flex-col items-center">
                         <button

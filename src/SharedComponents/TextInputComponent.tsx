@@ -13,12 +13,12 @@ interface InputProps {
 
 const InputField: React.FC<InputProps> = ({ name, placeholder, type, register, className, iconsrc, error }) => {
   return (
-    <div className="relative mb-6">
+    <div className="relative mb-4">
       <input
         type={type}
         id={name}
         name={name}
-        className={`flex flex-col items-center desktop:w-80 w-60 h-10 border border-grey-400 px-4 py-2 rounded-full text-sm font-normal placeholder-grey-400 font-isf pr-[30px] ${className} placeholder-start ${error ? "border-red-500" : ""}`}
+        className={`flex flex-col items-center desktop:w-60 w-60 h-10 border border-grey-400 px-4 py-2 rounded-lg text-sm font-normal placeholder-grey-400 font-isf pr-[30px] ${className} placeholder-start ${error ? "border-red-500" : ""}`}
         dir="rtl"
         placeholder={placeholder}
         {...register(name)}  

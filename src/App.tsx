@@ -15,9 +15,32 @@ import PlaceDetail from "./SharedComponents/PlaceDetail";
 import RestaurantForm from "./SharedComponents/RestaurantForm";
 import AllCafes from "./SharedComponents/AllCafes";
 import ScrollToTop from "./SharedComponents/ScrollToTop";
+import { ToastContainer } from "react-toastify";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import useUserStore from './store/userStore';
 
 function App() {
+    const queryClient = new QueryClient();
+  const [hydrated, setHydrated] = useState(false);
+
+  // ✅ Zustand hydration check
+  useEffect(() => {
+    const unsub = useUserStore.persist.onFinishHydration(() => {
+      setHydrated(true);
+    });
+
+    if (useUserStore.persist.hasHydrated()) {
+      setHydrated(true);
+    }
+
+    return () => unsub?.();
+  }, []);
+
+  
   return (
+        <QueryClientProvider client={queryClient}>
+
     <div className="App font-myIranSansRegular" dir="rtl">
       <BrowserRouter>
         <ScrollToTop /> 
@@ -35,10 +58,12 @@ function App() {
           <Route path="/getPlanLanding" element={<GetPlan />} />
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/aboutUs" element={<AboutUs />} />
+          <Route path="/about" element={<AboutUs />} />
         </Routes>
+              <ToastContainer/>
       </BrowserRouter>
     </div>
+        </QueryClientProvider>
   );
 }
 

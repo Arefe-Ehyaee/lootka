@@ -30,7 +30,6 @@ interface Cafe {
   website?: string;
   instagram?: string;
   image_names?: string[];
-  image_ids?: string[];
   Menu?: any[];
   food_types?: string[];
   mealTime?: string[];
@@ -54,17 +53,9 @@ const CafeCard: React.FC<{
   cafe: Cafe;
   getImageUrl: (img: string) => string;
 }> = ({ cafe, getImageUrl }) => {
-  // Remove all carousel-related state and functions
-  // const [currentImageIndex, setCurrentImageIndex] = React.useState(...);
-  // const handleNextImage = (e: React.MouseEvent) => { ... };
-  // const handlePrevImage = (e: React.MouseEvent) => { ... };
-
   const getCurrentImage = () => {
-    const imageList = cafe.image_ids?.length ? cafe.image_ids : cafe.image_names;
-    if (!imageList || imageList.length === 0) return getImageUrl("NaN");
-    
-    // Just return the first image
-    return getImageUrl(imageList[0]);
+    if (!cafe.ImgName || cafe.ImgName === "NaN") return getImageUrl("NaN");
+    return getImageUrl(cafe.ImgName);
   };
 
   return (
@@ -80,8 +71,6 @@ const CafeCard: React.FC<{
             className="w-full h-48 sm:h-52 md:h-[250px] border border-b-none object-cover rounded-lg rounded-b-none transition-opacity duration-300 group-hover:brightness-75"
           />
           <img src={heart} alt="" className="absolute top-3 right-1" />
-
-          {/* Remove all carousel controls */}
         </div>
 
         {/* Mobile */}
@@ -167,19 +156,21 @@ const PopularCafes: React.FC = () => {
       ? NoImg
       : `${BASE_URL}/images/${idOrFilename}`;
 
-  const fetchImageFilenames = async (placeId: string): Promise<string[]> => {
+  const fetchFirstImageForCafe = async (placeId: string): Promise<string> => {
     try {
       const res = await fetch(`${BASE_URL}/entity_images/place/${placeId}`);
       const data = await res.json();
-      return data.map((img: any) => img.image_id);
+      return data.length > 0 ? data[0].image_id : "NaN";
     } catch (err) {
       console.error(`Error fetching images for ${placeId}:`, err);
-      return [];
+      return "NaN";
     }
   };
 
-  const scrollDesktopNext = () => desktopScrollRef.current?.scrollBy({ left: -600, behavior: 'smooth' });
-  const scrollDesktopPrev = () => desktopScrollRef.current?.scrollBy({ left: 600, behavior: 'smooth' });
+  const scrollDesktopNext = () =>
+    desktopScrollRef.current?.scrollBy({ left: -600, behavior: "smooth" });
+  const scrollDesktopPrev = () =>
+    desktopScrollRef.current?.scrollBy({ left: 600, behavior: "smooth" });
 
   const fetchCafes = async (): Promise<Cafe[]> => {
     const res = await fetch(
@@ -191,13 +182,12 @@ const PopularCafes: React.FC = () => {
 
     return Promise.all(
       data.data.map(async (item) => {
-        const imageIds = await fetchImageFilenames(item.place_id);
+        const firstImageId = await fetchFirstImageForCafe(item.place_id);
         return {
           id: item.place_id,
           name: item.name,
           Rate: item.rate || 0,
-          ImgName: item.image_names?.[0] || "NaN",
-          image_ids: imageIds,
+          ImgName: firstImageId,
           Category: item.food_types?.[0] || "کافه",
           OurDescription: item.OurDescription,
           UsersDescription: item.UsersDescription,
@@ -225,7 +215,6 @@ const PopularCafes: React.FC = () => {
     );
   };
 
-
   const {
     data: cafes = [],
     isLoading,
@@ -234,10 +223,9 @@ const PopularCafes: React.FC = () => {
   } = useQuery<Cafe[], Error>({
     queryKey: ["cafes", pageSize],
     queryFn: fetchCafes,
-    staleTime: 1000 * 60 * 5, // 5 minutes
-    gcTime: 1000 * 60 * 30,   // 30 minutes (instead of cacheTime)
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 30,
   });
-
 
   if (isLoading)
     return <div className="text-center py-20">در حال بارگذاری...</div>;
@@ -249,15 +237,11 @@ const PopularCafes: React.FC = () => {
   return (
     <div className="py-12 px-0 desktop:px-16">
       <div className="flex justify-between items-center mb-4 desktop:px-20 px-[16px]">
-        <h2 className="text-base tablet:text-2xl desktop:text-3xl font-myYekanDemibold align-center">
+        <h2 className="text-xl tablet:text-2xl desktop:text-3xl font-myYekanDemibold align-center">
           کافه
         </h2>
-        <Link
-          to="/cafes"
-          className="text-sm text-gray-800 font-myYekanRegular"
-        >
-          مشاهده همه
-        </Link>
+        <Link to="/cafes" className="flex flex-row  gap-1 items-center text-sm text-gray-800 font-myYekanRegular">مشاهده همه
+        <ChevronLeftIcon className="h-4 w-4" /></Link>
       </div>
 
       {/* Mobile */}

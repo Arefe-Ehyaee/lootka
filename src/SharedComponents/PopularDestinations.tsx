@@ -49,7 +49,7 @@ type CategoryType = 'همه' | 'فست فود' | 'غذای محلی' | 'کافه
 const categories: CategoryType[] = ['همه', 'فست فود', 'غذای محلی', 'کافه', 'فود تراک'];
 const pageSize = 10;
 
-// 🔹 fetcher with image fetch inside
+// 🔹 fetcher with image fetch inside (only first image)
 const fetchAttractions = async (): Promise<Attraction[]> => {
   const res = await fetch(
     `${BASE_URL}/places/?page=1&limit=${pageSize}&sub_category=${encodeURIComponent("جای دیدنی")}`
@@ -58,12 +58,12 @@ const fetchAttractions = async (): Promise<Attraction[]> => {
 
   const formattedAttractions: Attraction[] = await Promise.all(
     data.data.map(async (item) => {
-      let imageUrls: string[] = [];
+      let firstImageUrl: string = 'NaN';
       try {
         const imgRes = await fetch(`${BASE_URL}/entity_images/place/${item.place_id}`);
         const imageData = await imgRes.json();
-        if (Array.isArray(imageData)) {
-          imageUrls = imageData.map(img => `${BASE_URL}/images/${img.image_id}`);
+        if (Array.isArray(imageData) && imageData.length > 0) {
+          firstImageUrl = `${BASE_URL}/images/${imageData[0].image_id}`;
         }
       } catch {
         console.warn(`Image fetch failed for ${item.place_id}`);
@@ -75,8 +75,8 @@ const fetchAttractions = async (): Promise<Attraction[]> => {
         id: item.place_id,
         name: item.name,
         Rate: item.rate || 0,
-        ImgName: imageUrls[0] || 'NaN',
-        image_names: imageUrls,
+        ImgName: firstImageUrl,
+        image_names: [firstImageUrl],
         Category: item.food_types?.[0] || randomCategory,
         OurDescription: item.OurDescription,
         UsersDescription: item.UsersDescription,
@@ -104,22 +104,16 @@ const fetchAttractions = async (): Promise<Attraction[]> => {
 
   return formattedAttractions;
 };
+
 const AttractionCard: React.FC<{
   attraction: Attraction;
   getImageUrl: (img: string) => string;
 }> = ({ attraction, getImageUrl }) => {
-  // Remove all carousel-related state and functions
-  // const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  // const imageCount = attraction.image_names?.length || 1;
-  // const handleNextImage = (e: React.MouseEvent) => { ... };
-  // const handlePrevImage = (e: React.MouseEvent) => { ... };
-
   const getCurrentImage = () => {
-    if (!attraction.image_names || attraction.image_names.length === 0) {
+    if (!attraction.ImgName || attraction.ImgName === 'NaN') {
       return getImageUrl('NaN');
     }
-    // Just return the first image instead of using currentImageIndex
-    return getImageUrl(attraction.image_names[0]);
+    return getImageUrl(attraction.ImgName);
   };
 
   return (
@@ -132,9 +126,6 @@ const AttractionCard: React.FC<{
             className="w-full h-48 sm:h-52 md:h-[250px] border border-b-none object-cover rounded-lg rounded-b-none transition-opacity duration-300 group-hover:brightness-75"
           />
           <img src={heart} alt="" className='text-white absolute top-3 right-1 transform -translate-x-1/2' />
-
-          {/* Remove all carousel controls */}
-          {/* Remove image dots, next/prev buttons */}
         </div>
 
         {/* Mobile */}
@@ -191,13 +182,13 @@ const PopularDestination: React.FC = () => {
   const desktopScrollRef = useRef<HTMLDivElement>(null);
   const scrollDesktopNext = () => desktopScrollRef.current?.scrollBy({ left: -600, behavior: 'smooth' });
   const scrollDesktopPrev = () => desktopScrollRef.current?.scrollBy({ left: 600, behavior: 'smooth' });
-  
+
   // 🔹 React Query hook
   const { data: attractions = [], isLoading, error } = useQuery({
     queryKey: ['attractions'],
     queryFn: fetchAttractions,
-    staleTime: 1000 * 60 * 5, // 5 minutes cache
-    gcTime: 1000 * 60 * 30,   // 30 minutes in memory
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 30,
   });
 
   // 🔹 filter memoized
@@ -215,8 +206,9 @@ const PopularDestination: React.FC = () => {
   return (
     <div className="py-12 px-0 desktop:px-16">
       <div className="flex justify-between items-center mb-4 desktop:px-20 px-[16px]">
-        <h2 className="text-base tablet:text-2xl desktop:text-3xl font-myYekanDemibold">جاهای دیدنی</h2>
-        <Link to="/attractions" className="text-sm text-gray-800 font-myYekanRegular">مشاهده همه</Link>
+        <h2 className="text-xl tablet:text-2xl desktop:text-3xl font-myYekanDemibold">جای دیدنی</h2>
+        <Link to="/attractions" className="flex flex-row items-center gap-1 text-sm text-gray-800 font-myYekanRegular">مشاهده همه
+          <ChevronLeftIcon className="h-4 w-4" /></Link>
       </div>
 
       {/* Mobile View */}

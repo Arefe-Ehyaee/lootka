@@ -5,6 +5,7 @@ import g1 from "../assets/images/Shahrdari.jpg";
 import g5 from "../assets/images/Sights_Rasht_ParkeShahr_1.webp.jpg";
 import g6 from "../assets/images/photo_2025-05-18_17-27-08.jpg";
 import g7 from "../assets/images/30669.jpg";
+import { ChevronLeftIcon } from "lucide-react";
 
 const ExperiencesSection = () => {
   const images = [
@@ -41,13 +42,13 @@ const ExperiencesSection = () => {
           به بقیه هم پیشنهاد بده!
         </p>
 
-        <button className="flex items-center justify-center bg-white border border-[#647B3B] hover:bg-[#647B3B]/5 font-myYekanDemibold desktop:px-[16px] px-0 desktop:py-4 py-2 rounded-full desktop:w-[118px] tablet:w-[120px] w-[84px] h-[32px] text-[#647B3B] desktop:text-[18px] tablet:text-base text-[14px] mx-auto">
-          ادامه
+        <button className="flex flex-row gap-1 items-center justify-center border border-[#4D93A5] text-[#4D93A5] hover:bg-[#647B3B]/5 font-myYekanRegular desktop:py-4 py-2 rounded-lg desktop:w-[124px] tablet:w-[120px] w-[84px] h-[40px] desktop:text-[18px] tablet:text-base text-[14px] mx-auto">
+          <span className="pr-1">ثبت تجربه</span>
         </button>
       </div>
 
       {/* عکس‌های شناور */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none font-myYekanRegular">
 
         {/* میدان */}
         <div className="float3 absolute desktop:top-6 tablet:top-[10%] top-[20%] desktop:right-40 tablet:right-[12%] right-[10%] flex flex-col items-center w-24">
