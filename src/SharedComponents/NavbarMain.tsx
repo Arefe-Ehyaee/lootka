@@ -9,7 +9,7 @@ import { Menu, X } from "lucide-react"; // آیکون‌های همبرگری
 
 const cities: string[] = ["رشت", "بندرانزلی", "ماسوله", "لاهیجان"];
 
-const Navbar = () => {
+const NavbarMain = () => {
   const [cityIndex, setCityIndex] = useState<number>(0);
   const [modalType, setModalType] = useState<"signup" | "login" | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -25,7 +25,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="absolute top-0 left-0 w-full z-20 h-[57px] desktop:px-[80px] px-[24px] pb-[6px] pt-[6px] bg-gray-50">
+      <nav className="absolute top-0 left-0 w-full z-20 h-[57px] desktop:px-[80px] px-[24px] py-[12px]">
         <div className="mx-auto">
           <div className="flex justify-between items-center text-white relative">
             {/* Logo */}
@@ -65,7 +65,7 @@ const Navbar = () => {
             {/* Right side buttons */}
             <div className="flex items-center desktop:gap-[28px] gap-[8px] text-sm font-myIranSansRegular">
               <button
-                className="bg-[#ffffff]/20 text-black font-myYekanMedium backdrop-blur-md border border-[0.6px] border-black desktop:px-[8px] px-2 desktop:py-[4px] py-0 rounded-full desktop:h-[40px] h-[24px] flex flex-row desktop:gap-[6px] gap-[4px] items-center desktop:text-base text-[10px]"
+                className="bg-[#ffffff]/20 text-black font-myYekanMedium backdrop-blur-md border border-[0.6px] border-white desktop:px-[8px] px-2 desktop:py-[4px] py-0 rounded-full desktop:h-[40px] h-[24px] flex flex-row desktop:gap-[6px] gap-[4px] items-center desktop:text-base text-[10px]"
                 onClick={() => setModalType("login")}
               >
                 <img
@@ -151,4 +151,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarMain;

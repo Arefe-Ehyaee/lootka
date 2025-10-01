@@ -22,7 +22,7 @@ interface Hostel {
   reviews?: number;
   order: number;
   address?: string;
-  opening_hours: OpeningHours;
+  opening_hours: string;
   phone?: string;
   website?: string;
   instagram?: string;
@@ -40,17 +40,6 @@ interface Hostel {
   description: string;
 }
 
-interface OpeningHours {
-  monday?: string | null;
-  tuesday?: string | null;
-  wednesday?: string | null;
-  thursday?: string | null;
-  friday?: string | null;
-  saturday?: string | null;
-  sunday?: string | null;
-  all_day: string | null;
-}
-
 // Interface for the backend response
 interface BackendResponse {
   data: {
@@ -61,7 +50,7 @@ interface BackendResponse {
     rating?: number;
     reviews?: number;
     address?: string;
-    opening_hours: OpeningHours;
+    opening_hours: string;
     phone?: string;
     website?: string;
     instagram?: string;

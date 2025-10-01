@@ -11,6 +11,7 @@ import HeroNavigationMobile from '../SharedComponents/HeroNavigationMobile';
 import PopularCafes from '../SharedComponents/PopularCafes';
 import TravelFeatures from '../SharedComponents/TravelFeatures';
 import UserComments from '../SharedComponents/UserComments';
+import NavbarMain from '../SharedComponents/NavbarMain';
 
 const MainPage: React.FC = () => {
   const assistantRef = useRef<HTMLDivElement>(null);
@@ -24,7 +25,7 @@ const MainPage: React.FC = () => {
 
   return (
     <div className="min-h-screen min-w-screen">
-      <Navbar />
+      <NavbarMain />
       <div className="relative">
         <Hero onAdventureClick={scrollToAssistant} />
 

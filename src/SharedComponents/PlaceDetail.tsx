@@ -10,6 +10,8 @@ import { usePlaceData } from '../restaurant/UseRestaurantData';
 import ReactMarkdown from 'react-markdown';
 import Footer from './Footer';
 import ReviewsSection from '../restaurant/ReveiwSection';
+import ImageGallery from './ImageGallery';
+import WriteComment from './WriteComment';
 
 export interface Review {
   review_id: string;
@@ -27,27 +29,27 @@ export interface Image {
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-interface ImageGalleryProps {
-  images: Image[];
-  restaurantName: string;
-  baseUrl?: string;
-}
+// interface ImageGalleryProps {
+//   images: Image[];
+//   restaurantName: string;
+//   baseUrl?: string;
+// }
 
-const ImageGallery: React.FC<ImageGalleryProps> = ({ images, restaurantName, baseUrl }) => {
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-6">
-      {images.map((img) => (
-        <img
-          key={img.image_id}
-          src={`${baseUrl}/images/${img.image_id}`}
-          alt={img.description || restaurantName}
-          className="w-full h-64 object-cover rounded-lg shadow-md"
-          loading="lazy"
-        />
-      ))}
-    </div>
-  );
-};
+// const ImageGallery: React.FC<ImageGalleryProps> = ({ images, restaurantName, baseUrl }) => {
+//   return (
+//     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-6">
+//       {images.map((img) => (
+//         <img
+//           key={img.image_id}
+//           src={`${baseUrl}/images/${img.image_id}`}
+//           alt={img.description || restaurantName}
+//           className="w-full h-64 object-cover rounded-lg shadow-md"
+//           loading="lazy"
+//         />
+//       ))}
+//     </div>
+//   );
+// };
 
 const PlaceDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -94,7 +96,7 @@ const PlaceDetail: React.FC = () => {
           <h1 className="text-3xl font-myYekanDemibold text-gray-900">مکان مورد نظر پیدا نشد.</h1>
           <p className="text-gray-600 mt-2">{error}</p>
           <Link to="/restaurant" className="text-lootka-green font-myYekanRegular hover:underline mt-4 inline-block">
-           بازگشت
+            بازگشت
           </Link>
         </div>
       </div>
@@ -112,52 +114,70 @@ const PlaceDetail: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navbar />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 mt-16">
-        <RestaurantHeader restaurant={restaurant} />
+      <div className="pt-12 mt-16">
+        {/* 12-column grid with margin 80px and gutter 24px */}
+        <div className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-x-6">
 
-        <ImageGallery
-          images={restaurant.images || []}
-          restaurantName={restaurant.name}
-          baseUrl={BASE_URL}
-        />
+          {/* Header and Tabs (full width) */}
+          <div className="col-span-12">
+            <RestaurantHeader restaurant={restaurant} />
 
-        <NavigationTabs
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-        />
+            <ImageGallery
+              images={restaurant.images || []}
+              restaurantName={restaurant.name}
+              baseUrl={BASE_URL}
+            />
+            {/* <NavigationTabs activeTab={activeTab} setActiveTab={setActiveTab} /> */}
+          </div>
 
-        <RestaurantInfo restaurant={restaurant} />
+          {/* About + Info side by side */}
+          <div className="col-span-12 md:col-span-8">
+            <div className="mb-6">
+              <h2 className="text-2xl font-myYekanDemibold mb-2">
+                {restaurant.sub_category === "رستوران" && "درباره رستوران"}
+                {restaurant.sub_category === "اقامتگاه" && "درباره اقامتگاه"}
+                {restaurant.sub_category === "کافه" && "درباره کافه"}
+                {restaurant.sub_category === "جای دیدنی" && "درباره جای دیدنی"}
+              </h2>
+              <p className="text-gray-700 text-justify leading-relaxed font-myYekanFaNumRegular bg-[#F6FDFE] p-[16px] rounded-[12px]">
+                <ReactMarkdown>{restaurant.description}</ReactMarkdown>
+              </p>
+            </div>
+          </div>
+          <div className="col-span-12 md:col-span-4">
+            <RestaurantInfo restaurant={restaurant} />
+          </div>
 
-        <div className="mb-6">
-          <h2 className="text-xl font-myYekanDemibold mb-4">
-            {restaurant.sub_category === "رستوران" && "درباره رستوران"}
-            {restaurant.sub_category === "اقامتگاه" && "درباره اقامتگاه"}
-            {restaurant.sub_category === "جای دیدنی" && "درباره جای دیدنی"}
-          </h2>
-          <p className="text-gray-700 text-justify leading-relaxed font-myYekanFaNumRegular">
-            <ReactMarkdown>{restaurant.description}</ReactMarkdown>
-          </p>
+
+          <div className='col-span-12'>
+            <span className='font-myYekanDemibold text-[20px]'>به {restaurant.name} امتیاز دهید:</span>
+            <WriteComment></WriteComment>
+          </div>
+
+          {/* Reviews full width */}
+          <div className="col-span-12 mt-6">
+            <ReviewsSection
+              reviewSummary={restaurant.review_summary}
+              reviews={currentReviews}
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
+
+          {/* Map full width */}
+          {/* <div className="col-span-12">
+            <MapComponent
+              mapUrl={restaurant.map_url}
+              latitude={restaurant.latitude}
+              longitude={restaurant.longitude}
+              name={restaurant.name}
+            />
+          </div> */}
         </div>
-
-        <div className="flex flex-col md:flex-row justify-between gap-2">
-          <ReviewsSection
-            reviewSummary={restaurant.review_summary}
-            reviews={currentReviews}
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-          />
-        </div>
-
-        <MapComponent
-          mapUrl={restaurant.map_url}
-          latitude={restaurant.latitude}
-          longitude={restaurant.longitude}
-          name={restaurant.name}
-        />
       </div>
 
       <Footer />

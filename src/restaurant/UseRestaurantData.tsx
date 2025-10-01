@@ -1,16 +1,5 @@
 import { useState, useEffect } from 'react';
 
-interface OpeningHours {
-  monday?: string | null;
-  tuesday?: string | null;
-  wednesday?: string | null;
-  thursday?: string | null;
-  friday?: string | null;
-  saturday?: string | null;
-  sunday?: string | null;
-  all_day: string | null;
-}
-
 interface Image {
   image_id: string;
   filename: string;
@@ -25,7 +14,7 @@ interface Restaurant {
   rating?: number;
   reviews?: number;
   address?: string;
-  opening_hours: OpeningHours;
+  opening_hours: string;
   phone?: string;
   website?: string;
   instagram?: string;

@@ -28,7 +28,7 @@ const fetchImagesForAttraction = async (placeId: string): Promise<string[]> => {
     const res = await fetch(`${BASE_URL}/entity_images/place/${placeId}`);
     if (!res.ok) throw new Error('Failed to fetch images');
     const imageData = await res.json();
-    
+
     if (Array.isArray(imageData)) {
       return imageData.map((img: any) => `${BASE_URL}/images/${img.image_id}`);
     }
@@ -43,18 +43,18 @@ const fetchAttractions = async (page: number, pageSize: number) => {
   const res = await fetch(
     `${BASE_URL}/places/?page=${page}&limit=${pageSize}&sub_category=${encodeURIComponent("جای دیدنی")}`
   );
-  
+
   if (!res.ok) {
     throw new Error('Failed to fetch attractions');
   }
-  
+
   const json = await res.json();
-  
+
   // Fetch images for all attractions in parallel
   const formatted: Attraction[] = await Promise.all(
     json.data.map(async (item: any) => {
       const imageUrls = await fetchImagesForAttraction(item.place_id);
-      
+
       return {
         id: item.place_id,
         name: item.name,
@@ -67,11 +67,11 @@ const fetchAttractions = async (page: number, pageSize: number) => {
       };
     })
   );
-  
+
   return {
     attractions: formatted,
-    totalPages: json.total ? Math.ceil(json.total / pageSize) : 
-               (json.data.length === pageSize ? page + 1 : page)
+    totalPages: json.total ? Math.ceil(json.total / pageSize) :
+      (json.data.length === pageSize ? page + 1 : page)
   };
 };
 
@@ -100,23 +100,23 @@ const AttractionCard: React.FC<{ attraction: Attraction }> = ({ attraction }) =>
       {/* Card Content */}
       <div className="p-3">
         <div className="flex justify-between items-center">
-          <h2 className="text-lg font-myIranSansMedium">{attraction.name}</h2>
-            <div className="text-[#1BA75E] font-myYekanFaNumRegular rounded-lg text-sm flex items-center gap-1">
-              <img src={starGreen} alt="" className="w-4 h-4 pb-1" />
-              {attraction.Rate}
-            </div>
+          <h2 className="text-lg font-myYekanFaNumMedium">{attraction.name}</h2>
+          <div className='font-myYekanFaNumRegular text-[#1BA75E] rounded-lg text-base flex flex-row items-center gap-2 px-1'>
+            {attraction.Rate}
+            <img src={starGreen} alt="" className='w-4 h-4 mb-1' />
+          </div>
         </div>
 
         {attraction.address && (
-          <div className="flex items-center mt-2 mb-2 text-sm font-myIranSansFaNumRegular">
+          <div className="flex items-center mt-2 mb-2 text-sm">
             <MapPinIcon className="h-4 w-4 ml-1 shrink-0" />
-            <span className="line-clamp-1 grow">{attraction.address}</span>
+            <span className="line-clamp-1 grow font-myYekanFaNumRegular">{attraction.address}</span>
           </div>
         )}
 
-        <div className="text-[10px] pb-2 flex flex-row items-end justify-between font-myIranSansFaNumRegular">
+        <div className="text-[10px] pb-2 flex flex-row items-end justify-between font-myYekanFaNumRegular">
           <p className="text-justify line-clamp-3">
-            <p className="font-myIranSansFaNumBold text-xs mb-1 mt-2">توضیحات</p>
+            <p className="font-myYekanFaNumDemiBold text-xs mb-1 mt-2">توضیحات</p>
             <ReactMarkdown>{attraction.description}</ReactMarkdown>
           </p>
         </div>
@@ -192,10 +192,10 @@ const AllAttractions: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-2 py-3">
         <div className="p-4 md:p-10">
-          <h1 className="text-xl font-myIranSansFaNumBold mb-6 mt-12">همه جاهای دیدنی</h1>
+          <h1 className="text-xl font-myYekanFaNumDemiBold mb-6 mt-12">همه جاهای دیدنی</h1>
 
           {isLoading ? (
-            <div className="text-center py-20">در حال بارگذاری...</div>
+            <div className="text-center py-20 font-myYekanFaNumMedium">در حال بارگذاری...</div>
           ) : isPlaceholderData ? (
             <div className="text-center py-20">
               <div className="text-gray-500 text-lg">در حال بارگذاری صفحه جدید...</div>
@@ -216,7 +216,7 @@ const AllAttractions: React.FC = () => {
 
               {/* Pagination Controls */}
               {totalPages > 1 && (
-                <div className="mt-8 flex justify-center font-myIranSansFaNumRegular">
+                <div className="mt-8 flex justify-center font-myYekanFaNumDemiBold">
                   <nav className="flex items-center gap-1">
                     <button
                       onClick={() => handlePageChange(currentPage - 1)}
@@ -234,7 +234,7 @@ const AllAttractions: React.FC = () => {
                         key={page}
                         onClick={() => handlePageChange(page)}
                         className={`px-3 py-1 rounded-md ${currentPage === page
-                          ? 'bg-green-100 text-green-700 font-myIranSansFaNumBold'
+                          ? 'bg-green-100 text-green-700 font-myYekanFaNumDemiBold'
                           : 'hover:bg-gray-100'
                           }`}
                       >

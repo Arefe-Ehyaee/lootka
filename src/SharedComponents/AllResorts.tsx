@@ -105,23 +105,23 @@ const HostelCard: React.FC<{ hostel: Hostel }> = ({ hostel }) => {
       {/* Card Info */}
       <div className="p-3">
         <div className="flex justify-between items-center">
-          <h2 className="text-lg font-myIranSansMedium">{hostel.name}</h2>
-          <div className="bg-[#EDF9F3] font-myIranSansFaNumRegular border text-[#1BA75E] rounded-lg text-base flex items-center gap-1 px-1">
+          <h2 className="text-lg font-myYekanFaNumMedium">{hostel.name}</h2>
+          <div className='font-myYekanFaNumRegular text-[#1BA75E] rounded-lg text-base flex flex-row items-center gap-2 px-1'>
             {hostel.Rate}
-            <img src={starGreen} alt="" className="w-4 h-4" />
+            <img src={starGreen} alt="" className='w-4 h-4 mb-1' />
           </div>
         </div>
 
         {hostel.address && (
-          <div className="flex items-center mt-2 mb-2 text-sm font-myIranSansFaNumRegular">
+          <div className="flex items-center mt-2 mb-2 text-sm font-myYekanFaNumRegular">
             <MapPinIcon className="h-4 w-4 ml-1 shrink-0" />
             <span className="line-clamp-1 grow">{hostel.address}</span>
           </div>
         )}
 
-        <div className="text-[10px] pb-2 flex flex-row items-end justify-between font-myIranSansFaNumRegular">
+        <div className="text-[10px] pb-2 flex flex-row items-end justify-between font-myYekanFaNumRegular">
           <p className="text-justify line-clamp-3">
-            <p className="font-myIranSansFaNumBold text-xs mb-1 mt-2">توضیحات</p>
+            <p className="font-myYekanFaNumDemiBold text-xs mb-1 mt-2">توضیحات</p>
             <ReactMarkdown>{hostel.description}</ReactMarkdown>
           </p>
           <button>
@@ -199,13 +199,13 @@ const AllResorts: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-2 py-3">
         <div className="p-4 md:p-10">
-          <h1 className="text-xl font-myIranSansFaNumBold mb-6 mt-12">همه اقامتگاه ها</h1>
+          <h1 className="text-xl font-myYekanFaNumDemiBold mb-6 mt-12">همه اقامتگاه ها</h1>
 
           {isLoading ? (
-            <div className="text-center py-20">در حال بارگذاری...</div>
+            <div className="text-center py-20 font-myYekanFaNumMedium">در حال بارگذاری...</div>
           ) : isPlaceholderData ? (
             <div className="text-center py-20">
-              <div className="text-gray-500 text-lg">در حال بارگذاری صفحه جدید...</div>
+              <div className="text-gray-500 text-lg font-myYekanFaNumMedium">در حال بارگذاری صفحه جدید...</div>
             </div>
           ) : (
             <>
@@ -223,7 +223,7 @@ const AllResorts: React.FC = () => {
 
               {/* Pagination */}
               {totalPages > 1 && (
-                <div className="mt-8 flex justify-center font-myIranSansFaNumRegular">
+                <div className="mt-8 flex justify-center font-myYekanFaNumDemiBold">
                   <nav className="flex items-center gap-1">
                     <button
                       onClick={() => handlePageChange(currentPage - 1)}
@@ -241,7 +241,7 @@ const AllResorts: React.FC = () => {
                         key={page}
                         onClick={() => handlePageChange(page)}
                         className={`px-3 py-1 rounded-md ${currentPage === page
-                          ? 'bg-green-100 text-green-700 font-myIranSansFaNumBold'
+                          ? 'bg-green-100 text-green-700 font-myYekanFaNumDemiBold'
                           : 'hover:bg-gray-100'
                           }`}
                       >

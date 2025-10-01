@@ -38,18 +38,18 @@ const fetchCafes = async (page: number, pageSize: number) => {
   const res = await fetch(
     `${BASE_URL}/places/?page=${page}&limit=${pageSize}&sub_category=${encodeURIComponent("کافه")}`
   );
-  
+
   if (!res.ok) {
     throw new Error('Failed to fetch cafes');
   }
-  
+
   const json = await res.json();
-  
+
   // Fetch images for all cafes in parallel
   const formatted: Cafe[] = await Promise.all(
     json.data.map(async (item: any) => {
       const imageIds = await fetchImageFilenames(item.place_id);
-      
+
       return {
         id: item.place_id,
         name: item.name,
@@ -62,11 +62,11 @@ const fetchCafes = async (page: number, pageSize: number) => {
       };
     })
   );
-  
+
   return {
     cafes: formatted,
-    totalPages: json.total ? Math.ceil(json.total / pageSize) : 
-               (json.data.length === pageSize ? page + 1 : page)
+    totalPages: json.total ? Math.ceil(json.total / pageSize) :
+      (json.data.length === pageSize ? page + 1 : page)
   };
 };
 
@@ -79,7 +79,7 @@ const CafeCard: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
     const images = cafe.image_ids?.length
       ? cafe.image_ids
       : cafe.image_names || [];
-    
+
     return images.length > 0 ? images[0] : 'NaN';
   };
 
@@ -98,10 +98,10 @@ const CafeCard: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
 
       <div className="p-3">
         <div className="flex justify-between items-center">
-          <h2 className="text-lg font-myIranSansMedium">{cafe.name}</h2>
-          <div className="bg-[#EDF9F3] font-myIranSansFaNumRegular border border-green-100 text-[#1BA75E] rounded-lg text-base font-myIranSansFaNumRegular flex flex-row items-center gap-2 px-1">
+          <h2 className="text-lg font-myYekanFaNumMedium">{cafe.name}</h2>
+          <div className='font-myYekanFaNumRegular text-[#1BA75E] rounded-lg text-base flex flex-row items-center gap-2 px-1'>
             {cafe.Rate}
-            <img src={starGreen} alt="" className="w-4 h-4" />
+            <img src={starGreen} alt="" className='w-4 h-4 mb-1' />
           </div>
         </div>
         {cafe.opening_hours?.all_day && (
@@ -111,14 +111,14 @@ const CafeCard: React.FC<{ cafe: Cafe }> = ({ cafe }) => {
           </div>
         )}
         {cafe.address && (
-          <div className="flex items-start mt-1 text-sm">
+          <div className="flex items-start mt-1 text-sm font-myYekanFaNumRegular">
             <MapPinIcon className="h-4 w-4 ml-1 mt-1" />
             <span>{cafe.address}</span>
           </div>
         )}
         <div className="text-xs mt-3">
-          <p className="font-myIranSansFaNumBold text-xs mb-1">توضیحات</p>
-          <p className="line-clamp-2 text-justify">
+          <p className="font-myYekanFaNumDemiBold text-xs mb-1">توضیحات</p>
+          <p className="line-clamp-2 text-justify font-myYekanFaNumRegular">
             <ReactMarkdown>{cafe.description}</ReactMarkdown>
           </p>
         </div>
@@ -179,7 +179,7 @@ const AllCafes: React.FC = () => {
         <Navbar />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-2 py-3">
           <div className="p-4 md:p-10">
-            <div className="text-center py-20 text-red-600">
+            <div className="text-center py-20 text-red-600 font-myYekanFaNumMedium">
               خطا در بارگذاری کافه‌ها: {error?.message}
             </div>
           </div>
@@ -195,13 +195,13 @@ const AllCafes: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-2 py-3">
         <div className="p-4 md:p-10">
-          <h1 className="text-xl font-myIranSansFaNumBold mb-6 mt-12">همه کافه‌ها</h1>
+          <h1 className="text-xl font-myYekanFaNumDemiBold mb-6 mt-12">همه کافه‌ها</h1>
 
           {isLoading ? (
-            <div className="text-center py-20">در حال بارگذاری...</div>
+            <div className="text-center py-20 font-myYekanFaNumMedium">در حال بارگذاری...</div>
           ) : isPlaceholderData ? (
             <div className="text-center py-20">
-              <div className="text-gray-500 text-lg">در حال بارگذاری صفحه جدید...</div>
+              <div className="text-gray-500 text-lg font-myYekanFaNumMedium">در حال بارگذاری صفحه جدید...</div>
             </div>
           ) : (
             <>
@@ -219,16 +219,15 @@ const AllCafes: React.FC = () => {
 
               {/* Pagination Controls */}
               {totalPages > 1 && (
-                <div className="mt-8 flex justify-center font-myIranSansFaNumRegular">
+                <div className="mt-8 flex justify-center font-myYekanFaNumDemiBold">
                   <nav className="flex items-center gap-1">
                     <button
                       onClick={() => handlePageChange(currentPage - 1)}
                       disabled={currentPage === 1}
-                      className={`p-2 rounded-md ${
-                        currentPage === 1
+                      className={`p-2 rounded-md ${currentPage === 1
                           ? "text-gray-400 cursor-not-allowed"
                           : "text-gray-700 hover:bg-gray-100"
-                      }`}
+                        }`}
                     >
                       <ChevronRightIcon className="h-5 w-5" />
                     </button>
@@ -237,11 +236,10 @@ const AllCafes: React.FC = () => {
                       <button
                         key={page}
                         onClick={() => handlePageChange(page)}
-                        className={`px-3 py-1 rounded-md ${
-                          currentPage === page
-                            ? "bg-green-100 text-green-700 font-myIranSansFaNumBold"
+                        className={`px-3 py-1 rounded-md ${currentPage === page
+                            ? "bg-green-100 text-green-700 font-myYekanFaNumDemiBold"
                             : "hover:bg-gray-100"
-                        }`}
+                          }`}
                       >
                         {page}
                       </button>
@@ -250,11 +248,10 @@ const AllCafes: React.FC = () => {
                     <button
                       onClick={() => handlePageChange(currentPage + 1)}
                       disabled={currentPage === totalPages}
-                      className={`p-2 rounded-md ${
-                        currentPage === totalPages
+                      className={`p-2 rounded-md ${currentPage === totalPages
                           ? "text-gray-400 cursor-not-allowed"
                           : "text-gray-700 hover:bg-gray-100"
-                      }`}
+                        }`}
                     >
                       <ChevronLeftIcon className="h-5 w-5" />
                     </button>
