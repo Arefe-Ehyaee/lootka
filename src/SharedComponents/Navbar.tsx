@@ -25,7 +25,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="absolute top-0 left-0 w-full z-20 h-[57px] desktop:px-[80px] px-[24px] pb-[6px] pt-[6px] bg-gray-50">
+      <nav className="absolute top-0 left-0 w-full z-20 desktop:px-[80px] px-[24px] pt-4">
         <div className="mx-auto">
           <div className="flex justify-between items-center text-white relative">
             {/* Logo */}
@@ -65,13 +65,13 @@ const Navbar = () => {
             {/* Right side buttons */}
             <div className="flex items-center desktop:gap-[28px] gap-[8px] text-sm font-myIranSansRegular">
               <button
-                className="bg-[#ffffff]/20 text-black font-myYekanMedium backdrop-blur-md border border-[0.6px] border-black desktop:px-[8px] px-2 desktop:py-[4px] py-0 rounded-full desktop:h-[40px] h-[24px] flex flex-row desktop:gap-[6px] gap-[4px] items-center desktop:text-base text-[10px]"
+                className="bg-[#ffffff]/20 text-black font-myYekanMedium backdrop-blur-md border border-[0.6px] border-black desktop:px-[8px] px-2 desktop:py-[4px] py-0 rounded-full desktop:h-[40px] h-[32px] flex flex-row desktop:gap-[6px] gap-[4px] items-center text-base text-[10px]"
                 onClick={() => setModalType("login")}
               >
                 <img
                   src={user}
                   alt="user"
-                  className="desktop:h-6 desktop:w-6 w-4 h-4"
+                  className="desktop:h-6 desktop:w-6 w-5 h-5"
                 />
                 ورود یا ثبت نام
               </button>

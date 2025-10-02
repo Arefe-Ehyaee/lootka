@@ -15,14 +15,14 @@ const WriteComment: React.FC<WriteCommentProps> = ({ className = "", error = fal
   return (
     <div className="w-full mt-[16px]">
       {/* Name and Email Row */}
-      <div className="flex flex-row gap-[16px]">
+      <div className="flex sm:flex-row flex-col gap-[16px]">
         {/* Name Input */}
-        <div className="relative mb-[16px] w-full">
+        <div className="relative sm:mb-[16px] w-full">
           <input
             type="text"
             id="name"
             name="name"
-            className={`bg-[#F6FDFE] w-full h-[64px] px-8 pr-[56px] rounded-lg 
+            className={`bg-[#F6FDFE] w-full h-[64px] px-8 pr-[48px] rounded-lg 
               font-myYekanFaNumRegular text-[14px] font-normal font-isf 
               placeholder-grey-400 placeholder-start
               ${className} ${error ? "border border-red-500" : ""}`}
@@ -32,7 +32,7 @@ const WriteComment: React.FC<WriteCommentProps> = ({ className = "", error = fal
           <img
             src={userComment}
             alt="icon"
-            className="h-[36px] w-[36px] absolute top-1/2 right-3 transform -translate-y-1/2"
+            className="h-[24px] w-[24px] absolute top-1/2 right-3 transform -translate-y-1/2"
           />
         </div>
 
@@ -42,7 +42,7 @@ const WriteComment: React.FC<WriteCommentProps> = ({ className = "", error = fal
             type="email"
             id="email"
             name="email"
-            className={`bg-[#F6FDFE] w-full h-[64px] px-8 pr-[56px] rounded-lg 
+            className={`bg-[#F6FDFE] w-full h-[64px] px-8 pr-[48px] rounded-lg 
               font-myYekanFaNumRegular text-[14px] font-normal font-isf 
               placeholder-grey-400 placeholder-start
               ${className} ${error ? "border border-red-500" : ""}`}
@@ -52,7 +52,7 @@ const WriteComment: React.FC<WriteCommentProps> = ({ className = "", error = fal
           <img
             src={letter}
             alt="icon"
-            className="h-[36px] w-[36px] absolute top-1/2 right-3 transform -translate-y-1/2"
+            className="h-[24px] w-[24px] absolute top-1/2 right-3 transform -translate-y-1/2"
           />
         </div>
       </div>

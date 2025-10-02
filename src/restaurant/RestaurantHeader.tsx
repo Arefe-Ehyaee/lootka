@@ -52,7 +52,7 @@ const RestaurantHeader: React.FC<RestaurantHeaderProps> = ({ restaurant }) => {
     <div className="mb-3">
       <div className="flex flex-row flex-row justify-between sm:items-center gap-3">
         <div className='flex flex-row justify-between items-center'>
-          <h1 className="desktop:text-3xl tablet:text-xl text-[20px] font-myYekanFaNumDemiBold text-black">
+          <h1 className="desktop:text-3xl tablet:text-2xl text-[20px] font-myYekanFaNumDemiBold text-black">
             {restaurant.name}
           </h1>
           <div className="flex items-center mr-3 text-xs sm:text-lg">
@@ -62,17 +62,17 @@ const RestaurantHeader: React.FC<RestaurantHeaderProps> = ({ restaurant }) => {
 
         <div className="flex items-center justify-end space-x-1 space-x-reverse text-xs sm:text-sm font-myYekanFaNumMedium">
           <button className="flex items-center text-black px-1 sm:px-2 py-1">
-            <img src={share} alt="" className='w-4 h-4 ml-1' />
+            <img src={share} alt="" className='w-[24px] h-[24px] sm:w-[32px] s:h-[32px] ml-1' />
             <span className='hidden sm:block'>اشتراک گذاری</span>
           </button>
 
           <button className="flex items-center text-black px-1 sm:px-2 py-1">
-            <img src={edit} alt="" className='w-4 h-4 ml-1' />
+            <img src={edit} alt="" className='w-[24px] h-[24px] sm:w-[32px] s:h-[32px] ml-1' />
             <span className='hidden sm:block'>ثبت نظر</span>
           </button>
 
           <button className="flex items-center text-black">
-            <HeartIcon className="h-4 w-4 ml-1" />
+            <HeartIcon className="w-[24px] h-[24px] sm:w-[32px] s:h-[32px] ml-1" />
             <span className='hidden sm:block'>افزودن به علاقه‌مندی‌</span>
           </button>
         </div>

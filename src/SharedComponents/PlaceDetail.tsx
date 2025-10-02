@@ -114,7 +114,7 @@ const PlaceDetail: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white px-[24px] xl:px-0">
       <Navbar />
 
       <div className="pt-12 mt-16">
@@ -136,7 +136,7 @@ const PlaceDetail: React.FC = () => {
           {/* About + Info side by side */}
           <div className="col-span-12 md:col-span-8">
             <div className="mb-6">
-              <h2 className="text-2xl font-myYekanDemibold mb-2">
+              <h2 className="desktop:text-2xl tablet:text-xl text-[20px] font-myYekanDemibold mb-2">
                 {restaurant.sub_category === "رستوران" && "درباره رستوران"}
                 {restaurant.sub_category === "اقامتگاه" && "درباره اقامتگاه"}
                 {restaurant.sub_category === "کافه" && "درباره کافه"}
@@ -152,7 +152,7 @@ const PlaceDetail: React.FC = () => {
           </div>
 
 
-          <div className='col-span-12'>
+          <div className='col-span-12 mt-[32px]'>
             <span className='font-myYekanDemibold text-[20px]'>به {restaurant.name} امتیاز دهید:</span>
             <WriteComment></WriteComment>
           </div>
