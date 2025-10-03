@@ -96,7 +96,7 @@ const Footer = () => {
         {/* شبکه‌های اجتماعی */}
         <ul className='flex flex-row justify-start gap-[16px] mt-[30px]'>
           <a
-            href="https://t.me/yourTelegramUsername"
+            href="https://t.me/lootkatrip"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block"
