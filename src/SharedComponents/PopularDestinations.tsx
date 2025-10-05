@@ -1,11 +1,9 @@
 import React, { useState, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeftIcon, ChevronRightIcon, MapPinIcon } from '@heroicons/react/24/outline';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import NoImg from '../assets/images/no-image-icon-23485.png';
-import starGreen from "../assets/icons/StarGreen.svg";
-import heart from "../assets/icons/heart-rounded.svg";
-import ReactMarkdown from 'react-markdown';
 import { useQuery } from '@tanstack/react-query';
+import PlaceCard from './PlaceCard'; 
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -20,7 +18,7 @@ interface Attraction {
   rating?: number;
   reviews?: number;
   address?: string;
-  opening_hours: string;
+  opening_hours?: string; 
   phone?: string;
   website?: string;
   instagram?: string;
@@ -49,34 +47,35 @@ type CategoryType = 'همه' | 'فست فود' | 'غذای محلی' | 'کافه
 const categories: CategoryType[] = ['همه', 'فست فود', 'غذای محلی', 'کافه', 'فود تراک'];
 const pageSize = 10;
 
-// 🔹 fetcher with image fetch inside (only first image)
+// 🔹 fetcher with first image
 const fetchAttractions = async (): Promise<Attraction[]> => {
   const res = await fetch(
     `${BASE_URL}/places/?page=1&limit=${pageSize}&sub_category=${encodeURIComponent("جای دیدنی")}`
   );
   const data: BackendResponse = await res.json();
 
-  const formattedAttractions: Attraction[] = await Promise.all(
+  return Promise.all(
     data.data.map(async (item) => {
-      let firstImageUrl: string = 'NaN';
+      let firstImageId: string = 'NaN';
       try {
         const imgRes = await fetch(`${BASE_URL}/entity_images/place/${item.place_id}`);
         const imageData = await imgRes.json();
         if (Array.isArray(imageData) && imageData.length > 0) {
-          firstImageUrl = `${BASE_URL}/images/${imageData[0].image_id}`;
+          firstImageId = imageData[0].image_id;
         }
       } catch {
         console.warn(`Image fetch failed for ${item.place_id}`);
       }
 
-      const randomCategory = categories[Math.floor(Math.random() * (categories.length - 1)) + 1];
+      const randomCategory =
+        categories[Math.floor(Math.random() * (categories.length - 1)) + 1];
 
       return {
         id: item.place_id,
         name: item.name,
         Rate: item.rate || 0,
-        ImgName: firstImageUrl,
-        image_names: [firstImageUrl],
+        ImgName: firstImageId || 'NaN',
+        image_names: [firstImageId],
         Category: item.food_types?.[0] || randomCategory,
         OurDescription: item.OurDescription,
         UsersDescription: item.UsersDescription,
@@ -101,90 +100,24 @@ const fetchAttractions = async (): Promise<Attraction[]> => {
       };
     })
   );
-
-  return formattedAttractions;
-};
-
-const AttractionCard: React.FC<{
-  attraction: Attraction;
-  getImageUrl: (img: string) => string;
-}> = ({ attraction, getImageUrl }) => {
-  const getCurrentImage = () => {
-    if (!attraction.ImgName || attraction.ImgName === 'NaN') {
-      return getImageUrl('NaN');
-    }
-    return getImageUrl(attraction.ImgName);
-  };
-
-  return (
-    <Link to={`/places/${attraction.id}`} className="flex-shrink-0 w-64 sm:w-72 md:w-80 group">
-      <div className="overflow-hidden relative">
-        <div className="relative">
-          <img
-            src={getCurrentImage()}
-            alt={attraction.name}
-            className="w-full h-48 sm:h-52 md:h-[250px] border border-b-none object-cover rounded-lg rounded-b-none transition-opacity duration-300 group-hover:brightness-75"
-          />
-          <img src={heart} alt="" className='text-white absolute top-3 right-1 transform -translate-x-1/2' />
-        </div>
-
-        {/* Mobile */}
-        <div className="md:hidden p-[16px] text-black rounded-lg rounded-t-none border border-t-0 h-[130px]">
-          <div className='flex flex-row justify-between items-center'>
-            <h3 className="text-sm font-myYekanDemibold line-clamp-1">{attraction.name}</h3>
-            <div className='text-[#1BA75E] font-myYekanFaNumRegular rounded-lg text-sm flex items-center gap-1'>
-              <img src={starGreen} alt="" className='w-4 h-4 pb-1' />
-              {attraction.Rate}
-            </div>
-          </div>
-          {attraction.address && (
-            <div className="flex items-start mb-2 text-xs mt-4">
-              <MapPinIcon className="h-3 w-3 ml-1 flex-shrink-0" />
-              <span className="line-clamp-1 font-myYekanFaNumRegular">{attraction.address}</span>
-            </div>
-          )}
-          <div className="text-[8px] pb-1 mt-4">
-            <p className="text-justify font-myYekanFaNumRegular line-clamp-3">
-              <ReactMarkdown>{attraction.description}</ReactMarkdown>
-            </p>
-          </div>
-        </div>
-
-        {/* Desktop */}
-        <div className="hidden md:block p-[16px] text-black rounded-lg rounded-t-none h-[160px] border border-t-0">
-          <div className="flex flex-row justify-between items-center">
-            <h3 className="text-[18px] font-myYekanDemibold line-clamp-1">{attraction.name}</h3>
-            <div className=" text-[#1BA75E] font-myYekanFaNumRegular rounded-lg text-base flex items-center gap-1 px-1">
-              <img src={starGreen} alt="" className="w-4 h-4 pb-1" />
-              {attraction.Rate}
-            </div>
-          </div>
-          {attraction.address && (
-            <div className="flex items-center mt-5 mb-3 text-sm">
-              <MapPinIcon className="h-4 w-4 ml-1 flex-shrink-0" />
-              <span className="line-clamp-1 font-myYekanFaNumRegular">{attraction.address}</span>
-            </div>
-          )}
-          <div className="text-[10px] pb-2 mt-4 flex items-end justify-between font-myYekanFaNumRegular mt-1">
-            <p className="text-justify line-clamp-3 font-myYekanFaNumRegular">
-              <ReactMarkdown>{attraction.description}</ReactMarkdown>
-            </p>
-          </div>
-        </div>
-      </div>
-    </Link>
-  );
 };
 
 const PopularDestination: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>('همه');
   const mobileScrollRef = useRef<HTMLDivElement>(null);
   const desktopScrollRef = useRef<HTMLDivElement>(null);
-  const scrollDesktopNext = () => desktopScrollRef.current?.scrollBy({ left: -600, behavior: 'smooth' });
-  const scrollDesktopPrev = () => desktopScrollRef.current?.scrollBy({ left: 600, behavior: 'smooth' });
+
+  const scrollDesktopNext = () =>
+    desktopScrollRef.current?.scrollBy({ left: -600, behavior: 'smooth' });
+  const scrollDesktopPrev = () =>
+    desktopScrollRef.current?.scrollBy({ left: 600, behavior: 'smooth' });
 
   // 🔹 React Query hook
-  const { data: attractions = [], isLoading, error } = useQuery({
+  const {
+    data: attractions = [],
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['attractions'],
     queryFn: fetchAttractions,
     staleTime: 1000 * 60 * 5,
@@ -195,20 +128,31 @@ const PopularDestination: React.FC = () => {
   const filteredAttractions = useMemo(() => {
     return selectedCategory === 'همه'
       ? attractions
-      : attractions.filter(a => a.Category === selectedCategory);
+      : attractions.filter((a) => a.Category === selectedCategory);
   }, [selectedCategory, attractions]);
 
-  const getImageUrl = (img: string) => (!img || img === 'NaN' ? NoImg : img);
+  const getImageUrl = (idOrFilename: string) =>
+    !idOrFilename || idOrFilename === 'NaN'
+      ? NoImg
+      : `${BASE_URL}/images/${idOrFilename}`;
 
   if (isLoading) return <div className="text-center py-20">در حال بارگذاری...</div>;
-  if (error instanceof Error) return <div className="text-red-500 text-center">{error.message}</div>;
+  if (error instanceof Error)
+    return <div className="text-red-500 text-center">{error.message}</div>;
 
   return (
     <div className="py-12 px-0 desktop:px-16">
       <div className="flex justify-between items-center mb-4 desktop:px-20 px-[16px]">
-        <h2 className="text-xl tablet:text-2xl desktop:text-3xl font-myYekanDemibold">جای دیدنی</h2>
-        <Link to="/attractions" className="flex flex-row items-center gap-1 text-sm text-gray-800 font-myYekanRegular">مشاهده همه
-          <ChevronLeftIcon className="h-4 w-4" /></Link>
+        <h2 className="text-xl tablet:text-2xl desktop:text-3xl font-myYekanDemibold">
+          جای دیدنی
+        </h2>
+        <Link
+          to="/attractions"
+          className="flex flex-row items-center gap-1 text-sm text-gray-800 font-myYekanRegular"
+        >
+          مشاهده همه
+          <ChevronLeftIcon className="h-4 w-4" />
+        </Link>
       </div>
 
       {/* Mobile View */}
@@ -217,8 +161,13 @@ const PopularDestination: React.FC = () => {
           ref={mobileScrollRef}
           className="flex overflow-x-auto space-x-2 rtl:space-x-reverse scroll-smooth pb-6 scrollbar-hide px-2"
         >
-          {filteredAttractions.map(attr => (
-            <AttractionCard key={attr.id} attraction={attr} getImageUrl={getImageUrl} />
+          {filteredAttractions.map((attr) => (
+            <PlaceCard
+              key={attr.id}
+              place={attr}
+              getImageUrl={getImageUrl}
+              type="attraction"
+            />
           ))}
         </div>
       </div>
@@ -236,8 +185,13 @@ const PopularDestination: React.FC = () => {
             ref={desktopScrollRef}
             className="flex overflow-x-auto pb-6 scrollbar-hide space-x-2 rtl:space-x-reverse scroll-smooth flex-1"
           >
-            {filteredAttractions.map(attr => (
-              <AttractionCard key={attr.id} attraction={attr} getImageUrl={getImageUrl} />
+            {filteredAttractions.map((attr) => (
+              <PlaceCard
+                key={attr.id}
+                place={attr}
+                getImageUrl={getImageUrl}
+                type="attraction"
+              />
             ))}
           </div>
           <button

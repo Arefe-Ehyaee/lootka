@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { StarIcon, StarIcon as StarIconSolid } from '@heroicons/react/24/solid';
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 import user from "../assets/images/Frame 440.png";
 
 interface Review {
@@ -48,22 +47,6 @@ const StarRating = ({ rating }: { rating: number }) => {
   );
 };
 
-// Helper to generate limited pagination (up to 5 page buttons)
-const getPageNumbers = (currentPage: number, totalPages: number): number[] => {
-  const delta = 2;
-  const range = [];
-
-  for (
-    let i = Math.max(1, currentPage - delta);
-    i <= Math.min(totalPages, currentPage + delta);
-    i++
-  ) {
-    range.push(i);
-  }
-
-  return range;
-};
-
 const ReviewsSection: React.FC<ReviewsSectionProps> = ({
   reviewSummary,
   reviews,
@@ -71,9 +54,31 @@ const ReviewsSection: React.FC<ReviewsSectionProps> = ({
   totalPages,
   onPageChange,
 }) => {
+  const loaderRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (currentPage >= totalPages) return; // stop observing if no more pages
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          onPageChange(currentPage + 1);
+        }
+      },
+      { threshold: 1.0 }
+    );
+
+    if (loaderRef.current) {
+      observer.observe(loaderRef.current);
+    }
+
+    return () => {
+      if (loaderRef.current) observer.unobserve(loaderRef.current);
+    };
+  }, [currentPage, totalPages, onPageChange]);
+
   return (
     <div className="flex flex-col md:flex-row">
-      {/* Comments Section */}
       <div className="flex-1 p-4">
         <h3 className="text-xl font-myYekanFaNumDemiBold mb-4">نظرات کاربران</h3>
 
@@ -99,52 +104,16 @@ const ReviewsSection: React.FC<ReviewsSectionProps> = ({
               </div>
             ))}
 
-            {/* Custom Pagination */}
-            {totalPages > 1 && (
-              <div className="mt-8 flex justify-center font-myYekanFaNumRegular">
-                <nav className="flex items-center gap-1">
-                  <button
-                    onClick={() => onPageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    className={`p-2 rounded-md ${currentPage === 1
-                      ? 'text-gray-400 cursor-not-allowed'
-                      : 'text-gray-700 hover:bg-gray-100'
-                      }`}
-                  >
-                    <ChevronRightIcon className="h-5 w-5" />
-                  </button>
-
-                  {getPageNumbers(currentPage, totalPages).map((page) => (
-                    <button
-                      key={page}
-                      onClick={() => onPageChange(page)}
-                      className={`px-3 py-1 rounded-md ${currentPage === page
-                        ? 'bg-green-100 text-green-700 font-myYekanFaNumDemiBold'
-                        : 'hover:bg-gray-100'
-                        }`}
-                    >
-                      {page}
-                    </button>
-                  ))}
-
-                  <button
-                    onClick={() => onPageChange(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                    className={`p-2 rounded-md ${currentPage === totalPages
-                      ? 'text-gray-400 cursor-not-allowed'
-                      : 'text-gray-700 hover:bg-gray-100'
-                      }`}
-                  >
-                    <ChevronLeftIcon className="h-5 w-5" />
-                  </button>
-                </nav>
+            {/* Infinite scroll trigger */}
+            {currentPage < totalPages && (
+              <div ref={loaderRef} className="text-center py-4 text-gray-500">
+                در حال بارگذاری...
               </div>
             )}
           </div>
         )}
       </div>
 
-      {/* Empty Sidebar (only on desktop) */}
       <div className="hidden md:block w-[409px]"></div>
     </div>
   );

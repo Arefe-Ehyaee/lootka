@@ -18,38 +18,38 @@ const HeroNavigation = () => {
                     onClick={() => navigate('/planner')}
                     className="flex flex-col items-center justify-center w-[100px] h-[100px] border-[1.8px] border-[#CFD6DC] rounded-lg "
                 >
-                    <img src={map} className="rounded-lg" alt="" />
+                    <img src={map} alt="برنامه‌ریز سفر" className="rounded-lg" />
                 </button>
                 <button
                     onClick={() => navigate('/attractions')}
                     className="flex flex-col items-center justify-center w-[100px] h-[100px] border-[1.8px] border-[#CFD6DC] rounded-lg "
                 >
-                    <img src={camera} className="w-[100px] h-[100px] rounded-lg" alt="" />
+                    <img src={camera} alt="جای دیدنی" className="w-[100px] h-[100px] rounded-lg" />
                 </button>
                 <button
                     onClick={() => navigate('/restaurants')}
                     className="flex flex-col items-center justify-center w-[100px] h-[100px] border-[1.8px] border-[#CFD6DC] rounded-lg "
                 >
-                    <img src={cuisine} alt="" className=" rounded-lg" />
+                    <img src={cuisine} alt="رستوران" className=" rounded-lg" />
                 </button>
                 <button
                     onClick={() => navigate('/cafes')}
                     className="flex flex-col items-center justify-center w-[100px] h-[100px] border-[1.8px] border-[#CFD6DC] rounded-lg "
                 >
-                    <img src={cafe} alt="" className=" rounded-lg"/>
+                    <img src={cafe} alt="کافه" className=" rounded-lg"/>
                 </button>
                 <button
                     onClick={() => navigate('/hostels')}
                     className="flex flex-col items-center justify-center w-[100px] h-[100px] border-[1.8px] border-[#CFD6DC] rounded-lg "
                 >
-                    <img src={resort} alt="" className=" rounded-lg"/>
+                    <img src={resort} alt="اقامتگاه" className=" rounded-lg"/>
 
                 </button>
                 <button
                     onClick={() => navigate('/')}
                     className="flex flex-col items-center justify-center w-[100px] h-[100px] border-[1.8px] border-[#CFD6DC] rounded-lg "
                 >
-                    <img src={road} alt="" className=" rounded-lg"/>
+                    <img src={road} alt="تجربه خاض" className=" rounded-lg"/>
                 </button>
             </div>
 

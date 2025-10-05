@@ -6,27 +6,22 @@ interface HeroProps {
   onAdventureClick: () => void;
 }
 
-const  Hero: React.FC<HeroProps> = ({ onAdventureClick }) => {
+const Hero: React.FC<HeroProps> = ({ onAdventureClick }) => {
 
   return (
     <div className="relative">
       {/* Hero Section */}
       <div
         className="desktop:h-[693px] h-[283px] bg-cover bg-center relative"
-        style={{ backgroundImage: `url(${heroAboutUs})` }}
+        style={{ backgroundImage: `url(${heroAboutUs})`, minHeight: '283px' }}
       >
+
         {/* Dark overlay */}
         <div className="absolute inset-0 flex items-start">
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center pt-3">
             {/* Title */}
             <div className="text-[#000000] w-full text-center mt-[20px] desktop:mt-[20px] font-myYekanMedium">
               <h1 className="desktop:text-[32px] tablet:text-[32px] text-[18px] desktop:mb-[4px] mb-[4px]">لوتکا، اولین پلتفرم بومی سفر به گیلان</h1>
-              {/* <p className="desktop:text-[24px] tablet:text-[20px] text-[12px]">
-                قایق چوبی ما، راهِ‌تو به كشف نشده‌ها...
-              </p>
-              <p className="desktop:text-[24px] tablet:text-[20px] text-[12px]">
-                هر کجا در گیلان، قصه‌ای در انتظار توست؛ از بوی نان تازه تا مه جنگل‌های پنهان...
-              </p> */}
             </div>
 
             {/* Search */}

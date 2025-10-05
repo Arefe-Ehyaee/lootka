@@ -172,9 +172,10 @@ const UserComments: React.FC = () => {
                   </div>
                 </div>
 
-                <p className="text-[14px] text-[#222222]/80 flex-1 leading-6 pt-[30px] line-clamp-2 text-justify">
+                <p className="text-[14px] text-[#222222]/80 flex-1 leading-6 pt-[30px] line-clamp-4 text-justify">
                   {review.comment}
                 </p>
+
 
                 <div className="flex items-center justify-between mt-4">
                   <div className="flex items-center gap-2">

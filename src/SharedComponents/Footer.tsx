@@ -87,7 +87,7 @@ const Footer = () => {
             </li>
             <li className='flex flex-row items-center gap-1'>
               <img src={loc} alt="" className='w-5 h-5' />
-              <span>ایران، گیلان</span>
+              <span>ایران، تهران</span>
             </li>
 
           </ul>
@@ -112,7 +112,7 @@ const Footer = () => {
             <img src={ins} alt="Instagram" className="w-8 h-8 cursor-pointer" />
           </a>
           <a
-            href="https://wa.me/yourWhatsappNumber"
+            href="https://wa.me/989019419057"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block"

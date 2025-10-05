@@ -2,10 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import RestaurantHeader from '../restaurant/RestaurantHeader';
-import NavigationTabs from '../restaurant/NavigationTabs';
 import RestaurantInfo from '../restaurant/RestaurantInfo';
-import MapComponent from '../restaurant/MapComponent';
-import DeleteButton from './DeleteButton';
 import { usePlaceData } from '../restaurant/UseRestaurantData';
 import ReactMarkdown from 'react-markdown';
 import Footer from './Footer';
@@ -54,7 +51,6 @@ const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 const PlaceDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { restaurant, loading, error } = usePlaceData(id);
-  const [activeTab, setActiveTab] = useState<string>('overview');
   const [reviews, setReviews] = useState<Review[]>([]);
   const [reviewError, setReviewError] = useState<string | null>(null);
 
