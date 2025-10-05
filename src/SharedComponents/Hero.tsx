@@ -14,8 +14,8 @@ const Hero: React.FC<HeroProps> = ({ onAdventureClick }) => {
         src={heroAboutUs}
         alt="لوتکا، اولین پلتفرم بومی سفر به گیلان"
         className="w-full h-full object-cover"
+        fetchpriority="high" // مرورگر فوراً دانلود می‌کند
       />
-
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/10 flex flex-col justify-center items-center">
