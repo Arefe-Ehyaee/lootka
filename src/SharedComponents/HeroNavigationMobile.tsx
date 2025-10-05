@@ -29,7 +29,7 @@ const HeroNavigationMobile = () => {
                         >
                             <img src={item.img} alt={item.label} className="rounded-lg" />
                         </button>
-                        <span className="mt-2 text-sm font-myIranSansMedium text-center w-[100px]">
+                        <span className="mt-2 text-sm font-myYekanDemibold text-center w-[100px]">
                             {item.label}
                         </span>
                     </div>
