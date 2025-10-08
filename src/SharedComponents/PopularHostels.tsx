@@ -22,7 +22,6 @@ interface Hostel {
   phone?: string;
   website?: string;
   instagram?: string;
-  image_names?: string[];
   Menu?: any[];
   food_types?: string[];
   subCategory?: string[];
@@ -44,35 +43,30 @@ interface BackendResponse {
 
 type CategoryType = "همه" | "فست فود" | "غذای محلی" | "کافه" | "فود تراک";
 
-const categories: CategoryType[] = [
-  "همه",
-  "فست فود",
-  "غذای محلی",
-  "کافه",
-  "فود تراک",
-];
+const categories: CategoryType[] = ["همه", "فست فود", "غذای محلی", "کافه", "فود تراک"];
 const pageSize = 10;
 
-// ✅ Keep your original working image fetch logic
-const fetchImagesForHostel = async (placeId: string): Promise<string[]> => {
+// ✅ Fetch only the first image
+const fetchFirstImageForHostel = async (placeId: string): Promise<string> => {
   try {
     const res = await fetch(`${BASE_URL}/entity_images/place/${placeId}`);
-    const imageMeta = await res.json();
+    if (!res.ok) return "";
 
-    const imageUrls: string[] = [];
-    for (const img of imageMeta) {
-      const imgId = img.image_id;
-      const response = await fetch(`${BASE_URL}/images/${imgId}`);
-      if (response.ok) {
-        imageUrls.push(`${BASE_URL}/images/${imgId}`);
-      }
-    }
-    return imageUrls;
-  } catch {
-    return [];
+    const imageMeta = await res.json();
+    if (!imageMeta.length) return "";
+
+    const firstImgId = imageMeta[0].image_id;
+    const response = await fetch(`${BASE_URL}/images/${firstImgId}`);
+    if (!response.ok) return "";
+
+    return `${BASE_URL}/images/${firstImgId}`;
+  } catch (error) {
+    console.error("Error fetching first image:", error);
+    return "";
   }
 };
 
+// Fetch hostels with only first image
 const fetchHostels = async (): Promise<Hostel[]> => {
   const res = await fetch(
     `${BASE_URL}/places/?page=1&limit=${pageSize}&sub_category=${encodeURIComponent(
@@ -83,15 +77,16 @@ const fetchHostels = async (): Promise<Hostel[]> => {
 
   return Promise.all(
     data.data.map(async (item) => {
-      const images = await fetchImagesForHostel(item.place_id);
+      const firstImage = await fetchFirstImageForHostel(item.place_id);
+
       const randomCategory =
         categories[Math.floor(Math.random() * (categories.length - 1)) + 1];
+
       return {
         id: item.place_id,
         name: item.name,
         Rate: item.rate || 0,
-        ImgName: images[0] || "NaN",
-        image_names: images,
+        ImgName: firstImage || "", // only first image
         Category: item.food_types?.[0] || randomCategory,
         OurDescription: item.OurDescription,
         UsersDescription: item.UsersDescription,
@@ -119,34 +114,25 @@ const fetchHostels = async (): Promise<Hostel[]> => {
 };
 
 const PopularHostels: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] =
-    useState<CategoryType>("همه");
+  const [selectedCategory, setSelectedCategory] = useState<CategoryType>("همه");
   const mobileScrollRef = useRef<HTMLDivElement>(null);
   const desktopScrollRef = useRef<HTMLDivElement>(null);
 
-  // ✅ Don’t rebuild URL — you already fetch full URLs
-  const getImageUrl = (img: string) =>
-    !img || img === "NaN" ? NoImg : img;
+  const getImageUrl = (img: string) => (img ? img : NoImg);
 
-  const {
-    data: hostels = [],
-    isLoading,
-    error,
-  } = useQuery<Hostel[], Error>({
+  const { data: hostels = [], isLoading, error } = useQuery<Hostel[], Error>({
     queryKey: ["hostels"],
     queryFn: fetchHostels,
     staleTime: 1000 * 60 * 5,
     gcTime: 1000 * 60 * 30,
   });
 
-  // 🔹 Filtered hostels
   const filteredHostels = useMemo(() => {
     return selectedCategory === "همه"
       ? hostels
       : hostels.filter((r) => r.Category === selectedCategory);
   }, [selectedCategory, hostels]);
 
-  // reset scroll on filter change
   useEffect(() => {
     mobileScrollRef.current?.scrollTo({ left: 0 });
     desktopScrollRef.current?.scrollTo({ left: 0 });

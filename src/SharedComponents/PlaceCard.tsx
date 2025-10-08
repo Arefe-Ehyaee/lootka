@@ -13,7 +13,7 @@ interface PlaceCardProps {
     Rate: number;
     ImgName?: string;
     address?: string;
-    opening_hours?: string; 
+    opening_hours?: string;
     description?: string;
   };
   getImageUrl?: (img: string) => string;
@@ -27,6 +27,11 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place, getImageUrl, type }) => {
     }
     return getImageUrl ? getImageUrl(place.ImgName) : place.ImgName;
   };
+
+  // ✅ Helper: valid opening hours check
+  const hasOpeningHours =
+    place.opening_hours &&
+    place.opening_hours.toLowerCase() !== "string";
 
   return (
     <Link
@@ -45,17 +50,23 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place, getImageUrl, type }) => {
         </div>
 
         {/* Mobile */}
-        <div className="md:hidden p-[16px] text-black rounded-lg rounded-t-none border border-t-0 h-[150px]">
+        <div
+          className={`md:hidden p-[16px] text-black rounded-lg rounded-t-none border border-t-0 ${
+            hasOpeningHours ? "h-[150px]" : "h-[130px]"
+          }`}
+        >
           <div className="flex justify-between items-center">
-            <h3 className="text-sm font-myYekanDemibold line-clamp-1">{place.name}</h3>
+            <h3 className="text-sm font-myYekanDemibold line-clamp-1">
+              {place.name}
+            </h3>
             <div className="text-[#1BA75E] font-myYekanFaNumRegular rounded-lg text-sm flex items-center gap-1">
               <img src={starGreen} alt="" className="w-4 h-4 pb-1" />
               {place.Rate}
             </div>
           </div>
 
-          {/* 🔹 Only render if exists */}
-          {place.opening_hours && (
+          {/* 🔹 Opening hours (only if valid) */}
+          {hasOpeningHours && (
             <div className="flex items-center text-xs mt-2" dir="rtl">
               <ClockIcon className="h-3 w-3 ml-1" />
               <div className="line-clamp-1 font-myYekanFaNumRegular">
@@ -64,13 +75,17 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place, getImageUrl, type }) => {
             </div>
           )}
 
+          {/* 🔹 Address */}
           {place.address && (
             <div className="flex items-start text-xs mt-1">
               <MapPinIcon className="h-3 w-3 ml-1 mt-0.5 flex-shrink-0" />
-              <span className="line-clamp-1 font-myYekanFaNumRegular">{place.address}</span>
+              <span className="line-clamp-1 font-myYekanFaNumRegular">
+                {place.address}
+              </span>
             </div>
           )}
 
+          {/* 🔹 Description */}
           <div className="text-[8px] pb-1 mt-2">
             <p className="text-justify font-myIranSansMedium line-clamp-3">
               <ReactMarkdown>{place.description || ""}</ReactMarkdown>
@@ -79,16 +94,23 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place, getImageUrl, type }) => {
         </div>
 
         {/* Desktop */}
-        <div className="hidden md:block p-[16px] text-black rounded-lg rounded-t-none h-[170px] border border-t-0">
+        <div
+          className={`hidden md:block p-[16px] text-black rounded-lg rounded-t-none border border-t-0 ${
+            hasOpeningHours ? "h-[170px]" : "h-[150px]"
+          }`}
+        >
           <div className="flex justify-between items-center">
-            <h3 className="text-[18px] font-myYekanDemibold line-clamp-1">{place.name}</h3>
-            <div className=" text-[#1BA75E] font-myYekanFaNumRegular rounded-lg text-base flex items-center gap-1 px-1">
+            <h3 className="text-[18px] font-myYekanDemibold line-clamp-1">
+              {place.name}
+            </h3>
+            <div className="text-[#1BA75E] font-myYekanFaNumRegular rounded-lg text-base flex items-center gap-1 px-1">
               <img src={starGreen} alt="" className="w-4 h-4 pb-1" />
               {place.Rate}
             </div>
           </div>
 
-          {place.opening_hours && (
+          {/* 🔹 Opening hours (only if valid) */}
+          {hasOpeningHours && (
             <div
               className="flex items-start text-sm mt-4 font-myYekanFaNumRegular"
               dir="rtl"
@@ -98,13 +120,17 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place, getImageUrl, type }) => {
             </div>
           )}
 
+          {/* 🔹 Address */}
           {place.address && (
             <div className="flex items-start text-sm mt-1">
               <MapPinIcon className="h-4 w-4 ml-1 mt-0.5 flex-shrink-0" />
-              <span className="line-clamp-1 font-myYekanFaNumRegular">{place.address}</span>
+              <span className="line-clamp-1 font-myYekanFaNumRegular">
+                {place.address}
+              </span>
             </div>
           )}
 
+          {/* 🔹 Description */}
           <div className="text-[10px] pb-2 mt-2 flex items-end justify-between font-myYekanFaNumRegular">
             <p className="text-justify line-clamp-3">
               <ReactMarkdown>{place.description || ""}</ReactMarkdown>

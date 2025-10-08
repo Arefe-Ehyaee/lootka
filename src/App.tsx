@@ -19,6 +19,7 @@ import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import useUserStore from './store/userStore';
+import SearchResultsPage from "./SharedComponents/SerachResultPage";
 
 function App() {
     const queryClient = new QueryClient();
@@ -47,6 +48,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage></MainPage>} />
           <Route path="/places/:id" element={<PlaceDetail />} />
+          <Route path="/search-results" element={<SearchResultsPage />} />
           <Route path="/addForm" element={<FormLanding />} />
           <Route path="/addPlace" element={<RestaurantForm />} />
           <Route path="/branches" element={<MapComponentTest />}></Route>

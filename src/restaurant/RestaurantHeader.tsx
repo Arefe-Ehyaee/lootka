@@ -62,12 +62,12 @@ const RestaurantHeader: React.FC<RestaurantHeaderProps> = ({ restaurant }) => {
 
         <div className="flex items-center justify-end space-x-1 space-x-reverse text-xs sm:text-sm font-myYekanFaNumMedium">
           <button className="flex items-center text-black px-1 sm:px-2 py-1">
-            <img src={share} alt="" className='w-[24px] h-[24px] sm:w-[32px] s:h-[32px] ml-1' />
+            <img src={share} alt="اشتراک گذاری" className='w-[24px] h-[24px] sm:w-[32px] s:h-[32px] ml-1' />
             <span className='hidden sm:block'>اشتراک گذاری</span>
           </button>
 
           <button className="flex items-center text-black px-1 sm:px-2 py-1">
-            <img src={edit} alt="" className='w-[24px] h-[24px] sm:w-[32px] s:h-[32px] ml-1' />
+            <img src={edit} alt="ثبت نظر" className='w-[24px] h-[24px] sm:w-[32px] s:h-[32px] ml-1' />
             <span className='hidden sm:block'>ثبت نظر</span>
           </button>
 
