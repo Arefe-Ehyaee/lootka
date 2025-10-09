@@ -36,8 +36,12 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place, getImageUrl, type }) => {
   return (
     <Link
       to={`/places/${place.id}`}
-      className="flex-shrink-0 w-64 sm:w-72 md:w-80 group"
+      className={`group rounded-lg overflow-hidden hover:shadow-md transition-all duration-200 bg-white ${type === "restaurant" || type === "attraction"
+          ? "w-64 sm:w-72 md:w-80 flex-shrink-0"
+          : "w-full"
+        }`}
     >
+
       <div className="overflow-hidden relative">
         {/* Image Section */}
         <div className="relative">
@@ -51,9 +55,8 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place, getImageUrl, type }) => {
 
         {/* Mobile */}
         <div
-          className={`md:hidden p-[16px] text-black rounded-lg rounded-t-none border border-t-0 ${
-            hasOpeningHours ? "h-[150px]" : "h-[130px]"
-          }`}
+          className={`md:hidden p-[16px] text-black rounded-lg rounded-t-none border border-t-0 ${hasOpeningHours ? "h-[150px]" : "h-[130px]"
+            }`}
         >
           <div className="flex justify-between items-center">
             <h3 className="text-sm font-myYekanDemibold line-clamp-1">
@@ -68,7 +71,7 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place, getImageUrl, type }) => {
           {/* 🔹 Opening hours (only if valid) */}
           {hasOpeningHours && (
             <div className="flex items-center text-xs mt-2" dir="rtl">
-              <ClockIcon className="h-3 w-3 ml-1" />
+              <ClockIcon className="h-3 w-3 ml-1 " />
               <div className="line-clamp-1 font-myYekanFaNumRegular">
                 {place.opening_hours}
               </div>
@@ -95,9 +98,8 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place, getImageUrl, type }) => {
 
         {/* Desktop */}
         <div
-          className={`hidden md:block p-[16px] text-black rounded-lg rounded-t-none border border-t-0 ${
-            hasOpeningHours ? "h-[170px]" : "h-[150px]"
-          }`}
+          className={`hidden md:block p-[16px] text-black rounded-lg rounded-t-none border border-t-0 ${hasOpeningHours ? "h-[170px]" : "h-[150px]"
+            }`}
         >
           <div className="flex justify-between items-center">
             <h3 className="text-[18px] font-myYekanDemibold line-clamp-1">
