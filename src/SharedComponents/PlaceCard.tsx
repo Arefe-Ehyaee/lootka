@@ -37,8 +37,8 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place, getImageUrl, type }) => {
     <Link
       to={`/places/${place.id}`}
       className={`group rounded-lg overflow-hidden hover:shadow-md transition-all duration-200 bg-white ${type === "restaurant" || type === "attraction"
-          ? "w-64 sm:w-72 md:w-80 flex-shrink-0"
-          : "w-full"
+        ? "w-64 sm:w-72 md:w-80 flex-shrink-0"
+        : "w-full"
         }`}
     >
 
@@ -72,7 +72,7 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place, getImageUrl, type }) => {
           {hasOpeningHours && (
             <div className="flex items-center text-xs mt-2" dir="rtl">
               <ClockIcon className="h-3 w-3 ml-1 " />
-              <div className="line-clamp-1 font-myYekanFaNumRegular">
+              <div className="line-clamp-1 font-myYekanFaNumRegular truncate">
                 {place.opening_hours}
               </div>
             </div>
@@ -118,9 +118,10 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place, getImageUrl, type }) => {
               dir="rtl"
             >
               <ClockIcon className="h-4 w-4 ml-1 flex-shrink-0" />
-              <div>{place.opening_hours}</div>
+              <div className="truncate w-full">{place.opening_hours}</div>
             </div>
           )}
+
 
           {/* 🔹 Address */}
           {place.address && (
